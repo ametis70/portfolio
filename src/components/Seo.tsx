@@ -16,10 +16,15 @@ type SEOProps = {
     | { name: string; content: string; property?: undefined }
     | { property: string; content: string; name?: undefined }
   >
-  title: string
+  title?: string
 }
 
-const SEO: React.FC<SEOProps> = ({ title, lang = 'en', meta = [], description = '' }) => {
+const SEO: React.FC<SEOProps> = ({
+  title = undefined,
+  lang = 'es',
+  meta = [],
+  description = '',
+}) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -42,8 +47,8 @@ const SEO: React.FC<SEOProps> = ({ title, lang = 'en', meta = [], description = 
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      title={title ?? defaultTitle}
+      titleTemplate={title ? `%s | ${defaultTitle}` : '%s'}
       meta={[
         {
           name: `description`,

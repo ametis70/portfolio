@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: "ianmethyst's Default Starter",
+    title: 'Ian Mancini',
     description:
       'Kick off your next, great Gatsby project with this starter. It is based on gatsby-default-starter but with a few extra things.',
     author: '@ianmethyst',

@@ -3,10 +3,10 @@ import { PageProps } from 'gatsby'
 
 import SEO from '../components/Seo'
 
-const IndexPage: React.FC<PageProps> = () => (
+const WorksPage: React.FC<PageProps> = () => (
   <>
-    <SEO />
+    <SEO title="Trabajos" />
   </>
 )
 
-export default IndexPage
+export default WorksPage
