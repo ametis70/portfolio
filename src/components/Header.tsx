@@ -1,165 +1,47 @@
-import React, { useEffect, useState } from 'react'
-import { Box, Heading, Stack } from '@chakra-ui/react'
-import { useLocation } from '@reach/router'
+import React from 'react'
+import { Flex, Image, Box, Heading, Stack } from '@chakra-ui/react'
+
 import { useResizeDetector } from 'react-resize-detector'
+import { AnimateSharedLayout } from 'framer-motion'
 
-import Link from './Link'
 import MotionBox from './MotionBox'
+import HeaderTitle from './HeaderTitle'
+import Nav from './Nav'
+import Logo from '../images/logo.inline.svg'
 
-const headerVariants = {
-  home: {
-    y: 'calc(50vh - 100%)',
-    x: 'calc(50vw - 50%)',
-    transition: {
-      delayChildren: 0.5,
-      ease: 'easeInOut',
-      duration: 0.5,
-    },
-  },
-  top: {
-    y: 0,
-    x: 0,
-    transition: {
-      when: 'afterChildren',
-      ease: 'easeInOut',
-      duration: 0.5,
-    },
-  },
+type HeaderProps = {
+  isHome: boolean
 }
 
-const navVariants = {
-  home: (headingsHeight) => ({
-    y: `calc(50vh + ${headingsHeight}px)`,
-    x: 'calc(-50vw + 50%)',
-    transition: {
-      delayChildren: 0.5,
-      ease: 'easeInOut',
-      duration: 0.5,
-    },
-  }),
+const logoVariants = {
   top: {
-    y: 0,
-    x: 0,
-    transition: {
-      when: 'afterChildren',
-      ease: 'easeInOut',
-      duration: 0.5,
-    },
-  },
-}
-
-const subtitleVariants = {
-  home: {
     opacity: 1,
+    x: 0,
     transition: {
       duration: 0.2,
+      ease: 'easeInOut',
     },
   },
-  top: {
+  home: {
     opacity: 0,
+    x: '-100%',
     transition: {
       duration: 0.2,
+      ease: 'easeInOut',
     },
   },
 }
 
-const Header: React.FC = (): JSX.Element => {
-  const { pathname } = useLocation()
-  const [isHome, setHome] = useState<boolean>(pathname === '/')
-  const [headingsHeight, setHeadingsHeight] = useState<number>(undefined)
-  const { height: titleHeight, ref: titleRef } = useResizeDetector()
-  const { height: subtitleHeight, ref: subtitleRef } = useResizeDetector()
-
-  console.log(titleHeight, subtitleHeight)
-
-  useEffect(() => {
-    if (pathname === '/') setHome(true)
-    else setHome(false)
-  }, [pathname])
-
-  useEffect(() => {
-    if (titleRef?.current && subtitleRef?.current && titleHeight && subtitleHeight) {
-      setHeadingsHeight(titleHeight + subtitleHeight)
-    }
-  }, [
-    titleRef,
-    subtitleRef,
-    titleHeight,
-    subtitleHeight,
-    headingsHeight,
-    setHeadingsHeight,
-  ])
-
+const Header: React.FC<HeaderProps> = ({ isHome }): JSX.Element => {
   return (
-    <MotionBox
-      display="flex"
-      as="header"
-      animate={isHome ? 'home' : 'top'}
-      variants={{
-        top: { transition: { staggerChildren: 0.2 } },
-      }}
-      w="100%"
-      alignItems="center"
-      layout
-    >
-      <MotionBox
-        display="inline-block"
-        position="relative"
-        variants={headerVariants}
-        initial={false}
-      >
-        <Box position="relative">
-          <Link to="/">
-            <Heading
-              as="h1"
-              px={[2, 4, 4]}
-              textTransform="uppercase"
-              fontSize={['xl', '2xl', '5xl']}
-              letterSpacing="0.05em"
-              fontWeight="normal"
-              ref={titleRef}
-            >
-              Ian Mancini
-            </Heading>
-          </Link>
-          <MotionBox
-            w="100%"
-            textAlign="center"
-            position="absolute"
-            as="h2"
-            textTransform="uppercase"
-            fontSize={['xl', '2xl', '2xl']}
-            letterSpacing="0.065em"
-            fontWeight="300"
-            pb="3rem"
-            ref={subtitleRef}
-            variants={subtitleVariants}
-          >
-            Diseño Multimedial
-          </MotionBox>
-        </Box>
+    <Flex as="header" w="100%" alignItems="center">
+      <MotionBox initial={false} variants={logoVariants}>
+        <Image w="76px" h="76px" p="0.25rem" mx="0.5rem" color="amethyst.900" as={Logo} />
       </MotionBox>
+      {isHome ? null : <HeaderTitle isHome={isHome} />}
       <Box flex="1 1 0" />
-      {headingsHeight ? (
-        <MotionBox
-          initial={false}
-          custom={headingsHeight}
-          variants={navVariants}
-          as={Stack}
-          px={[2, 4, 4]}
-          direction="row"
-          spacing="2rem"
-          fontSize="xl"
-          fontWeight="200"
-          opacity="0.82"
-        >
-          <Link to="/services"> Servicios </Link>
-          <Link to="/works"> Trabajos </Link>
-          <Link to="/cv"> CV </Link>
-          <Link to="/contact"> Contacto </Link>
-        </MotionBox>
-      ) : null}
-    </MotionBox>
+      {isHome ? null : <Nav />}
+    </Flex>
   )
 }
 
