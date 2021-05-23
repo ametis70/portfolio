@@ -4,6 +4,7 @@ import { Flex, Image, Box, Heading, Stack } from '@chakra-ui/react'
 import { useResizeDetector } from 'react-resize-detector'
 import { AnimateSharedLayout } from 'framer-motion'
 
+import ColorModeButton from './ColorModeButton'
 import MotionBox from './MotionBox'
 import HeaderTitle from './HeaderTitle'
 import Nav from './Nav'
@@ -34,13 +35,14 @@ const logoVariants = {
 
 const Header: React.FC<HeaderProps> = ({ isHome }): JSX.Element => {
   return (
-    <Flex as="header" w="100%" alignItems="center">
+    <Flex as="header" w="100%" alignItems="center" px="1rem">
       <MotionBox initial={false} variants={logoVariants}>
-        <Image w="76px" h="76px" p="0.25rem" mx="0.5rem" color="amethyst.900" as={Logo} />
+        <Image w="76px" h="76px" p="0.5rem" mr="0.5rem" color="currentColor" as={Logo} />
       </MotionBox>
-      {isHome ? null : <HeaderTitle isHome={isHome} />}
+      {isHome ? null : <HeaderTitle />}
       <Box flex="1 1 0" />
       {isHome ? null : <Nav />}
+      <ColorModeButton />
     </Flex>
   )
 }

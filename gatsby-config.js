@@ -34,6 +34,7 @@ module.exports = {
         component: require.resolve('./src/components/Layout.tsx'),
       },
     },
+    '@chakra-ui/gatsby-plugin',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {

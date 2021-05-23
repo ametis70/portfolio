@@ -20,23 +20,20 @@ const Layout: React.FC = ({ children }) => {
   }, [pathname])
 
   return (
-    <ChakraProvider resetCSS theme={theme}>
-      <AnimateSharedLayout>
-        <MotionBox
-          variants={{ top: {}, home: {} }}
-          animate={isHome ? 'home' : 'top'}
-          minH="100vh"
-          w="100%"
-          display="flex"
-          flexDirection="column"
-        >
-          <AnimatePresence>
-            <Header isHome={isHome} />
-            {children}
-          </AnimatePresence>
-        </MotionBox>
-      </AnimateSharedLayout>
-    </ChakraProvider>
+    <AnimateSharedLayout>
+      <MotionBox
+        animate={isHome ? 'home' : 'top'}
+        minH="100vh"
+        w="100%"
+        display="flex"
+        flexDirection="column"
+      >
+        <AnimatePresence>
+          <Header isHome={isHome} />
+          {children}
+        </AnimatePresence>
+      </MotionBox>
+    </AnimateSharedLayout>
   )
 }
 

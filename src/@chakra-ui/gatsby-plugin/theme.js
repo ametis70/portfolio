@@ -15,6 +15,10 @@ const amethyst = {
 }
 
 const theme = extendTheme({
+  config: {
+    initialColorMode: 'dark',
+    useSystemColorMode: true,
+  },
   colors: {
     amethyst,
   },
@@ -24,14 +28,15 @@ const theme = extendTheme({
     mono: 'monospace',
   },
   styles: {
-    global: {
+    global: (props) => ({
       'html, body': {
-        color: 'amethyst.900',
+        color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
+        bg: props.colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50',
         fontFamily: 'body',
         width: '100%',
         minHeight: '100vh',
       },
-    },
+    }),
   },
 })
 
