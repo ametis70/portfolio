@@ -6,18 +6,18 @@ module.exports = {
     author: '@ianmethyst',
   },
   plugins: [
-    {
-      resolve: 'gatsby-plugin-eslint',
-      options: {
-        test: /\.[tj]sx?$/,
-        exclude: /(_this_is_virtual_fs_path_|node_modules|.cache|public)/,
-        stages: ['develop'],
-        options: {
-          emitWarning: true,
-          failOnError: false,
-        },
-      },
-    },
+//    {
+//      resolve: 'gatsby-plugin-eslint',
+//      options: {
+//        test: /\.[tj]sx?$/,
+//        exclude: /(_this_is_virtual_fs_path_|node_modules|.cache|public)/,
+//        stages: ['develop'],
+//        options: {
+//          emitWarning: true,
+//          failOnError: false,
+//        },
+//      },
+//    },
     'gatsby-plugin-typescript',
     'gatsby-plugin-svgr-svgo',
     'gatsby-plugin-react-helmet',
