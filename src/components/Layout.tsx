@@ -7,6 +7,7 @@ import { AnimateSharedLayout, AnimatePresence } from 'framer-motion'
 import MotionBox from '../components/MotionBox'
 import theme from '../theme'
 import Header from './Header'
+import Canvas from './Canvas'
 
 import '@fontsource/montserrat'
 
@@ -20,20 +21,23 @@ const Layout: React.FC = ({ children }) => {
   }, [pathname])
 
   return (
-    <AnimateSharedLayout>
-      <MotionBox
-        animate={isHome ? 'home' : 'top'}
-        minH="100vh"
-        w="100%"
-        display="flex"
-        flexDirection="column"
-      >
-        <AnimatePresence>
-          <Header isHome={isHome} />
-          {children}
-        </AnimatePresence>
-      </MotionBox>
-    </AnimateSharedLayout>
+    <>
+      <Canvas />
+      <AnimateSharedLayout>
+        <MotionBox
+          animate={isHome ? 'home' : 'top'}
+          minH="100vh"
+          w="100%"
+          display="flex"
+          flexDirection="column"
+        >
+          <AnimatePresence>
+            <Header isHome={isHome} />
+            {children}
+          </AnimatePresence>
+        </MotionBox>
+      </AnimateSharedLayout>
+    </>
   )
 }
 
