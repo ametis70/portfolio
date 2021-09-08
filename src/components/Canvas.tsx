@@ -5,6 +5,7 @@ import { Box } from '@chakra-ui/react'
 import Logo from './3d/Logo'
 import House from './3d/House'
 import Pc from './3d/Pc'
+import Camera from './3d/Camera'
 
 const Canvas: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const Canvas: React.FC = () => {
           camera.lookAt(-0.176749, 0.89121, -1.58908)
         }}
       >
+        <Camera />
         <Suspense fallback={null}>
           <House />
           <Pc />

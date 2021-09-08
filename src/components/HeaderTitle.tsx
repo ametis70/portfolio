@@ -25,10 +25,10 @@ const subtitleVariants = {
 }
 
 type HeaderTitleProps = {
-  isHome: boolean
+  isHome?: boolean
 }
 
-const HeaderTitle: React.FC = ({ isHome }) => (
+const HeaderTitle: React.FC<HeaderTitleProps> = ({ isHome = false }) => (
   <MotionBox display="block" position="relative" layoutId="headings">
     <Link to="/">
       <Heading

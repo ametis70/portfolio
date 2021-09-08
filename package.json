@@ -31,7 +31,8 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^4.2.0",
     "react-resize-detector": "^6.7.6",
-    "three": "^0.132.2"
+    "three": "^0.132.2",
+    "zustand": "^3.5.10"
   },
   "devDependencies": {
     "@types/node": "^16.7.10",
