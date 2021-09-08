@@ -4,18 +4,13 @@ import { PageProps } from 'gatsby'
 import SEO from '../components/Seo'
 import MotionBox from '../components/MotionBox'
 import { Flex, Box, Heading } from '@chakra-ui/react'
-import Link from '../components/Link'
 import HeaderTitle from '../components/HeaderTitle'
 import Nav from '../components/Nav'
 
-import useStore from '../store'
-import { cameraPositions } from '../store/constants'
+import useMoveCamera, { cameraPositions } from '../hooks/useMoveCamera'
 
 const IndexPage: React.FC<PageProps> = () => {
-  const setCameraPosition = useStore((state) => state.setCameraPosition)
-  useEffect(() => {
-    setCameraPosition(cameraPositions.CLOSE)
-  }, [])
+  useMoveCamera(cameraPositions.CLOSE)
   return (
     <>
       <SEO />

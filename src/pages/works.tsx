@@ -1,16 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { PageProps } from 'gatsby'
 
 import SEO from '../components/Seo'
 
-import useStore from '../store'
-import { cameraPositions } from '../store/constants'
+import useMoveCamera, { cameraPositions } from '../hooks/useMoveCamera'
 
 const WorksPage: React.FC<PageProps> = () => {
-  const setCameraPosition = useStore((state) => state.setCameraPosition)
-  useEffect(() => {
-    setCameraPosition(cameraPositions.FRONT)
-  }, [])
+  useMoveCamera(cameraPositions.GENERAL)
   return (
     <>
       <SEO title="Trabajos" />

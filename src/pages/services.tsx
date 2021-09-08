@@ -3,10 +3,15 @@ import { PageProps } from 'gatsby'
 
 import SEO from '../components/Seo'
 
-const ServicesPage: React.FC<PageProps> = () => (
-  <>
-    <SEO title="Servicios" />
-  </>
-)
+import useMoveCamera, { cameraPositions } from '../hooks/useMoveCamera'
+
+const ServicesPage: React.FC<PageProps> = () => {
+  useMoveCamera(cameraPositions.FRONT)
+  return (
+    <>
+      <SEO title="Servicios" />
+    </>
+  )
+}
 
 export default ServicesPage
