@@ -2,7 +2,12 @@ import create from 'zustand'
 
 import { cameraPositions } from './constants'
 
-const useStore = create((set) => ({
+type StoreType = {
+  cameraPosition: number
+  setCameraPosition: (cp: number) => void
+}
+
+const useStore = create<StoreType>((set) => ({
   cameraPosition: cameraPositions.CLOSE,
   setCameraPosition: (cp: number) => set({ cameraPosition: cp }),
 }))
