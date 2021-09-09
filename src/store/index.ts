@@ -1,15 +1,19 @@
 import create from 'zustand'
 
 type StoreType = {
-  cameraPosition: number
-  displayContent: number
+  isHome: boolean | null
+  cameraPosition: number | null
+  displayContent: number | null
+  setHome: (value: boolean) => void
   setDisplayContent: (dp: number) => void
   setCameraPosition: (cp: number) => void
 }
 
 const useStore = create<StoreType>((set) => ({
-  cameraPosition: -1,
-  displayContent: -1,
+  isHome: null,
+  cameraPosition: null,
+  displayContent: null,
+  setHome: (value) => set({ isHome: value }),
   setDisplayContent: (dp: number) => set({ displayContent: dp }),
   setCameraPosition: (cp: number) => set({ cameraPosition: cp }),
 }))
