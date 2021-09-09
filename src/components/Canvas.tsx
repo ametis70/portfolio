@@ -27,7 +27,10 @@ const Canvas: React.FC = () => {
         <Suspense fallback={null}>
           <House />
           <Pc />
-          <Logo />
+          <Logo
+            position={[-0.459085, 0.935968, -4.5]}
+            rotation={[-Math.PI * 0.1, 0, -Math.PI * 0.05]}
+          />
         </Suspense>
       </ThreeCanvas>
     </Box>

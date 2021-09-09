@@ -34,7 +34,6 @@ const Camera = () => {
     }
     useStore.subscribe(
       (cameraPosition: number) => {
-        console.log(cameraPosition)
         switch (cameraPosition) {
           case cp.CLOSE:
             move([-0.459085, 0.935968, -1.29679], displayPosition)

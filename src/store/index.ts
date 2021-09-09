@@ -1,14 +1,16 @@
 import create from 'zustand'
 
-import { cameraPositions } from './constants'
-
 type StoreType = {
   cameraPosition: number
+  displayContent: number
+  setDisplayContent: (dp: number) => void
   setCameraPosition: (cp: number) => void
 }
 
 const useStore = create<StoreType>((set) => ({
-  cameraPosition: cameraPositions.CLOSE,
+  cameraPosition: -1,
+  displayContent: -1,
+  setDisplayContent: (dp: number) => set({ displayContent: dp }),
   setCameraPosition: (cp: number) => set({ cameraPosition: cp }),
 }))
 

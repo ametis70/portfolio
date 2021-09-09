@@ -7,7 +7,9 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 
-type GLTFResult = GLTF & {
+import Screen from './Screen'
+
+export type PcGLTF = GLTF & {
   nodes: {
     mesh_0: THREE.Mesh
     mesh_1: THREE.Mesh
@@ -60,17 +62,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
           scale={0.0000476903442}
         />
       </group>
-      <group
-        position={[-0.456037909, 0.699552476, -1.59474409]}
-        rotation={[Math.PI / 2, 0, 0]}
-      >
-        <mesh
-          geometry={nodes.mesh_4.geometry}
-          material={nodes.mesh_4.material}
-          position={[-0.318482935, -0.0488045439, -0.401600093]}
-          scale={0.0000476903442}
-        />
-      </group>
+      <Screen />
     </group>
   )
 }
