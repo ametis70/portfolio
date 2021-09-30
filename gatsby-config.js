@@ -1,3 +1,16 @@
+const path = require('path')
+// Get paths of Gatsby's required rules, which as of writing is located at:
+// https://github.com/gatsbyjs/gatsby/tree/fbfe3f63dec23d279a27b54b4057dd611dce74bb/packages/
+// gatsby/src/utils/eslint-rules
+const gatsbyRequiredRules = path.join(
+  process.cwd(),
+  'node_modules',
+  'gatsby',
+  'dist',
+  'utils',
+  'eslint-rules',
+)
+
 module.exports = {
   siteMetadata: {
     title: 'Ian Mancini',
@@ -5,19 +18,26 @@ module.exports = {
       'Kick off your next, great Gatsby project with this starter. It is based on gatsby-default-starter but with a few extra things.',
     author: '@ianmethyst',
   },
+  flags: {
+    DEV_SSR: true,
+    FAST_DEV: true,
+    PARALLEL_SOURCING: true,
+    LMDB_STORE: true,
+  },
   plugins: [
-//    {
-//      resolve: 'gatsby-plugin-eslint',
-//      options: {
-//        test: /\.[tj]sx?$/,
-//        exclude: /(_this_is_virtual_fs_path_|node_modules|.cache|public)/,
-//        stages: ['develop'],
-//        options: {
-//          emitWarning: true,
-//          failOnError: false,
-//        },
-//      },
-//    },
+    {
+      resolve: 'gatsby-plugin-eslint',
+      options: {
+        test: /\.[tj]sx?$/,
+        rulePaths: [gatsbyRequiredRules],
+        exclude: /(_this_is_virtual_fs_path_|node_modules|.cache|public)/,
+        stages: ['develop'],
+        options: {
+          emitWarning: true,
+          failOnError: false,
+        },
+      },
+    },
     'gatsby-plugin-typescript',
     'gatsby-plugin-svgr-svgo',
     'gatsby-plugin-react-helmet',
