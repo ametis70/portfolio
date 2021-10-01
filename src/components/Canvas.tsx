@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import { Suspense } from 'react'
 import { Canvas as ThreeCanvas } from '@react-three/fiber'
 import { Box } from '@chakra-ui/react'
 

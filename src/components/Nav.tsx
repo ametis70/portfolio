@@ -1,5 +1,4 @@
-import React from 'react'
-import { Flex, Image, Box, Heading, Stack } from '@chakra-ui/react'
+import { Stack } from '@chakra-ui/react'
 
 import MotionBox from './MotionBox'
 import Link from './Link'
@@ -25,10 +24,10 @@ const navVariants = {
 
 const Nav: React.FC = () => {
   return (
-    <MotionBox
+    <Stack
+      as={MotionBox}
       layoutId="nav"
       variants={navVariants}
-      as={Stack}
       px={[2, 4, 4]}
       direction="row"
       spacing="2rem"
@@ -40,7 +39,7 @@ const Nav: React.FC = () => {
       <Link to="/works"> Trabajos </Link>
       <Link to="/cv"> CV </Link>
       <Link to="/contact"> Contacto </Link>
-    </MotionBox>
+    </Stack>
   )
 }
 

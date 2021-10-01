@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
 import { PageProps } from 'gatsby'
 
 import SEO from '../components/Seo'
 import MotionBox from '../components/MotionBox'
-import { Flex, Box, Heading } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import HeaderTitle from '../components/HeaderTitle'
 import Nav from '../components/Nav'
 
@@ -17,7 +16,7 @@ const IndexPage: React.FC<PageProps> = () => {
     <>
       <SEO />
       <Flex direction="column" align="center" justify="center" w="100%" flex="1">
-        <HeaderTitle isHome />
+        <HeaderTitle />
         <MotionBox
           key="subtitle"
           initial={{ opacity: 0, x: '-10%' }}

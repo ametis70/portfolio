@@ -1,4 +1,3 @@
-import React from 'react'
 import { BiMoon, BiSun } from 'react-icons/bi'
 import { IconButton, useColorMode } from '@chakra-ui/react'
 

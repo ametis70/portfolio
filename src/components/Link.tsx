@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react'
 import { Link as GatsbyLink, GatsbyLinkProps } from 'gatsby'
 import {
@@ -14,6 +15,7 @@ const Link: React.FC<LinkProps> = ({ external = false, href, to, ...rest }) => {
   try {
     if (external) {
       if (!href) throw new Error('No href prop provided for external link')
+      // @ts-ignore
       return <ChakraLink href={href} {...rest} />
     } else {
       if (!to) throw new Error('No to prop provided for internal link')

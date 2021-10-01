@@ -1,34 +1,9 @@
-import React from 'react'
-import { Box, Heading } from '@chakra-ui/react'
-import { AnimatePresence } from 'framer-motion'
+import { Heading } from '@chakra-ui/react'
 
 import MotionBox from './MotionBox'
 import Link from './Link'
 
-const titleVariants = {}
-
-const subtitleVariants = {
-  home: {
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      delay: 0.2,
-    },
-  },
-  top: {
-    opacity: 0,
-    transition: {
-      duration: 1,
-      delay: 0,
-    },
-  },
-}
-
-type HeaderTitleProps = {
-  isHome?: boolean
-}
-
-const HeaderTitle: React.FC<HeaderTitleProps> = ({ isHome = false }) => (
+const HeaderTitle: React.FC = () => (
   <MotionBox display="block" position="relative" layoutId="headings">
     <Link to="/">
       <Heading

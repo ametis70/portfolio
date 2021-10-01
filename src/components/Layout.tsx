@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useLocation } from '@reach/router'
 import { AnimateSharedLayout, AnimatePresence } from 'framer-motion'
 

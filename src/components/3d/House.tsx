@@ -18,9 +18,9 @@ type GLTFResult = GLTF & {
   }
 }
 
-export default function Model(props: JSX.IntrinsicElements['group']) {
+const HouseModel: React.FC = (props: JSX.IntrinsicElements['group']) => {
   const group = useRef<THREE.Group>()
-  const { nodes, materials } = useGLTF('/3d/house.glb') as GLTFResult
+  const { nodes, materials } = useGLTF('/3d/house.glb') as unknown as GLTFResult
   return (
     <group ref={group} {...props} dispose={null}>
       <group position={[0.43730545, 0, -0.750748932]}>
@@ -44,3 +44,5 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
 }
 
 useGLTF.preload('/3d/house.glb')
+
+export default HouseModel
