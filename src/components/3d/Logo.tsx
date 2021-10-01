@@ -38,27 +38,31 @@ const LogoModel: React.FC<LogoModelProps> = ({ ...props }) => {
   ) as unknown) as GLTFResult
   const { actions } = useAnimations<GLTFAction>(animations, group)
 
-  const [hide, setHide] = useState<boolean>(true)
+  const isHome = useStore((state) => state.isHome)
+  const [changeVisibilityTimeout, setChangeVisibilityTimeout] = useState<number | null>(
+    null,
+  )
+  const [isVisible, setVisible] = useState<boolean>(false)
 
   useEffect(() => {
     if (actions.spin) {
       actions.spin.getMixer().timeScale = 0.5
       actions.spin.play()
     }
-
-    useStore.subscribe(
-      (isHome?: boolean) => {
-        if (isHome === undefined) return
-
-        if (isHome) {
-          setTimeout(() => setHide(isHome), 1000)
-        } else {
-          setHide(isHome)
-        }
-      },
-      (state) => state.isHome,
-    )
   }, [])
+
+  useEffect(() => {
+    if (isHome) {
+      const timer = window.setTimeout(() => setVisible(true), 1000)
+      setChangeVisibilityTimeout(timer)
+    } else {
+      setVisible(false)
+      if (changeVisibilityTimeout) {
+        window.clearTimeout(changeVisibilityTimeout)
+        setChangeVisibilityTimeout(null)
+      }
+    }
+  }, [isHome, setChangeVisibilityTimeout])
 
   useFrame(({ mouse }) => {
     if (group.current) {
@@ -92,7 +96,7 @@ const LogoModel: React.FC<LogoModelProps> = ({ ...props }) => {
           position={[-0.430760831, -0.355498135, -0.430760741]}
           scale={0.0000617687183}
           renderOrder={999}
-          visible={hide}
+          visible={isVisible}
         />
         <mesh
           geometry={nodes.mesh_1.geometry}
