@@ -47,7 +47,7 @@ const LogoModel: React.FC<LogoModelProps> = ({ ...props }) => {
     }
 
     useStore.subscribe(
-      (isHome: boolean | undefined) => {
+      (isHome?: boolean) => {
         if (isHome === undefined) return
 
         if (isHome) {

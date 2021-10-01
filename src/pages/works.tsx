@@ -3,10 +3,10 @@ import { PageProps } from 'gatsby'
 import SEO from '../components/Seo'
 
 import useMoveCamera, { cameraPositions } from '../hooks/useMoveCamera'
-import useDisplay, { displayContents } from '../hooks/useDisplay'
+import useDisplay, { displayStatus } from '../hooks/useDisplay'
 
 const WorksPage: React.FC<PageProps> = () => {
-  useDisplay(displayContents.OFF)
+  useDisplay(displayStatus.OFF)
   useMoveCamera(cameraPositions.GENERAL)
   return (
     <>

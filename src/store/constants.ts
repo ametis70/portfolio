@@ -4,10 +4,14 @@ export const cameraPositions = {
   GENERAL: 2,
 }
 
-export const displayContents = {
+export const displayStatus = {
   OFF: 0,
-  BLANK: 1,
-  IMAGE: 2,
-  VIDEO: 3,
+  ON: 1,
+}
+
+export const displayContentTypes = {
+  BLANK: 0,
+  IMAGE: 1,
+  VIDEO: 2,
   DOOM: 666,
 }

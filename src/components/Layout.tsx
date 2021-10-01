@@ -5,6 +5,7 @@ import { AnimateSharedLayout, AnimatePresence } from 'framer-motion'
 import MotionBox from '../components/MotionBox'
 import Header from './Header'
 import Canvas from './Canvas'
+import DisplayCanvas from './DisplayCanvas'
 
 import '@fontsource/montserrat'
 import useStore from '../store'
@@ -18,8 +19,6 @@ const Layout: React.FC = ({ children }) => {
     if (pathname === '/') setHome(true)
     else setHome(false)
   }, [pathname])
-
-  console.log(isHome)
 
   return (
     <>
@@ -38,6 +37,7 @@ const Layout: React.FC = ({ children }) => {
           </AnimatePresence>
         </MotionBox>
       </AnimateSharedLayout>
+      <DisplayCanvas />
     </>
   )
 }

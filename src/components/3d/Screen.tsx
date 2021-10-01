@@ -5,11 +5,11 @@ import { useGLTF } from '@react-three/drei'
 import { PcGLTF } from './Pc'
 
 import useStore from '../../store'
-import { displayContents as dp } from '../../store/constants'
+import { displayStatus as dp } from '../../store/constants'
 
 const ScreenModel: React.FC = (props: JSX.IntrinsicElements['group']) => {
   const group = useRef<THREE.Group>()
-  const { nodes, materials } = useGLTF('/3d/pc.glb') as unknown as PcGLTF
+  const { nodes, materials } = (useGLTF('/3d/pc.glb') as unknown) as PcGLTF
 
   const offMaterial = useRef<THREE.Material>(materials.bake_pc)
   const offUV = useRef(nodes.mesh_4.geometry.getAttribute('uv'))
@@ -24,13 +24,14 @@ const ScreenModel: React.FC = (props: JSX.IntrinsicElements['group']) => {
 
   useEffect(() => {
     useStore.subscribe(
-      (displayContents: number) => {
-        switch (displayContents) {
+      (displayContents?: DisplayContent) => {
+        if (!displayContents) return
+        switch (displayContents.status) {
           case dp.OFF:
             setCurrentMaterial(offMaterial.current)
             nodes.mesh_4.geometry.setAttribute('uv', offUV.current)
             break
-          case dp.BLANK:
+          case dp.ON:
             setCurrentMaterial(onMaterial.current)
             nodes.mesh_4.geometry.setAttribute('uv', onUV.current)
             break

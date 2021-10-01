@@ -7,7 +7,7 @@ import Nav from './Nav'
 import Logo from '../images/logo.inline.svg'
 
 type HeaderProps = {
-  isHome: boolean | null
+  isHome: boolean | undefined
 }
 
 const logoVariants = {

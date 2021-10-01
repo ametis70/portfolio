@@ -1,21 +1,27 @@
 import create from 'zustand'
 
+import { displayStatus, displayContentTypes } from './constants'
+
 type StoreType = {
   isHome?: boolean
-  cameraPosition?: number
-  displayContent?: number
   setHome: (value: boolean) => void
-  setDisplayContent: (dp: number) => void
+  cameraPosition?: number
   setCameraPosition: (cp: number) => void
+  displayContent?: DisplayContent
+  setDisplayContent: (status: number, contentType?: number, data?: string) => void
+  displayCanvas?: HTMLCanvasElement
+  setDisplayCanvas?: (el: HTMLCanvasElement | undefined) => void
 }
 
 const useStore = create<StoreType>((set) => ({
   isHome: undefined,
   cameraPosition: undefined,
-  displayContent: undefined,
+  displayContent: { status: displayStatus.OFF, contentType: displayContentTypes.BLANK },
   setHome: (value) => set({ isHome: value }),
-  setDisplayContent: (dp: number) => set({ displayContent: dp }),
+  setDisplayContent: (status, contentType, data) =>
+    set({ displayContent: { status, contentType, data } }),
   setCameraPosition: (cp: number) => set({ cameraPosition: cp }),
+  setDisplayCanvas: (el) => set({ displayCanvas: el }),
 }))
 
 export default useStore

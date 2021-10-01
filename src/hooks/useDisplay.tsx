@@ -1,16 +1,18 @@
 import { useEffect } from 'react'
 import useStore from '../store'
-import { displayContents } from '../store/constants'
+import { displayStatus, displayContentTypes } from '../store/constants'
 
-const useDisplay = (dc: number) => {
+const useDisplay = (status: number, contentType?: number, contentData?: string) => {
   const setDisplayContent = useStore((state) => state.setDisplayContent)
+  const displayCanvas = useStore((state) => state.displayCanvas)
 
   useEffect(() => {
-    setDisplayContent(dc)
+    console.log(displayCanvas)
+    setDisplayContent(status, contentType, contentData)
   }, [])
 
   return null
 }
 
-export { displayContents }
+export { displayStatus, displayContentTypes }
 export default useDisplay
