@@ -30,12 +30,12 @@ type LogoModelProps = JSX.IntrinsicElements['group'] & {
   position: Array<number>
 }
 
-const LogoModel: React.FC<LogoModelProps> = ({ position, ...props }) => {
+const LogoModel: React.FC<LogoModelProps> = ({ ...props }) => {
   const group = useRef<THREE.Group>()
   const innerGroup = useRef<THREE.Group>()
-  const { nodes, materials, animations } = useGLTF(
+  const { nodes, materials, animations } = (useGLTF(
     '/3d/logo.glb',
-  ) as unknown as GLTFResult
+  ) as unknown) as GLTFResult
   const { actions } = useAnimations<GLTFAction>(animations, group)
 
   const [hide, setHide] = useState<boolean>(true)
@@ -63,13 +63,13 @@ const LogoModel: React.FC<LogoModelProps> = ({ position, ...props }) => {
   useFrame(({ mouse }) => {
     if (group.current) {
       group.current.position.x = THREE.MathUtils.lerp(
-        group.current?.position.x,
-        position[0] - mouse.x * 0.33,
+        group.current.position.x,
+        props.position[0] - mouse.x * 0.33,
         0.01,
       )
       group.current.position.y = THREE.MathUtils.lerp(
         group.current.position.y,
-        position[1] - mouse.y * 0.15,
+        props.position[1] - mouse.y * 0.15,
         0.01,
       )
       group.current.rotation.z = THREE.MathUtils.lerp(
