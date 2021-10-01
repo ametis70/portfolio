@@ -16,12 +16,8 @@ const Canvas: React.FC = () => {
           fov: 20,
           near: 0.1,
           far: 10,
-          position: [0.913962, 1.24633, 0.185101],
         }}
         flat
-        onCreated={({ camera }) => {
-          camera.lookAt(-0.176749, 0.89121, -1.58908)
-        }}
       >
         <Camera />
         <Suspense fallback={null}>

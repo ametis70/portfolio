@@ -7,7 +7,6 @@ const useDisplay = (status: number, contentType?: number, contentData?: string) 
   const displayCanvas = useStore((state) => state.displayCanvas)
 
   useEffect(() => {
-    console.log(displayCanvas)
     setDisplayContent(status, contentType, contentData)
   }, [])
 
