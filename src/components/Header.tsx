@@ -4,7 +4,7 @@ import ColorModeButton from './ColorModeButton'
 import MotionBox from './MotionBox'
 import HeaderTitle from './HeaderTitle'
 import Nav from './Nav'
-import { ReactComponent as Logo } from '../images/logo.inline.svg'
+import Logo from '../images/logo.inline.svg'
 
 type HeaderProps = {
   isHome: boolean | null
