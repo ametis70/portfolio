@@ -5,42 +5,94 @@ import { useGLTF } from '@react-three/drei'
 import { PcGLTF } from './Pc'
 
 import useStore from '../../store'
-import { displayStatus as dp } from '../../store/constants'
+import { displayStatus as dp, displayContentTypes as dct } from '../../store/constants'
+
+const drawImage = async (ctx: CanvasRenderingContext2D, url: string) => {
+  const img = new Image()
+  img.crossOrigin = 'anonymous'
+
+  await new Promise((r) => {
+    img.onload = () => {
+      r(true)
+    }
+    img.src = url
+  })
+
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+  ctx.drawImage(img, 0, 0, img.width, img.height)
+}
 
 const ScreenModel: React.FC = (props: JSX.IntrinsicElements['group']) => {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = (useGLTF('/3d/pc.glb') as unknown) as PcGLTF
 
+  const displayContent = useStore((state) => state.displayContent)
+
+  // Materials
   const offMaterial = useRef<THREE.Material>(materials.bake_pc)
+  const onMaterial = useRef<THREE.MeshBasicMaterial>(new THREE.MeshBasicMaterial())
+
+  // UVs
   const offUV = useRef(nodes.mesh_4.geometry.getAttribute('uv'))
   const onUV = useRef(
-    new THREE.BufferAttribute(new Uint16Array([0, 1, 1, 1, 0, 0, 1, 0]), 2, false),
+    new THREE.BufferAttribute(new Int8Array([0, 0, 1, 0, 1, 1, 0, 1]), 2),
   )
-  const onMaterial = useRef(new THREE.MeshBasicMaterial())
 
+  // Texture
+  const displayCanvas = useStore((state) => state.displayCanvas)
+
+  // Current
   const [currentMaterial, setCurrentMaterial] = useState<THREE.Material>(
-    onMaterial.current,
+    offMaterial.current,
   )
 
   useEffect(() => {
-    useStore.subscribe(
-      (displayContents?: DisplayContent) => {
-        if (!displayContents) return
-        switch (displayContents.status) {
-          case dp.OFF:
-            setCurrentMaterial(offMaterial.current)
-            nodes.mesh_4.geometry.setAttribute('uv', offUV.current)
+    if (displayCanvas && !onMaterial.current.map) {
+      const canvasTexture = new THREE.CanvasTexture(displayCanvas)
+      onMaterial.current.map = canvasTexture
+      onMaterial.current.needsUpdate = true
+    }
+  }, [displayCanvas])
+
+  useEffect(() => {
+    if (!displayContent || !displayCanvas) return
+
+    switch (displayContent.status) {
+      case dp.OFF:
+        if (currentMaterial !== offMaterial.current) {
+          setCurrentMaterial(offMaterial.current)
+          nodes.mesh_4.geometry.setAttribute('uv', offUV.current)
+        }
+        break
+      case dp.ON:
+        if (currentMaterial !== onMaterial.current) {
+          setCurrentMaterial(onMaterial.current)
+          nodes.mesh_4.geometry.setAttribute('uv', onUV.current)
+        }
+        break
+    }
+
+    const updateDisplay = async () => {
+      if (displayCanvas) {
+        const ctx = displayCanvas.getContext('2d')
+        if (!ctx) return
+
+        switch (displayContent.contentType) {
+          case dct.BLANK:
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
             break
-          case dp.ON:
-            setCurrentMaterial(onMaterial.current)
-            nodes.mesh_4.geometry.setAttribute('uv', onUV.current)
+          case dct.IMAGE:
+            if (displayContent.data) {
+              await drawImage(ctx, displayContent.data)
+            }
             break
         }
-      },
-      (state) => state.displayContent,
-    ),
-      []
-  })
+
+        onMaterial.current.map!.needsUpdate = true
+      }
+    }
+    updateDisplay()
+  }, [displayContent, displayCanvas, onMaterial.current.map])
 
   return (
     <group

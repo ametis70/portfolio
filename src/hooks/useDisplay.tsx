@@ -8,7 +8,7 @@ const useDisplay = (status: number, contentType?: number, contentData?: string) 
 
   useEffect(() => {
     setDisplayContent(status, contentType, contentData)
-  }, [])
+  }, [status, contentType, contentData, setDisplayContent, displayCanvas])
 
   return null
 }

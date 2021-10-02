@@ -16,7 +16,7 @@ const DisplayCanvas: React.FC = () => {
     }
   }, [ref, ref.current])
 
-  return <canvas ref={ref} style={{ display: 'none' }} />
+  return <canvas width="1920" height="1080" ref={ref} style={{ display: 'none' }} />
 }
 
 export default DisplayCanvas

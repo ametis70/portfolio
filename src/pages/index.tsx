@@ -7,10 +7,10 @@ import HeaderTitle from '../components/HeaderTitle'
 import Nav from '../components/Nav'
 
 import useMoveCamera, { cameraPositions } from '../hooks/useMoveCamera'
-import useDisplay, { displayStatus } from '../hooks/useDisplay'
+import useDisplay, { displayStatus, displayContentTypes } from '../hooks/useDisplay'
 
 const IndexPage: React.FC<PageProps> = () => {
-  useDisplay(displayStatus.ON)
+  useDisplay(displayStatus.ON, displayContentTypes.BLANK)
   useMoveCamera(cameraPositions.CLOSE)
   return (
     <>
