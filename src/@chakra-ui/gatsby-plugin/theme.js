@@ -21,6 +21,10 @@ const theme = extendTheme({
   },
   colors: {
     amethyst,
+    overlay: {
+      light: 'rgba(250, 247, 252, 0.33)',
+      dark: 'rgba(75, 50, 100, 0.33)',
+    },
   },
   fonts: {
     body: fontFamilies,
@@ -31,7 +35,7 @@ const theme = extendTheme({
     global: (props) => ({
       'html, body': {
         color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
-        bg: props.colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50',
+        bg: props.colorMode === 'dark' ? 'amethyst.900' : 'white',
         fontFamily: 'body',
         width: '100%',
         minHeight: '100vh',

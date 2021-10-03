@@ -25,8 +25,8 @@ const getCoordinates = (cameraPosition: number): Array<Array<number>> => {
       return [[-0.459085, 0.935968, -0.6], displayPosition]
     case cp.GENERAL:
       return [
-        [0.913962, 1.24633, 0.185101],
-        [-0.176749, 0.89121, -1.58908],
+        [1.02887, 1.24633, 0.185101],
+        [0, 0.89121, -1.58908],
       ]
     default:
       console.warn('using default camera values')

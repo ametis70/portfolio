@@ -8,6 +8,8 @@ import { useGLTF, useAnimations } from '@react-three/drei'
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 import { useFrame } from '@react-three/fiber'
 import useStore from '../../store'
+import { useColorMode } from '@chakra-ui/react'
+import theme from '../../@chakra-ui/gatsby-plugin/theme'
 
 type ActionName = 'spin'
 interface GLTFAction extends THREE.AnimationClip {
@@ -19,10 +21,6 @@ type GLTFResult = GLTF & {
     mesh_0: THREE.Mesh
     mesh_1: THREE.Mesh
   }
-  materials: {
-    white: THREE.MeshBasicMaterial
-    amethyst_export: THREE.MeshBasicMaterial
-  }
   animations: GLTFAction[]
 }
 
@@ -31,11 +29,11 @@ type LogoModelProps = JSX.IntrinsicElements['group'] & {
 }
 
 const LogoModel: React.FC<LogoModelProps> = ({ ...props }) => {
+  const { colorMode } = useColorMode()
+
   const group = useRef<THREE.Group>()
   const innerGroup = useRef<THREE.Group>()
-  const { nodes, materials, animations } = (useGLTF(
-    '/3d/logo.glb',
-  ) as unknown) as GLTFResult
+  const { nodes, animations } = (useGLTF('/3d/logo.glb') as unknown) as GLTFResult
   const { actions } = useAnimations<GLTFAction>(animations, group)
 
   const isHome = useStore((state) => state.isHome)
@@ -44,12 +42,37 @@ const LogoModel: React.FC<LogoModelProps> = ({ ...props }) => {
   )
   const [isVisible, setVisible] = useState<boolean>(false)
 
+  const darkMaterial = useRef<THREE.MeshBasicMaterial>(
+    new THREE.MeshBasicMaterial({ color: theme.colors.amethyst['900'] }),
+  )
+
+  const lightMaterial = useRef<THREE.MeshBasicMaterial>(
+    new THREE.MeshBasicMaterial({ color: theme.colors.amethyst['50'] }),
+  )
+
+  const [fillMaterial, setFillMaterial] = useState<THREE.MeshBasicMaterial | undefined>(
+    lightMaterial.current,
+  )
+  const [strokeMaterial, setStrokeMaterial] = useState<
+    THREE.MeshBasicMaterial | undefined
+  >(darkMaterial.current)
+
   useEffect(() => {
     if (actions.spin) {
       actions.spin.getMixer().timeScale = 0.5
       actions.spin.play()
     }
   }, [])
+
+  useEffect(() => {
+    if (colorMode === 'dark') {
+      setFillMaterial(darkMaterial.current)
+      setStrokeMaterial(lightMaterial.current)
+    } else if (colorMode === 'light') {
+      setFillMaterial(lightMaterial.current)
+      setStrokeMaterial(darkMaterial.current)
+    }
+  }, [colorMode])
 
   useEffect(() => {
     if (isHome) {
@@ -65,7 +88,7 @@ const LogoModel: React.FC<LogoModelProps> = ({ ...props }) => {
   }, [isHome, setChangeVisibilityTimeout])
 
   useFrame(({ mouse }) => {
-    if (group.current) {
+    if (group.current && mouse) {
       group.current.position.x = THREE.MathUtils.lerp(
         group.current.position.x,
         props.position[0] - mouse.x * 0.33,
@@ -92,7 +115,7 @@ const LogoModel: React.FC<LogoModelProps> = ({ ...props }) => {
             renderer.clearDepth()
           }}
           geometry={nodes.mesh_0.geometry}
-          material={materials.white}
+          material={fillMaterial}
           position={[-0.430760831, -0.355498135, -0.430760741]}
           scale={0.0000617687183}
           renderOrder={999}
@@ -100,10 +123,10 @@ const LogoModel: React.FC<LogoModelProps> = ({ ...props }) => {
         />
         <mesh
           geometry={nodes.mesh_1.geometry}
-          material={materials.amethyst_export}
+          material={strokeMaterial}
           position={[-0.430760831, -0.355498135, -0.430760741]}
           scale={0.0000617687183}
-          renderOrder={999}
+          renderOrder={1000}
         />
       </group>
     </group>

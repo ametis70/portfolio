@@ -1,24 +1,24 @@
 import { useEffect } from 'react'
-import { useLocation } from '@reach/router'
+import { PageProps } from 'gatsby'
 import { AnimateSharedLayout, AnimatePresence } from 'framer-motion'
 
 import MotionBox from '../components/MotionBox'
 import Header from './Header'
 import Canvas from './Canvas'
 import DisplayCanvas from './DisplayCanvas'
+import ChildrenContainer from './ChildrenContainer'
 
 import '@fontsource/montserrat'
 import useStore from '../store'
 
-const Layout: React.FC = ({ children }) => {
-  const { pathname } = useLocation()
+const Layout: React.FC<PageProps> = ({ children, path }) => {
   const setHome = useStore((state) => state.setHome)
   const isHome = useStore((state) => state.isHome)
 
   useEffect(() => {
-    if (pathname === '/') setHome(true)
+    if (path === '/') setHome(true)
     else setHome(false)
-  }, [pathname])
+  }, [path])
 
   return (
     <>
@@ -31,10 +31,11 @@ const Layout: React.FC = ({ children }) => {
           display="flex"
           flexDirection="column"
         >
-          <AnimatePresence>
-            <Header isHome={isHome} />
-            {children}
-          </AnimatePresence>
+          <Header key="header" isHome={isHome} />
+
+          <ChildrenContainer>
+            <AnimatePresence>{children}</AnimatePresence>
+          </ChildrenContainer>
         </MotionBox>
       </AnimateSharedLayout>
       <DisplayCanvas />

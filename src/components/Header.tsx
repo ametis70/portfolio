@@ -1,4 +1,4 @@
-import { Flex, Image, Box } from '@chakra-ui/react'
+import { Flex, Image, Box, useColorMode } from '@chakra-ui/react'
 
 import ColorModeButton from './ColorModeButton'
 import MotionBox from './MotionBox'
@@ -30,9 +30,17 @@ const logoVariants = {
 }
 
 const Header: React.FC<HeaderProps> = ({ isHome }): JSX.Element => {
+  const { colorMode } = useColorMode()
   return (
-    <Flex as="header" w="100%" alignItems="center" px="1rem">
-      <MotionBox initial={false} variants={logoVariants} zIndex="10">
+    <Flex
+      as="header"
+      w="100%"
+      alignItems="center"
+      px="1rem"
+      bg={colorMode === 'dark' ? 'overlay.dark' : 'overlay.light'}
+      zIndex="10"
+    >
+      <MotionBox initial={false} variants={logoVariants}>
         <Image w="76px" h="76px" p="0.5rem" mr="0.5rem" color="currentColor" as={Logo} />
       </MotionBox>
       {isHome ? null : <HeaderTitle />}
