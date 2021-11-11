@@ -1,44 +1,58 @@
-import { Stack } from '@chakra-ui/react'
+import { Icon, Stack, Text, useColorMode, useTheme } from '@chakra-ui/react'
+
+import { BiUser, BiBriefcase, BiMessageDetail } from 'react-icons/bi'
+
+import { useLocation } from '@reach/router'
 
 import MotionBox from './MotionBox'
-import Link from './Link'
+import Link, { LinkProps } from './Link'
+import React from 'react'
 
-const navVariants = {
-  home: {
-    transition: {
-      delayChildren: 0.5,
-      ease: 'easeInOut',
-      duration: 0.5,
+const NavLink: React.FC<{ to: string }> = ({ to, children }) => {
+  const { colorMode } = useColorMode()
+  const { colors } = useTheme()
+
+  const linkStyles: Partial<LinkProps> = {
+    width: 'full',
+    textAlign: 'center',
+    py: 4,
+    activeStyle: {
+      background: colorMode === 'dark' ? colors.amethyst['50'] : colors.amethyst['900'],
+      color: colorMode === 'dark' ? colors.amethyst['900'] : colors.amethyst['50'],
     },
-  },
-  top: {
-    y: 0,
-    x: 0,
-    transition: {
-      when: 'afterChildren',
-      ease: 'easeInOut',
-      duration: 0.5,
-    },
-  },
+  }
+
+  return (
+    <Link to={to} {...linkStyles}>
+      {children}
+    </Link>
+  )
 }
 
 const Nav: React.FC = () => {
+  const { colorMode } = useColorMode()
+  const { pathname } = useLocation()
+
   return (
     <Stack
       as={MotionBox}
-      layoutId="nav"
-      variants={navVariants}
-      px={[2, 4, 4]}
-      direction="row"
-      spacing="2rem"
       fontSize="xl"
       fontWeight="200"
-      opacity="0.82"
+      direction="column"
+      alignItems="center"
+      w="full"
+      color={colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900'}
+      display={pathname === '/' ? 'none' : 'flex'}
     >
-      <Link to="/services"> Servicios </Link>
-      <Link to="/works"> Trabajos </Link>
-      <Link to="/cv"> CV </Link>
-      <Link to="/contact"> Contacto </Link>
+      <NavLink to="/about">
+        <Icon boxSize={8} as={BiUser} /> <Text display="none"> Acerca </Text>
+      </NavLink>
+      <NavLink to="/works">
+        <Icon boxSize={8} as={BiBriefcase} /> <Text display="none"> Trabajos </Text>
+      </NavLink>
+      <NavLink to="/contact">
+        <Icon boxSize={8} as={BiMessageDetail} /> <Text display="none"> Contacto </Text>
+      </NavLink>
     </Stack>
   )
 }

@@ -2,9 +2,7 @@ import { PageProps } from 'gatsby'
 
 import SEO from '../components/Seo'
 import MotionBox from '../components/MotionBox'
-import { Flex } from '@chakra-ui/react'
 import HeaderTitle from '../components/HeaderTitle'
-import Nav from '../components/Nav'
 
 import useMoveCamera, { cameraPositions } from '../hooks/useMoveCamera'
 import useDisplay, { displayStatus, displayContentTypes } from '../hooks/useDisplay'
@@ -33,7 +31,6 @@ const IndexPage: React.FC<PageProps> = () => {
       >
         Diseño Multimedial
       </MotionBox>
-      <Nav />
     </>
   )
 }

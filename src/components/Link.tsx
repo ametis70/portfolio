@@ -7,7 +7,7 @@ import {
   LinkProps as ChakraLinkProps,
 } from '@chakra-ui/react'
 
-type LinkProps = { external?: boolean } & ChakraLinkProps & GatsbyLinkProps<null>
+export type LinkProps = { external?: boolean } & ChakraLinkProps & GatsbyLinkProps<null>
 
 const GatsbyExtendedLink = chakra(GatsbyLink)
 
