@@ -63,8 +63,9 @@
   ],
   "license": "0BSD",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "gatsby build",
-    "develop": "gatsby develop -H 0.0.0.0",
+    "dev": "gatsby develop -H 0.0.0.0",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
