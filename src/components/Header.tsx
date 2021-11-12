@@ -1,5 +1,5 @@
 import { Text, Flex, Image, Box, useColorMode, Grid } from '@chakra-ui/react'
-import { useHover } from '@react-aria/interactions'
+import { useHover, useFocusWithin } from '@react-aria/interactions'
 
 import ColorModeButton from './ColorModeButton'
 
@@ -8,7 +8,7 @@ import Logo from '../images/logo.inline.svg'
 import Link from './Link'
 import MotionBox from './MotionBox'
 import { Transition, Variants } from 'framer-motion'
-import React from 'react'
+import { useState } from 'react'
 
 const defaultTransition: Transition = {
   duration: 0.25,
@@ -39,21 +39,26 @@ const headerVariants: Variants = {
 
 const Header: React.FC = (): JSX.Element => {
   const { colorMode } = useColorMode()
+  const [focusWithin, setFocusWithin] = useState(false)
 
   let { hoverProps, isHovered } = useHover({})
+  let { focusWithinProps } = useFocusWithin({
+    onFocusWithinChange: (isFocusWithin) => setFocusWithin(isFocusWithin),
+  })
 
   return (
     <MotionBox
       as="header"
       initial="hidden"
       variants={headerVariants}
-      animate={isHovered ? 'expanded' : 'compact'}
+      animate={isHovered || focusWithin ? 'expanded' : 'compact'}
       overflow="hidden"
       zIndex="999"
       position="fixed"
-      {...hoverProps}
       h="100vh"
       bg={colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50'}
+      {...hoverProps}
+      {...focusWithinProps}
     >
       <Grid
         as={MotionBox}
