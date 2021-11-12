@@ -41,8 +41,11 @@ const Header: React.FC = (): JSX.Element => {
   const { colorMode } = useColorMode()
   const [focusWithin, setFocusWithin] = useState(false)
 
-  let { hoverProps, isHovered } = useHover({})
-  let { focusWithinProps } = useFocusWithin({
+  const { hoverProps, isHovered } = useHover({
+    onHoverEnd: () => setFocusWithin(false),
+  })
+
+  const { focusWithinProps } = useFocusWithin({
     onFocusWithinChange: (isFocusWithin) => setFocusWithin(isFocusWithin),
   })
 
@@ -93,7 +96,7 @@ const Header: React.FC = (): JSX.Element => {
                 transition: defaultTransition,
               },
               expanded: {
-                width: '128px',
+                width: '96px',
                 x: '-50%',
                 left: '50%',
                 right: '50%',
@@ -107,9 +110,9 @@ const Header: React.FC = (): JSX.Element => {
           </MotionBox>
         </MotionBox>
 
-        <Nav expand={isHovered} />
+        <Nav />
 
-        <Flex direction="column" alignItems="flex-start" justify="flex-end" px={2}>
+        <Flex direction="column" alignItems="flex-start" justify="flex-end" px={3} pb={2}>
           <ColorModeButton />
         </Flex>
       </Grid>

@@ -8,7 +8,9 @@ import Canvas from './Canvas'
 import DisplayCanvas from './DisplayCanvas'
 import ChildrenContainer from './ChildrenContainer'
 
-import '@fontsource/montserrat'
+import '@fontsource/montserrat/400.css'
+import '@fontsource/montserrat/500.css'
+
 import useStore from '../store'
 
 const Layout: React.FC<PageProps> = ({ children, path }) => {
@@ -31,7 +33,7 @@ const Layout: React.FC<PageProps> = ({ children, path }) => {
           display="flex"
           flexDirection="column"
         >
-          <Header key="header" isHome={isHome} />
+          <Header key="header" />
 
           <ChildrenContainer>
             <AnimatePresence>{children}</AnimatePresence>

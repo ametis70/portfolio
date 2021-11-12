@@ -31,12 +31,17 @@ const theme = extendTheme({
     heading: fontFamilies,
     mono: 'monospace',
   },
+  fontWeights: {
+    regular: 400,
+    medium: 500,
+  },
   styles: {
     global: (props) => ({
       'html, body': {
         color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
         bg: props.colorMode === 'dark' ? 'amethyst.900' : 'white',
         fontFamily: 'body',
+        fontWeight: 'medium',
         width: '100%',
         minHeight: '100vh',
       },
