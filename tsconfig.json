@@ -14,7 +14,7 @@
     "skipLibCheck": true,
     "noImplicitAny": false,
     "resolveJsonModule": true,
-    "typeRoots": ["./src/@types", "./node_modules/@types"]
   },
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "public", ".cache"]
 }
