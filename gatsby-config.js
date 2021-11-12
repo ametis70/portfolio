@@ -25,6 +25,7 @@ module.exports = {
     LMDB_STORE: true,
   },
   plugins: [
+    'gatsby-plugin-pnpm',
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
