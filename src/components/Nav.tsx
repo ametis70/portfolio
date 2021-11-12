@@ -14,8 +14,8 @@ const NavLink: React.FC<{ to: string }> = ({ to, children }) => {
 
   const linkStyles: Partial<LinkProps> = {
     width: 'full',
-    textAlign: 'center',
-    py: 4,
+    px: '16px',
+    py: 2,
     activeStyle: {
       background: colorMode === 'dark' ? colors.amethyst['50'] : colors.amethyst['900'],
       color: colorMode === 'dark' ? colors.amethyst['900'] : colors.amethyst['50'],
@@ -29,20 +29,19 @@ const NavLink: React.FC<{ to: string }> = ({ to, children }) => {
   )
 }
 
-const Nav: React.FC = () => {
+const Nav: React.FC<{ expand: boolean }> = ({ expand }) => {
   const { colorMode } = useColorMode()
-  const { pathname } = useLocation()
 
   return (
-    <Stack
-      as={MotionBox}
+    <MotionBox
+      display="flex"
       fontSize="xl"
       fontWeight="200"
-      direction="column"
-      alignItems="center"
+      flexDirection="column"
+      alignItems="flex-start"
+      justifyContent="center"
       w="full"
       color={colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900'}
-      display={pathname === '/' ? 'none' : 'flex'}
     >
       <NavLink to="/about">
         <Icon boxSize={8} as={BiUser} /> <Text display="none"> Acerca </Text>
@@ -53,7 +52,7 @@ const Nav: React.FC = () => {
       <NavLink to="/contact">
         <Icon boxSize={8} as={BiMessageDetail} /> <Text display="none"> Contacto </Text>
       </NavLink>
-    </Stack>
+    </MotionBox>
   )
 }
 

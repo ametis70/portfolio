@@ -1,38 +1,114 @@
-import { Flex, Image, Box, useColorMode } from '@chakra-ui/react'
+import { Text, Flex, Image, Box, useColorMode, Grid } from '@chakra-ui/react'
+import { useHover } from '@react-aria/interactions'
 
 import ColorModeButton from './ColorModeButton'
-import HeaderTitle from './HeaderTitle'
 
 import Nav from './Nav'
 import Logo from '../images/logo.inline.svg'
+import Link from './Link'
+import MotionBox from './MotionBox'
+import { Transition, Variants } from 'framer-motion'
+import React from 'react'
+
+const defaultTransition: Transition = {
+  duration: 0.25,
+  easing: 'easeInOut',
+}
+
+const headerVariants: Variants = {
+  hidden: {
+    x: '-100%',
+  },
+  compact: {
+    x: '0',
+    width: '64px',
+    transition: {
+      ...defaultTransition,
+      when: 'afterChildren',
+    },
+  },
+  expanded: {
+    x: '0',
+    width: '300px',
+    transition: {
+      ...defaultTransition,
+      delayChildren: 0.15,
+    },
+  },
+}
 
 const Header: React.FC = (): JSX.Element => {
   const { colorMode } = useColorMode()
+
+  let { hoverProps, isHovered } = useHover({})
+
   return (
-    <Flex
+    <MotionBox
       as="header"
-      w="64px"
-      h="100vh"
+      initial="hidden"
+      variants={headerVariants}
+      animate={isHovered ? 'expanded' : 'compact'}
+      overflow="hidden"
+      zIndex="999"
       position="fixed"
-      alignItems="center"
-      direction="column"
+      {...hoverProps}
+      h="100vh"
       bg={colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50'}
-      zIndex="10"
     >
-      <Box mt={4}>
-        <Image w="full" h="full" px={2} color="currentColor" as={Logo} />
-      </Box>
+      <Grid
+        as={MotionBox}
+        templateRows="repeat(3, 1fr)"
+        templateColumns="1fr"
+        justifyContent="start"
+        h="100%"
+      >
+        <MotionBox
+          w="300px"
+          position="relative"
+          variants={{
+            compact: {
+              y: '1rem',
+              transition: defaultTransition,
+            },
+            expanded: {
+              y: '2rem',
+              transition: defaultTransition,
+            },
+          }}
+        >
+          <MotionBox
+            w="fit-content"
+            position="absolute"
+            variants={{
+              compact: {
+                width: '64px',
+                left: '0%',
+                right: '0%',
+                x: '0%',
+                transition: defaultTransition,
+              },
+              expanded: {
+                width: '128px',
+                x: '-50%',
+                left: '50%',
+                right: '50%',
+                transition: defaultTransition,
+              },
+            }}
+          >
+            <Link to="/">
+              <Image px={2} w="100%" color="currentColor" as={Logo} />
+            </Link>
+          </MotionBox>
+        </MotionBox>
 
-      <Box flex="1 1 0" />
+        <Nav expand={isHovered} />
 
-      <Nav />
-
-      <Box flex="1 1 0" />
-
-      <Box mb={4}>
-        <ColorModeButton />
-      </Box>
-    </Flex>
+        <Flex direction="column" alignItems="flex-start" justify="flex-end" px={2}>
+          <ColorModeButton />
+        </Flex>
+      </Grid>
+    </MotionBox>
   )
 }
 
