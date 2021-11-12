@@ -55,9 +55,10 @@ module.exports = {
         component: require.resolve('./src/components/Layout.tsx'),
       },
     },
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     '@chakra-ui/gatsby-plugin',
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
