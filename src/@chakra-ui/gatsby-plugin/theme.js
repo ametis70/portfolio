@@ -39,7 +39,7 @@ const theme = extendTheme({
     global: (props) => ({
       'html, body': {
         color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
-        bg: props.colorMode === 'dark' ? 'amethyst.900' : 'white',
+        bg: props.colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50',
         fontFamily: 'body',
         fontWeight: 'medium',
         width: '100%',

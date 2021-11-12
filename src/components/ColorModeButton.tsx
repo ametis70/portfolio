@@ -1,5 +1,5 @@
 import { BiMoon, BiSun } from 'react-icons/bi'
-import { Flex, Text, Button, useColorMode } from '@chakra-ui/react'
+import { Text, Button, useColorMode } from '@chakra-ui/react'
 
 const ColorModeButton: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode()

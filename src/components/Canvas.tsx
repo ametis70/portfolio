@@ -20,7 +20,6 @@ const Canvas: React.FC = () => {
           near: 0.1,
           far: 10,
         }}
-        flat
         raycaster={{
           computeOffsets: (event: PointerEvent) => {
             const { screenX, screenY } = event

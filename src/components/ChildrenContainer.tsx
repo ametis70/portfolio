@@ -1,4 +1,4 @@
-import { Flex, useColorMode } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import MotionBox from './MotionBox'
 
 const variants = {
@@ -19,19 +19,15 @@ const variants = {
 }
 
 const ChildrenContainer: React.FC = ({ children }) => {
-  const { colorMode } = useColorMode()
-
   return (
     <Flex
       as={MotionBox}
       variants={variants}
       direction="column"
-      alignSelf="flex-end"
       align="center"
       justify="center"
       w="100%"
       flex="1"
-      bg={colorMode === 'dark' ? 'overlay.dark' : 'overlay.light'}
       zIndex="10"
     >
       {children}
