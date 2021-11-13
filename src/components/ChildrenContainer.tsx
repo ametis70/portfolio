@@ -1,45 +1,27 @@
-import { Flex, useColorMode } from '@chakra-ui/react'
+import { useColorMode } from '@chakra-ui/react'
 
-import MotionBox from './MotionBox'
+import MotionBox, { MotionBoxProps } from './MotionBox'
 import useStore from '../store'
 
-const variants = {
-  top: {
-    width: '560px',
-    transition: {
-      duration: 0.2,
-      ease: 'easeInOut',
-    },
-  },
-  home: {
-    width: '100%',
-    transition: {
-      duration: 0.2,
-      ease: 'easeInOut',
-    },
-  },
-}
-
-const ChildrenContainer: React.FC = ({ children }) => {
+const ChildrenContainer: React.FC<MotionBoxProps> = ({ children, ...props }) => {
   const isHome = useStore((state) => state.isHome)
   const { colorMode } = useColorMode()
   return (
-    <Flex
-      as={MotionBox}
-      variants={variants}
-      direction="column"
-      align="center"
-      justify="flex-start"
-      w="100%"
-      flex="1"
-      zIndex="10"
+    <MotionBox
+      position="relative"
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="flex-start"
+      flex="0 1 560px"
+      ml="64px"
       bg={!isHome ? (colorMode === 'dark' ? 'overlay.dark' : 'overlay.light') : 'none'}
       backdropFilter={!isHome ? 'blur(40px)' : 'none'}
-      ml="64px"
       py={8}
+      {...props}
     >
       {children}
-    </Flex>
+    </MotionBox>
   )
 }
 

@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { PageProps } from 'gatsby'
-import { AnimateSharedLayout, AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
+import { Flex } from '@chakra-ui/react'
 
-import MotionBox from '../components/MotionBox'
 import Header from './Header'
 import Canvas from './Canvas'
 import DisplayCanvas from './DisplayCanvas'
@@ -15,31 +15,32 @@ import useStore from '../store'
 
 const Layout: React.FC<PageProps> = ({ children, path }) => {
   const setHome = useStore((state) => state.setHome)
-  const isHome = useStore((state) => state.isHome)
 
   useEffect(() => {
     if (path === '/') setHome(true)
     else setHome(false)
   }, [path])
 
+  console.log(path)
+
   return (
     <>
       <Canvas />
-      <AnimateSharedLayout>
-        <MotionBox
-          animate={isHome ? 'home' : 'top'}
-          minH="100vh"
-          w="100%"
-          display="flex"
-          flexDirection="column"
-        >
-          <Header key="header" />
+      <Flex minH="100vh" w="100%" alignContent="flex-start" justifyContent="flex-start">
+        <Header key="header" />
 
-          <ChildrenContainer>
-            <AnimatePresence>{children}</AnimatePresence>
+        <AnimatePresence exitBeforeEnter>
+          <ChildrenContainer
+            exit={{ opacity: 0, width: '100%' }}
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            key={path}
+          >
+            {children}
           </ChildrenContainer>
-        </MotionBox>
-      </AnimateSharedLayout>
+        </AnimatePresence>
+      </Flex>
       <DisplayCanvas />
     </>
   )
