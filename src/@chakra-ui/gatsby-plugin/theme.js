@@ -22,8 +22,8 @@ const theme = extendTheme({
   colors: {
     amethyst,
     overlay: {
-      light: 'rgba(250, 247, 252, 0.33)',
-      dark: 'rgba(75, 50, 100, 0.33)',
+      light: 'rgba(250, 247, 252, 0.80)',
+      dark: 'rgba(75, 50, 100, 0.80)',
     },
   },
   fonts: {

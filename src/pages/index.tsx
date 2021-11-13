@@ -47,7 +47,6 @@ const IndexPage: React.FC<PageProps> = () => {
             fontWeight="300"
             pb="2rem"
           >
-            {' '}
             Diseño y desarrollo web
           </Heading>
         </Link>
