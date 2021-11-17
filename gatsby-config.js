@@ -26,6 +26,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-pnpm',
+    `gatsby-plugin-netlify-cms`,
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
