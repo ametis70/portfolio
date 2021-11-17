@@ -41,6 +41,20 @@ const AboutPage: React.FC<PageProps> = () => {
           </Stack>
         </Flex>
       </Card>
+      <Card>
+        <Box p={6}>
+          <Text fontSize="md">
+            Licenciado en Diseño Multimedial con 4+ años de experiencia desarrollando
+            sitios web principalmente con React de manera remota. Mi formación
+            interdisciplinaria me permite llevar a cabo productos que son fieles a los
+            procesos creativos.
+            <br /> <br />
+            Siempre estoy buscando algo nuevo para aprender o algún proyecto DIY para
+            realizar. Soy un entusiasta del software libre, y en mi tiempo libre me gusta
+            ver películas, series, leer libros o jugar videojuegos.
+          </Text>
+        </Box>
+      </Card>
     </>
   )
 }

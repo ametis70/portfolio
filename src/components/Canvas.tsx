@@ -12,7 +12,7 @@ const Canvas: React.FC = () => {
   const ContextBridge = useContextBridge(ColorModeContext)
 
   return (
-    <Box w="100%" h="100vh" position="absolute">
+    <Box w="100%" h="100vh" position="fixed">
       <ThreeCanvas
         style={{ width: '100%', height: '100%' }}
         camera={{
