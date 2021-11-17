@@ -22,7 +22,6 @@
     "gatsby-plugin-manifest": "^4.2.0",
     "gatsby-plugin-netlify-cms": "^6.2.0",
     "gatsby-plugin-offline": "^5.2.0",
-    "gatsby-plugin-pnpm": "^1.2.9",
     "gatsby-plugin-react-helmet": "^5.2.0",
     "gatsby-plugin-robots-txt": "^1.6.14",
     "gatsby-plugin-sharp": "^4.2.0",
@@ -66,8 +65,7 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "build": "pnpm gatsby build || (npm install pnpm && pnpm build)",
+    "build": "gatsby build",
     "dev": "gatsby develop -H 0.0.0.0",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",

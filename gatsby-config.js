@@ -25,19 +25,16 @@ module.exports = {
     LMDB_STORE: true,
   },
   plugins: [
-    'gatsby-plugin-pnpm',
     `gatsby-plugin-netlify-cms`,
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
-        test: /\.[tj]sx?$/,
+        extensions: ['ts', 'tsx', 'js', 'jsx'],
         rulePaths: [gatsbyRequiredRules],
-        exclude: /(_this_is_virtual_fs_path_|node_modules|.cache|public)/,
+        exclude: ['node_modules', '.cache', 'public'],
         stages: ['develop'],
-        options: {
-          emitWarning: true,
-          failOnError: false,
-        },
+        emitWarning: true,
+        failOnError: false,
       },
     },
     'gatsby-plugin-typescript',
