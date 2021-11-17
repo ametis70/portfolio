@@ -19,6 +19,33 @@ const theme = extendTheme({
     initialColorMode: 'dark',
     useSystemColorMode: true,
   },
+  components: {
+    Heading: {
+      baseStyle: {
+        letterSpacing: '0.065em',
+        fontWeight: 'medium',
+      },
+      variants: {
+        smallcaps: {
+          fontWeight: 'medium',
+          textTransform: 'lowercase',
+          fontVariant: 'small-caps',
+          fontFeatureSettings: '"smcp"',
+        },
+      },
+      sizes: {
+        sectionTitle: {
+          fontSize: '3xl',
+        },
+      },
+    },
+    Text: {
+      baseStyle: {
+        letterSpacing: '0.065em',
+        fontWeight: 'medium',
+      },
+    },
+  },
   colors: {
     amethyst,
     overlay: {
@@ -42,6 +69,7 @@ const theme = extendTheme({
         bg: props.colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50',
         fontFamily: 'body',
         fontWeight: 'medium',
+        letterSpacing: '0.065em',
         width: '100%',
         minHeight: '100vh',
       },

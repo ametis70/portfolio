@@ -13,11 +13,11 @@ const AboutPage: React.FC<PageProps> = () => {
   return (
     <>
       <SEO title="Acerca" />
-      <Heading textTransform="uppercase" fontSize="xl">
+      <Heading variant="smallcaps" size="sectionTitle">
         Acerca
       </Heading>
       <Card>
-        <Flex position="relative" left={-12} top={-8}>
+        <Flex position="relative" left={-14} top={-8}>
           <Box borderRadius="50%" overflow="hidden" w="fit-content">
             <StaticImage
               src="../images/avatar.jpeg"
@@ -29,7 +29,7 @@ const AboutPage: React.FC<PageProps> = () => {
               height={128}
             />
           </Box>
-          <Box position="relative" top={8} px={4} py={4}>
+          <Box position="relative" top={8} pl={4} py={4}>
             <Heading textTransform="uppercase" fontSize="3xl">
               Ian Mancini
             </Heading>
