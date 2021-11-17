@@ -7,7 +7,8 @@ import {
   LinkProps as ChakraLinkProps,
 } from '@chakra-ui/react'
 
-export type LinkProps = { external?: boolean } & ChakraLinkProps & GatsbyLinkProps<null>
+export type LinkProps = { external?: boolean } & Partial<ChakraLinkProps> &
+  Partial<GatsbyLinkProps<null>>
 
 const GatsbyExtendedLink = chakra(GatsbyLink)
 
@@ -16,7 +17,7 @@ const Link: React.FC<LinkProps> = ({ external = false, href, to, ...rest }) => {
     if (external) {
       if (!href) throw new Error('No href prop provided for external link')
       // @ts-ignore
-      return <ChakraLink href={href} {...rest} />
+      return <ChakraLink isExternal href={href} {...rest} />
     } else {
       if (!to) throw new Error('No to prop provided for internal link')
       return <GatsbyExtendedLink to={to} {...rest} />

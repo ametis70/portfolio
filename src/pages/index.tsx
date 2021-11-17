@@ -8,26 +8,6 @@ import useDisplay, { displayStatus, displayContentTypes } from '../hooks/useDisp
 import React from 'react'
 import { Heading } from '@chakra-ui/react'
 import Link from '../components/Link'
-import { Variants } from 'framer-motion'
-
-const HeadingVariants: Variants = {
-  initial: {
-    opacity: 0,
-  },
-  enter: {
-    opacity: 1,
-    transition: {
-      delay: 0.5,
-      duration: 0.7,
-    },
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 0.25,
-    },
-  },
-}
 
 const IndexPage: React.FC<PageProps> = () => {
   useDisplay(displayStatus.ON, displayContentTypes.BLANK)
