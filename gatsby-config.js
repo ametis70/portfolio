@@ -14,9 +14,9 @@ const gatsbyRequiredRules = path.join(
 module.exports = {
   siteMetadata: {
     title: 'Ian Mancini',
-    description:
-      'Kick off your next, great Gatsby project with this starter. It is based on gatsby-default-starter but with a few extra things.',
-    author: '@ianmethyst',
+    siteUrl: 'https://ianmancini.com.ar',
+    description: 'Ian Mancini is a web designer/developer',
+    author: '@ametis70',
   },
   flags: {
     DEV_SSR: true,
@@ -60,8 +60,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'gatsby-starter-ianmethyst',
-        short_name: 'starter',
+        name: 'Ian Mancini',
+        short_name: 'ametis70',
         start_url: '/',
         background_color: '#663399',
         theme_color: '#663399',
@@ -69,6 +69,7 @@ module.exports = {
         icon: 'src/images/favicon.png', // This path is relative to the root of the site.
       },
     },
+    'gatsby-plugin-netlify',
     'gatsby-plugin-robots-txt',
     'gatsby-plugin-sitemap',
     // "gatsby-plugin-offline",
