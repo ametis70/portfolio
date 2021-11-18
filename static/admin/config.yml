@@ -6,37 +6,43 @@ backend:
 media_folder: 'static/images/uploads' # Media files will be stored in the repo under static/images/uploads
 public_folder: '/images/uploads' # The src attribute for uploaded media will begin with /images/uploads
 
+i18n:
+  structure: multiple_folders
+  locales: [en, es]
+  default_locale: es
+
 collections:
   - name: about
     label: About
+    i18n:
+      structure: single_file
+      locales: [en, es]
     files:
       - label: General
         name: general
         file: 'about/general.json'
+        i18n: true
         fields:
           - { label: 'Full Name', name: fullname, widget: string, required: true }
           - { label: City, name: city, widget: string, required: true }
           - { label: Birthday, name: birthday, widget: datetime, required: true }
-          - { label: About, name: about, widget: markdown, required: true }
+          - { label: About, name: about, widget: markdown, required: true, i18n: true }
       - label: Experience
         name: experience
+        i18n: true
         file: 'about/experience.json'
         fields:
           - label: Items
             name: items
             widget: list
+            i18n: true
             fields:
-              - { label: Role, name: role, widget: string }
+              - { label: Role, name: role, widget: string, i18n: true }
               - { label: Company, name: company, widget: string }
-              - { label: Description, name: description, widget: markdown }
+              - { label: Description, name: description, widget: markdown, i18n: true }
+              - { label: 'Start', name: start, widget: datetime, format: 'MM/YYYY' }
               - {
-                  label: 'Start datetime',
-                  name: start,
-                  widget: datetime,
-                  format: 'MM/YYYY',
-                }
-              - {
-                  label: 'End datetime',
+                  label: 'End',
                   name: end,
                   widget: datetime,
                   required: false,
@@ -45,40 +51,47 @@ collections:
       - label: Skills
         name: skills
         file: 'about/skills.json'
+        i18n: true
         widget: list
         fields:
           - label: Categories
             name: categories
             widget: list
+            i18n: true
             fields:
-              - { label: 'Category title', name: name, widget: string }
+              - { label: 'Category title', name: name, widget: string, i18n: true }
               - label: Items
                 name: items
                 widget: list
+                i18n: true
                 fields:
                   - label: Item
                     name: item
                     widget: string
+                    i18n: true
       - label: Education
         name: education
         file: 'about/education.json'
         widget: list
+        i18n: true
         fields:
           - label: College
             name: college
+            i18n: true
             widget: list
             fields:
-              - { label: Title, name: name, widget: string }
+              - { label: Title, name: name, widget: string, i18n: true }
               - { label: Start, name: start, widget: datetime }
               - { label: End, name: end, widget: datetime, required: false }
-              - { label: School, name: school, widget: string }
+              - { label: School, name: school, widget: string, i18n: true }
               - { label: link, name: link, widget: string, required: false }
           - label: Certifications
             name: certifications
             widget: list
+            i18n: true
             fields:
-              - { label: Title, name: name, widget: string }
+              - { label: Title, name: name, widget: string, i18n: true }
               - { label: Start, name: start, widget: datetime }
               - { label: End, name: end, widget: datetime, required: false }
-              - { label: School, name: school, widget: string }
+              - { label: School, name: school, widget: string, i18n: true }
               - { label: link, name: link, widget: string, required: false }
