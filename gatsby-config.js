@@ -10,14 +10,22 @@ module.exports = {
     PARALLEL_SOURCING: true,
   },
   plugins: [
-    `gatsby-plugin-netlify-cms`,
+    'gatsby-plugin-netlify-cms',
     'gatsby-plugin-svgr-svgo',
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/static/images/uploads`,
+        ignore: [`**/\.*`], // ignore files starting with a dot
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'content',
+        path: `${__dirname}/cms`,
       },
     },
     {
@@ -26,9 +34,10 @@ module.exports = {
         component: require.resolve('./src/components/Layout.tsx'),
       },
     },
-    `gatsby-plugin-image`,
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
+    'gatsby-plugin-image',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-json',
+    'gatsby-transformer-sharp',
     '@chakra-ui/gatsby-plugin',
     {
       resolve: 'gatsby-plugin-manifest',
