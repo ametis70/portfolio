@@ -20,17 +20,29 @@ collections:
     files:
       - label: General
         name: general
-        file: 'about/general.json'
+        file: 'cms/about/general.json'
         i18n: true
         fields:
-          - { label: 'Full Name', name: fullname, widget: string, required: true, i18n: duplicate }
+          - {
+              label: 'Full Name',
+              name: fullname,
+              widget: string,
+              required: true,
+              i18n: duplicate,
+            }
           - { label: City, name: city, widget: string, required: true, i18n: duplicate }
-          - { label: Birthday, name: birthday, widget: datetime, required: true, i18n: duplicate }
+          - {
+              label: Birthday,
+              name: birthday,
+              widget: datetime,
+              required: true,
+              i18n: duplicate,
+            }
           - { label: About, name: about, widget: markdown, required: true, i18n: true }
       - label: Experience
         name: experience
         i18n: true
-        file: 'about/experience.json'
+        file: 'cms/about/experience.json'
         fields:
           - label: Items
             name: items
@@ -40,18 +52,24 @@ collections:
               - { label: Role, name: role, widget: string, i18n: true }
               - { label: Company, name: company, widget: string, i18n: duplicate }
               - { label: Description, name: description, widget: markdown, i18n: true }
-              - { label: 'Start', name: start, widget: datetime, format: 'MM/YYYY', i18n: duplicate }
+              - {
+                  label: 'Start',
+                  name: start,
+                  widget: datetime,
+                  format: 'MM/YYYY',
+                  i18n: duplicate,
+                }
               - {
                   label: 'End',
                   name: end,
                   widget: datetime,
                   required: false,
                   format: 'MM/YYYY',
-                  i18n: duplicate
+                  i18n: duplicate,
                 }
       - label: Skills
         name: skills
-        file: 'about/skills.json'
+        file: 'cms/about/skills.json'
         i18n: true
         widget: list
         fields:
@@ -72,7 +90,7 @@ collections:
                     i18n: true
       - label: Education
         name: education
-        file: 'about/education.json'
+        file: 'cms/about/education.json'
         widget: list
         i18n: true
         fields:
@@ -83,9 +101,21 @@ collections:
             fields:
               - { label: Title, name: name, widget: string, i18n: true }
               - { label: Start, name: start, widget: datetime, i18n: duplicate }
-              - { label: End, name: end, widget: datetime, required: false, i18n: duplicate }
+              - {
+                  label: End,
+                  name: end,
+                  widget: datetime,
+                  required: false,
+                  i18n: duplicate,
+                }
               - { label: School, name: school, widget: string, i18n: true }
-              - { label: link, name: link, widget: string, required: false, i18n: duplicate }
+              - {
+                  label: link,
+                  name: link,
+                  widget: string,
+                  required: false,
+                  i18n: duplicate,
+                }
           - label: Certifications
             name: certifications
             widget: list
@@ -93,6 +123,18 @@ collections:
             fields:
               - { label: Title, name: name, widget: string, i18n: true }
               - { label: Start, name: start, widget: datetime, i18n: duplicate }
-              - { label: End, name: end, widget: datetime, required: false, i18n: duplicate }
+              - {
+                  label: End,
+                  name: end,
+                  widget: datetime,
+                  required: false,
+                  i18n: duplicate,
+                }
               - { label: School, name: school, widget: string, i18n: true }
-              - { label: link, name: link, widget: string, required: false, i18n: duplicate }
+              - {
+                  label: link,
+                  name: link,
+                  widget: string,
+                  required: false,
+                  i18n: duplicate,
+                }
