@@ -19,25 +19,11 @@ module.exports = {
     author: '@ametis70',
   },
   flags: {
-    DEV_SSR: true,
     FAST_DEV: true,
     PARALLEL_SOURCING: true,
-    LMDB_STORE: true,
   },
   plugins: [
     `gatsby-plugin-netlify-cms`,
-    {
-      resolve: 'gatsby-plugin-eslint',
-      options: {
-        extensions: ['ts', 'tsx', 'js', 'jsx'],
-        rulePaths: [gatsbyRequiredRules],
-        exclude: ['node_modules', '.cache', 'public'],
-        stages: ['develop'],
-        emitWarning: true,
-        failOnError: false,
-      },
-    },
-    'gatsby-plugin-typescript',
     'gatsby-plugin-svgr-svgo',
     'gatsby-plugin-react-helmet',
     {
