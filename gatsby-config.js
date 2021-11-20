@@ -1,7 +1,9 @@
+const siteUrl = 'https://ianmancini.com.ar'
+
 module.exports = {
   siteMetadata: {
     title: 'Ian Mancini',
-    siteUrl: 'https://ianmancini.com.ar',
+    siteUrl,
     description: 'Ian Mancini is a web designer/developer',
     author: '@ametis70',
   },
@@ -18,7 +20,7 @@ module.exports = {
       options: {
         name: 'images',
         path: `${__dirname}/static/images/uploads`,
-        ignore: [`**/\.*`], // ignore files starting with a dot
+        ignore: ['**/.*'], // ignore files starting with a dot
       },
     },
     {
@@ -39,6 +41,24 @@ module.exports = {
     'gatsby-transformer-json',
     'gatsby-transformer-sharp',
     '@chakra-ui/gatsby-plugin',
+    {
+      resolve: 'gatsby-plugin-react-i18next',
+      options: {
+        localeJsonSourceName: 'content',
+        languages: ['en', 'es'],
+        defaultLanguage: 'en',
+        siteUrl,
+        i18nextOptions: {
+          debug: true,
+          ns: ['about'],
+          interpolation: {
+            escapeValue: false, // not needed for react as it escapes by default
+          },
+          keySeparator: '.',
+          nsSeparator: false,
+        },
+      },
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
