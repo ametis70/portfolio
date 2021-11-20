@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react'
-import { Link as GatsbyLink, GatsbyLinkProps } from 'gatsby'
+import { GatsbyLinkProps } from 'gatsby'
+import { Link as GatsbyLink } from 'gatsby-plugin-react-i18next'
+
 import {
   chakra,
   Link as ChakraLink,
@@ -20,6 +22,7 @@ const Link: React.FC<LinkProps> = ({ external = false, href, to, ...rest }) => {
       return <ChakraLink isExternal href={href} {...rest} />
     } else {
       if (!to) throw new Error('No to prop provided for internal link')
+      // @ts-ignore
       return <GatsbyExtendedLink to={to} {...rest} />
     }
   } catch (e) {

@@ -8,6 +8,7 @@ import ColorModeButton from './ColorModeButton'
 import useStore from '../store'
 
 import Logo from '../images/logo.inline.svg'
+import LanguageSwitcherButton from './LanguageSwitcherButton'
 
 const defaultTransition: Transition = {
   duration: 0.35,
@@ -84,6 +85,7 @@ const Header: React.FC = (): JSX.Element => {
         <Nav />
 
         <Flex direction="column" alignItems="flex-start" justify="flex-end" px={3} pb={2}>
+          <LanguageSwitcherButton />
           <ColorModeButton />
         </Flex>
       </Grid>

@@ -3,6 +3,8 @@ import { PageProps } from 'gatsby'
 import { AnimatePresence } from 'framer-motion'
 import { Flex } from '@chakra-ui/react'
 
+import { I18NextContext } from 'gatsby-plugin-react-i18next/dist/types'
+
 import Header from './Header'
 import Canvas from './Canvas'
 import DisplayCanvas from './DisplayCanvas'
@@ -13,15 +15,18 @@ import '@fontsource/montserrat/500.css'
 
 import useStore from '../store'
 
-const Layout: React.FC<PageProps> = ({ children, path }) => {
+const Layout: React.FC<PageProps<null, { i18n: I18NextContext }>> = ({
+  children,
+  pageContext,
+}) => {
   const setHome = useStore((state) => state.setHome)
 
-  useEffect(() => {
-    if (path === '/') setHome(true)
-    else setHome(false)
-  }, [path])
+  const { originalPath } = pageContext.i18n
 
-  console.log(path)
+  useEffect(() => {
+    if (originalPath === '/') setHome(true)
+    else setHome(false)
+  }, [originalPath])
 
   return (
     <>
@@ -35,7 +40,7 @@ const Layout: React.FC<PageProps> = ({ children, path }) => {
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            key={path}
+            key={originalPath}
           >
             {children}
           </ChildrenContainer>
