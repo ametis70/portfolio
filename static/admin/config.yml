@@ -1,7 +1,12 @@
+#backend:
+#  name: github
+#  repo: ametis70/portfolio
+#  branch: main
+
 backend:
-  name: github
-  repo: ametis70/portfolio
-  branch: main
+  name: git-gateway
+
+local_backend: true
 
 media_folder: 'static/images/uploads' # Media files will be stored in the repo under static/images/uploads
 public_folder: '/images/uploads' # The src attribute for uploaded media will begin with /images/uploads
