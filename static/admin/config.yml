@@ -13,7 +13,7 @@ media_folder: 'static/images/uploads' # Media files will be stored in the repo u
 public_folder: '/images/uploads' # The src attribute for uploaded media will begin with /images/uploads
 
 i18n:
-  structure: multiple_files
+  structure: multiple_folders
   locales: [en, es]
   default_locale: en
 
@@ -21,7 +21,7 @@ collections:
   - name: about
     label: About
     i18n: true
-    create: false
+    create: true
     extension: json
     folder: cms
     slug: about
