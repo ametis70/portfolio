@@ -1,4 +1,8 @@
-import create from 'zustand'
+import create, { GetState, SetState } from 'zustand'
+import {
+  StoreApiWithSubscribeWithSelector,
+  subscribeWithSelector,
+} from 'zustand/middleware'
 
 import { displayStatus, displayContentTypes } from './constants'
 
@@ -13,15 +17,22 @@ type StoreType = {
   setDisplayCanvas?: (el: HTMLCanvasElement | undefined) => void
 }
 
-const useStore = create<StoreType>((set) => ({
-  isHome: undefined,
-  cameraPosition: undefined,
-  displayContent: { status: displayStatus.OFF, contentType: displayContentTypes.BLANK },
-  setHome: (value) => set({ isHome: value }),
-  setDisplayContent: (status, contentType, data) =>
-    set({ displayContent: { status, contentType, data } }),
-  setCameraPosition: (cp: number) => set({ cameraPosition: cp }),
-  setDisplayCanvas: (el) => set({ displayCanvas: el }),
-}))
+const useStore = create<
+  StoreType,
+  SetState<StoreType>,
+  GetState<StoreType>,
+  StoreApiWithSubscribeWithSelector<StoreType>
+>(
+  subscribeWithSelector((set, _) => ({
+    isHome: undefined,
+    cameraPosition: undefined,
+    displayContent: { status: displayStatus.OFF, contentType: displayContentTypes.BLANK },
+    setHome: (value) => set({ isHome: value }),
+    setDisplayContent: (status, contentType, data) =>
+      set({ displayContent: { status, contentType, data } }),
+    setCameraPosition: (cp: number) => set({ cameraPosition: cp }),
+    setDisplayCanvas: (el) => set({ displayCanvas: el }),
+  })),
+)
 
 export default useStore

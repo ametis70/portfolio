@@ -83,13 +83,13 @@ const Camera = () => {
     }
 
     useStore.subscribe(
-      (cameraPosition: number | undefined) => {
+      (state) => state.cameraPosition,
+      (cameraPosition) => {
         if (cameraPosition === undefined) return
 
         const coordinates = getCoordinates(cameraPosition)
         move(coordinates[0], coordinates[1])
       },
-      (state) => state.cameraPosition,
     ),
       []
   })
