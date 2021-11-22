@@ -1,20 +1,37 @@
+import { StaticImage } from 'gatsby-plugin-image'
+import { Suspense } from 'react'
 import { graphql, PageProps } from 'gatsby'
 import { Flex, Box, Text, Heading, Image, Stack } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
+import { I18NextContext } from '@ianmethyst/gatsby-plugin-react-i18next/dist/types'
 
 import Card from '../components/Card'
 import SEO from '../components/Seo'
 
 import useMoveCamera, { cameraPositions } from '../hooks/useMoveCamera'
-import { StaticImage } from 'gatsby-plugin-image'
-import React, { Suspense } from 'react'
 import SocialLinks from '../components/SocialLinks'
 
 import { getAge } from '../util'
-import { useTranslation } from 'gatsby-plugin-react-i18next'
 
-const AboutPage: React.FC<PageProps> = () => {
+const AboutPage: React.FC<
+  PageProps<
+    {
+      locales: {
+        edges: { node: { language: string; ns: string; data: string } }[]
+      }
+    },
+    I18NextContext
+  >
+> = ({ pageContext, data }) => {
   useMoveCamera(cameraPositions.FRONT)
-  const { t } = useTranslation()
+  const { i18n } = useTranslation('about')
+
+  const l = data.locales.edges[0].node
+  if (!i18n.getResourceBundle(l.language, l.ns)) {
+    i18n.addResourceBundle(l.language, l.ns, JSON.parse(l.data), false, false)
+  }
+
+  const t = i18n.getFixedT(l.language, l.ns)
 
   return (
     <>
@@ -51,7 +68,7 @@ const AboutPage: React.FC<PageProps> = () => {
         </Card>
         <Card>
           <Box p={6}>
-            <Text fontSize="md">{t('general.about')}</Text>
+            <Text fontSize="md">{t('general.about', { lng: pageContext.language })}</Text>
           </Box>
         </Card>
       </Suspense>
@@ -61,7 +78,7 @@ const AboutPage: React.FC<PageProps> = () => {
 
 export const query = graphql`
   query ($language: String!) {
-    locales: allLocale(filter: { language: { eq: $language } }) {
+    locales: allLocale(filter: { ns: { in: ["about"] }, language: { eq: $language } }) {
       edges {
         node {
           ns

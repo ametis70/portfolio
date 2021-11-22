@@ -2151,6 +2151,18 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@ianmethyst/gatsby-plugin-react-i18next@^1.2.3-0":
+  version "1.2.3-0"
+  resolved "https://registry.yarnpkg.com/@ianmethyst/gatsby-plugin-react-i18next/-/gatsby-plugin-react-i18next-1.2.3-0.tgz#51fc6a0a4acb82e774bed2b2a4008c1b6c38ecd7"
+  integrity sha512-g1YfQoRo6HH57eUE9wEeHDFCHCy+/ZQseB0FG19ptF0yjUChNAeLIWNOBV9Za2y85dejopuvZPn0oXE1BWJJig==
+  dependencies:
+    bluebird "^3.7.2"
+    browser-lang "^0.1.0"
+    outdent "^0.8.0"
+    path-to-regexp "^6.2.0"
+  optionalDependencies:
+    react-helmet "^6.1.0"
+
 "@iarna/toml@2.2.5", "@iarna/toml@^2.2.5":
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.5.tgz#b32366c89b43c6f8cefbdefac778b9c828e3ba8c"
@@ -7238,18 +7250,6 @@ gatsby-plugin-react-helmet@^5.2.0:
   integrity sha512-7iRMB3u2Dp+w2Mwh4+fzYwFTWvj3uhVBJX2l+E9D29LY7HEbJgAF7UKsMoWzHkf282Zxa6xiXCgGvLy6zLAPoQ==
   dependencies:
     "@babel/runtime" "^7.15.4"
-
-gatsby-plugin-react-i18next@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-i18next/-/gatsby-plugin-react-i18next-1.2.2.tgz#089838de9f28920b89a0e08bc8262d1b4bdec9b5"
-  integrity sha512-hysP5Ze/EMVhYa3vUXeZ6OK1jGu8b3lcPpCqw7Meu23drY2CnPOt+rYTtJiT/HKN6wuxkDgTH5VPaeOHMBRysw==
-  dependencies:
-    bluebird "^3.7.2"
-    browser-lang "^0.1.0"
-    outdent "^0.8.0"
-    path-to-regexp "^6.2.0"
-  optionalDependencies:
-    react-helmet "^6.1.0"
 
 gatsby-plugin-robots-txt@^1.6.14:
   version "1.6.14"

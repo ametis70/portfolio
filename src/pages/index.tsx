@@ -1,4 +1,4 @@
-import { PageProps } from 'gatsby'
+import { graphql, PageProps } from 'gatsby'
 
 import SEO from '../components/Seo'
 import MotionBox from '../components/MotionBox'
@@ -53,5 +53,19 @@ const IndexPage: React.FC<PageProps> = () => {
     </>
   )
 }
+
+export const query = graphql`
+  query {
+    locales: allLocale(filter: { ns: { in: ["about"] } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage

@@ -7,10 +7,6 @@ module.exports = {
     description: 'Ian Mancini is a web designer/developer',
     author: '@ametis70',
   },
-  flags: {
-    FAST_DEV: true,
-    PARALLEL_SOURCING: true,
-  },
   plugins: [
     'gatsby-plugin-netlify-cms',
     'gatsby-plugin-svgr-svgo',
@@ -30,29 +26,27 @@ module.exports = {
         path: `${__dirname}/cms`,
       },
     },
-    {
-      resolve: 'gatsby-plugin-layout',
-      options: {
-        component: require.resolve('./src/components/Layout.tsx'),
-      },
-    },
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-transformer-json',
     'gatsby-transformer-sharp',
     '@chakra-ui/gatsby-plugin',
     {
-      resolve: 'gatsby-plugin-react-i18next',
+      resolve: 'gatsby-plugin-layout',
+      options: {
+        component: require.resolve('./src/components/Layout.tsx'),
+      },
+    },
+    {
+      resolve: '@ianmethyst/gatsby-plugin-react-i18next',
       options: {
         localeJsonSourceName: 'content',
         languages: ['en', 'es'],
         defaultLanguage: 'en',
         siteUrl,
         i18nextOptions: {
-          debug: true,
-          ns: ['about'],
           interpolation: {
-            escapeValue: false, // not needed for react as it escapes by default
+            escapeValue: false,
           },
           keySeparator: '.',
           nsSeparator: false,
