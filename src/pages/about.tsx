@@ -12,6 +12,7 @@ import useMoveCamera, { cameraPositions } from '../hooks/useMoveCamera'
 import SocialLinks from '../components/SocialLinks'
 
 import { getAge } from '../util'
+import Markdown from '../components/Markdown'
 
 const AboutPage: React.FC<
   PageProps<
@@ -68,7 +69,7 @@ const AboutPage: React.FC<
         </Card>
         <Card>
           <Box p={6}>
-            <Text fontSize="md">{t('general.about', { lng: pageContext.language })}</Text>
+            <Markdown>{t('general.about')}</Markdown>
           </Box>
         </Card>
       </Suspense>
