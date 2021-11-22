@@ -1,0 +1,33 @@
+{
+    "sections": {
+        "about": "Acerca",
+        "works": "Trabajos",
+        "contact": "Contacto",
+        "home": "Inicio"
+    },
+    "languages": {
+        "english": "Inglés",
+        "spanish": "Español"
+    },
+    "ui": {
+        "switch_color_mode": "Cambiar modo de color",
+        "switch_color_mode_specific": "Cambiar a {{mode}}",
+        "dark_mode": "Modo noche",
+        "light_mode": "Modo día",
+        "switch_language": "Cambiar idioma",
+        "switch_language_specific": "Cambiar idioma a {{lang}}",
+        "works_cta": "Ir a página de trabajos"
+    },
+    "connectors": {
+        "in": "en",
+        "and": "y"
+    },
+    "subtitles": {
+        "experience": "experiencia laboral",
+        "projects": "proyectos",
+        "skills": "habilidades",
+        "education": "educación",
+        "college": "universitaria",
+        "certificates": "certificaciones"
+        }
+}

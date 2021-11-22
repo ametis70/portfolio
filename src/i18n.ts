@@ -1,8 +1,8 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
-export const languges = ['es', 'en']
-export const defaultLanguage = 'es'
+import commonEn from '../cms/en/common.json'
+import commonEs from '../cms/es/common.json'
 
 i18n.use(initReactI18next).init({
   fallbackLng: 'en',
@@ -13,5 +13,8 @@ i18n.use(initReactI18next).init({
   },
   resources: {},
 })
+
+i18n.addResourceBundle('en', 'common', commonEn)
+i18n.addResourceBundle('es', 'common', commonEs)
 
 export default i18n

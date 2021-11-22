@@ -1,0 +1,33 @@
+{
+    "sections": {
+        "about": "About",
+        "works": "Works",
+        "contact": "Contact",
+        "home": "Home"
+    },
+    "languages": {
+        "english": "English",
+        "spanish": "Spanish"
+    },
+    "ui": {
+        "switch_color_mode": "Switch color color",
+        "switch_color_mode_specific": "Switch to {{mode}}",
+        "dark_mode": "Dark mode",
+        "light_mode": "Light mode",
+        "switch_language": "Switch language",
+        "switch_language_specific": "Switch language to {{lang}}",
+        "works_cta": "See works and projects"
+    },
+    "connectors": {
+        "in": "in",
+        "and": "and"
+    },
+    "subtitles": {
+        "experience": "work experience",
+        "projects": "projects",
+        "skills": "skills",
+        "education": "education",
+        "college": "college",
+        "certificates": "certificates"
+        }
+}
