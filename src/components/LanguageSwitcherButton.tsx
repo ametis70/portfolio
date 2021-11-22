@@ -8,8 +8,8 @@ import useI18NextConfig from '../hooks/useI18NextConfig'
 const LanguageSwitcherButton: React.FC = () => {
   const { i18n } = useTranslation()
   const location = useLocation()
-
   const { defaultLanguage, languages } = useI18NextConfig()
+  const { t } = useTranslation('common')
 
   const spanish = i18n.language === 'es'
 
@@ -18,7 +18,6 @@ const LanguageSwitcherButton: React.FC = () => {
     const langPart = location.pathname.split('/')[1]
 
     if (i18n.language === defaultLanguage) {
-      console.log({ langPart })
       if (languages.some((l) => l === langPart)) {
         const routeWithoutLang = location.pathname.slice(3, location.pathname.length)
         navigate(routeWithoutLang)
@@ -38,13 +37,17 @@ const LanguageSwitcherButton: React.FC = () => {
       px={3}
       fontWeight="regular"
       onClick={() => switchLanguage()}
-      aria-label={'Cambiar idioma'}
+      aria-label={t('ui.switch_language_specific', {
+        lang: spanish ? t('languages.english') : t('languages.spanish'),
+      })}
       leftIcon={<BiGlobe />}
       iconSpacing={6}
       fontSize="xl"
       textTransform="uppercase"
     >
-      <Text fontSize="sm">{spanish ? 'Español' : 'Inglés'}</Text>
+      <Text fontSize="sm">
+        {spanish ? t('languages.spanish') : t('languages.english')}
+      </Text>
     </Button>
   )
 }

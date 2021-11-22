@@ -1,5 +1,5 @@
 import { Icon as ChakraIcon, Text, useColorMode, useTheme } from '@chakra-ui/react'
-
+import { useTranslation } from 'react-i18next'
 import { BiUser, BiBriefcase, BiMessageDetail } from 'react-icons/bi'
 
 import MotionBox from './MotionBox'
@@ -35,6 +35,7 @@ const NavLink: React.FC<{ to: string; Icon: React.FC }> = ({ to, Icon, children 
 }
 
 const Nav: React.FC = () => {
+  const { t } = useTranslation('common')
   const { colorMode } = useColorMode()
 
   return (
@@ -49,13 +50,13 @@ const Nav: React.FC = () => {
       color={colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900'}
     >
       <NavLink to="/about" Icon={BiUser}>
-        Acerca
+        {t('sections.about')}
       </NavLink>
       <NavLink to="/works" Icon={BiBriefcase}>
-        Trabajos
+        {t('sections.works')}
       </NavLink>
       <NavLink to="/contact" Icon={BiMessageDetail}>
-        Contacto
+        {t('sections.contact')}
       </NavLink>
     </MotionBox>
   )
