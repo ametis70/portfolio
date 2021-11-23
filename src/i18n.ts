@@ -12,6 +12,9 @@ i18n.use(initReactI18next).init({
     escapeValue: false,
   },
   resources: {},
+  react: {
+    useSuspense: false,
+  },
 })
 
 i18n.addResourceBundle('en', 'common', commonEn)
