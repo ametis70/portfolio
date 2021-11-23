@@ -14,20 +14,19 @@ import SocialLinks from '../components/SocialLinks'
 import { getAge } from '../util'
 import Markdown from '../components/Markdown'
 
-const AboutPage: React.FC<
-  PageProps<
-    {
-      locales: {
-        edges: { node: { language: string; ns: string; data: string } }[]
-      }
-    },
-    I18NextContext
-  >
-> = ({ pageContext, data }) => {
+type AboutPageProps = PageProps<{
+  content: {
+    language: string
+    ns: string
+    data: string
+  }
+}>
+
+const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
   useMoveCamera(cameraPositions.FRONT)
   const { i18n } = useTranslation('about')
 
-  const l = data.locales.edges[0].node
+  const l = data.content
   if (!i18n.getResourceBundle(l.language, l.ns)) {
     i18n.addResourceBundle(l.language, l.ns, JSON.parse(l.data), false, false)
   }
@@ -79,14 +78,10 @@ const AboutPage: React.FC<
 
 export const query = graphql`
   query ($language: String!) {
-    locales: allLocale(filter: { ns: { in: ["about"] }, language: { eq: $language } }) {
-      edges {
-        node {
-          ns
-          data
-          language
-        }
-      }
+    content(ns: { in: ["about"] }, language: { eq: $language }) {
+      ns
+      data
+      language
     }
   }
 `

@@ -54,18 +54,4 @@ const IndexPage: React.FC<PageProps> = () => {
   )
 }
 
-export const query = graphql`
-  query {
-    locales: allLocale(filter: { ns: { in: ["about"] } }) {
-      edges {
-        node {
-          ns
-          data
-          language
-        }
-      }
-    }
-  }
-`
-
 export default IndexPage
