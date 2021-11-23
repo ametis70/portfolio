@@ -37,12 +37,6 @@ module.exports = {
     'gatsby-transformer-sharp',
     '@chakra-ui/gatsby-plugin',
     {
-      resolve: 'gatsby-plugin-layout',
-      options: {
-        component: require.resolve('./src/components/Layout.tsx'),
-      },
-    },
-    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Ian Mancini',

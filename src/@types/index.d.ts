@@ -16,3 +16,8 @@ type DisplayContent = {
   contentType?: number
   data?: string
 }
+
+type PageContext = {
+  originalPath: string
+  lang: string
+}
