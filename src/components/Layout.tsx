@@ -13,6 +13,7 @@ import { PageContextProvider } from '../hooks/usePageContext'
 
 import '@fontsource/montserrat/400.css'
 import '@fontsource/montserrat/500.css'
+import '@fontsource/montserrat/600.css'
 
 const Layout: React.FC<PageProps<null, PageContext>> = ({
   path,

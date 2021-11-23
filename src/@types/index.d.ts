@@ -21,3 +21,13 @@ type PageContext = {
   originalPath: string
   lang: string
 }
+
+type AllContentQuery = {
+  edges: Array<{
+    node: {
+      ns: string
+      language: string
+      data: string
+    }
+  }>
+}

@@ -3,7 +3,11 @@ import ChakraUIRenderer from 'chakra-ui-markdown-renderer'
 import { Text } from '@chakra-ui/react'
 
 const defaultStyles = {
-  p: ({ children }) => <Text mb={4}>{children}</Text>,
+  p: ({ children }) => (
+    <Text fontSize="md" mb={4}>
+      {children}
+    </Text>
+  ),
 }
 
 const Markdown: React.FC<

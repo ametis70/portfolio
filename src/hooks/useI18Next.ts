@@ -1,8 +1,20 @@
-import { TFunction } from 'i18next'
+import { i18n, TFunction } from 'i18next'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-const useI18Next = (language: string, { allContent }: I18NextQuery) => {
+type GetFunction = <T>(namespace: string) => T
+
+type UseI18NextFunction = (
+  language: string,
+  content?: AllContentQuery,
+) => {
+  t: TFunction
+  fixedT: TFunction
+  get: GetFunction
+  i18n: i18n
+}
+
+const useI18Next: UseI18NextFunction = (language, content) => {
   const { t, i18n } = useTranslation('common')
 
   let fixedT: TFunction = () => {
@@ -12,9 +24,9 @@ const useI18Next = (language: string, { allContent }: I18NextQuery) => {
   const get = <T>(namespace: string): T =>
     useMemo(() => i18n.getResourceBundle(language, namespace), [namespace, language])
 
-  if (allContent) {
-    let namespaces: string[] = []
-    allContent.edges.forEach(({ node }) => {
+  if (content) {
+    let namespaces: string[] = ['common']
+    content.edges.forEach(({ node }) => {
       const { ns, language, data } = node
       namespaces.push(ns)
       if (!i18n.getResourceBundle(language, ns)) {
