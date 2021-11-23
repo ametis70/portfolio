@@ -9,7 +9,7 @@ import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 import { useFrame } from '@react-three/fiber'
 import useStore from '../../store'
 import { useColorMode } from '@chakra-ui/react'
-import theme from '../../@chakra-ui/gatsby-plugin/theme'
+import theme from '../../theme'
 
 type ActionName = 'spin'
 interface GLTFAction extends THREE.AnimationClip {
@@ -33,7 +33,7 @@ const LogoModel: React.FC<LogoModelProps> = ({ ...props }) => {
 
   const group = useRef<THREE.Group>()
   const innerGroup = useRef<THREE.Group>()
-  const { nodes, animations } = (useGLTF('/3d/logo.glb') as unknown) as GLTFResult
+  const { nodes, animations } = useGLTF('/3d/logo.glb') as unknown as GLTFResult
   const { actions } = useAnimations<GLTFAction>(animations, group)
 
   const isHome = useStore((state) => state.isHome)

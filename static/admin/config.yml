@@ -21,9 +21,9 @@ collections:
   - name: about
     label: About
     i18n: true
-    create: true
+    create: false
     extension: json
-    folder: cms
+    folder: cms/about/
     slug: about
     fields:
       - { label: 'title', name: 'title', widget: 'hidden', default: 'About' }
