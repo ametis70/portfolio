@@ -6,6 +6,7 @@
 backend:
   name: git-gateway
   branch: main
+  use_large_media_transforms_in_media_library: false
 
 local_backend: true
 
@@ -20,25 +21,22 @@ i18n:
 collections:
   - name: about
     label: About
-    i18n: true
-    create: false
-    extension: json
-    folder: cms/about/
-    slug: about
-    fields:
-      - { label: 'title', name: 'title', widget: 'hidden', default: 'About' }
+    i18n:
+      structure: single_file
+    files:
       - label: General
         name: general
+        file: cms/about/general.json
         i18n: true
-        widget: object
         fields:
           - {
               label: 'Full Name',
-              name: fullname,
+              name: name,
               widget: string,
               required: true,
               i18n: duplicate,
             }
+          - { label: job, name: job, widget: string, required: true, i18n: true }
           - { label: City, name: city, widget: string, required: true, i18n: duplicate }
           - {
               label: Birthday,
@@ -50,8 +48,8 @@ collections:
           - { label: About, name: about, widget: markdown, required: true, i18n: true }
       - label: Experience
         name: experience
+        file: cms/about/experience.json
         i18n: true
-        widget: object
         fields:
           - label: Items
             name: items
@@ -78,8 +76,8 @@ collections:
                 }
       - label: Skills
         name: skills
+        file: cms/about/skills.json
         i18n: true
-        widget: object
         fields:
           - label: Categories
             name: categories
@@ -98,7 +96,7 @@ collections:
                     i18n: true
       - label: Education
         name: education
-        widget: object
+        file: cms/about/education.json
         i18n: true
         fields:
           - label: College
@@ -125,8 +123,8 @@ collections:
                 }
           - label: Certifications
             name: certifications
-            widget: list
             i18n: true
+            widget: list
             fields:
               - { label: Title, name: name, widget: string, i18n: true }
               - { label: Start, name: start, widget: datetime, i18n: duplicate }
