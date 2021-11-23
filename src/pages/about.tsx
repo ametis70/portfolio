@@ -1,9 +1,8 @@
 import { StaticImage } from 'gatsby-plugin-image'
 import { Suspense } from 'react'
 import { graphql, PageProps } from 'gatsby'
-import { Flex, Box, Text, Heading, Image, Stack } from '@chakra-ui/react'
+import { Flex, Box, Text, Heading, Stack } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { I18NextContext } from '@ianmethyst/gatsby-plugin-react-i18next/dist/types'
 
 import Card from '../components/Card'
 import SEO from '../components/Seo'
@@ -24,7 +23,7 @@ type AboutPageProps = PageProps<{
 
 const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
   useMoveCamera(cameraPositions.FRONT)
-  const { i18n } = useTranslation('about')
+  const { i18n } = useTranslation('general')
 
   const l = data.content
   if (!i18n.getResourceBundle(l.language, l.ns)) {
@@ -55,10 +54,10 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
             </Box>
             <Stack position="relative" top={8} pl={4} py={4} spacing={1}>
               <Heading textTransform="uppercase" fontSize="3xl">
-                {t('general.fullname')}
+                {t('name')}
               </Heading>
               <Text>
-                {getAge(t('general.birthday'))} Años — {t('general.city')}
+                {getAge(t('birthday'))} Años — {t('city')}
               </Text>
               <Box position="relative" left={-2}>
                 <SocialLinks />
@@ -68,7 +67,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
         </Card>
         <Card>
           <Box p={6}>
-            <Markdown>{t('general.about')}</Markdown>
+            <Markdown>{t('about')}</Markdown>
           </Box>
         </Card>
       </Suspense>
@@ -78,7 +77,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
 
 export const query = graphql`
   query ($language: String!) {
-    content(ns: { in: ["about"] }, language: { eq: $language }) {
+    content(ns: { in: ["general"] }, language: { eq: $language }) {
       ns
       data
       language

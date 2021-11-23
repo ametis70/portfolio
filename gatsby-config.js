@@ -1,9 +1,7 @@
-const siteUrl = 'https://ianmancini.com.ar'
-
 module.exports = {
   siteMetadata: {
     title: 'Ian Mancini',
-    siteUrl,
+    siteUrl: 'https://ianmancini.com.ar',
     description: 'Ian Mancini is a web designer/developer',
     author: '@ametis70',
     i18n: {

@@ -108,7 +108,7 @@ exports.onCreateNode = async ({
   const { createNode, createParentChildLink } = actions
 
   const contentNodes = nodesData.map((d) => ({
-    id: createNodeId(`${id} >>> Content`),
+    id: createNodeId(`${id} - ${d.language} >>> Content`),
     children: [],
     parent: id,
     internal: {
@@ -117,6 +117,7 @@ exports.onCreateNode = async ({
       type: 'Content',
     },
     language: d.language,
+    collectionType: d.contentType,
     ns: d.ns ?? name,
     data: d.data,
     fileAbsolutePath: absolutePath,
