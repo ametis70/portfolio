@@ -138,3 +138,25 @@ exports.onCreateNode = async ({
 
   activity.end()
 }
+
+exports.onCreatePage = async ({ page, actions: { createPage, deletePage } }) => {
+  await deletePage(page)
+
+  await Promise.all(
+    i18n.languages.map(async (language) => {
+      const originalPath = page.path
+      const localizedPath =
+        language === i18n.defaultLanguage ? originalPath : `/${language}${page.path}`
+
+      await createPage({
+        ...page,
+        path: localizedPath,
+        context: {
+          ...page.context,
+          originalPath,
+          language,
+        },
+      })
+    }),
+  )
+}
