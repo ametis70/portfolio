@@ -6,6 +6,11 @@ module.exports = {
     siteUrl,
     description: 'Ian Mancini is a web designer/developer',
     author: '@ametis70',
+    i18n: {
+      filesystemSourceName: 'content',
+      languages: ['en', 'es'],
+      defaultLanguage: 'en',
+    },
   },
   plugins: [
     'gatsby-plugin-netlify-cms',
@@ -35,22 +40,6 @@ module.exports = {
       resolve: 'gatsby-plugin-layout',
       options: {
         component: require.resolve('./src/components/Layout.tsx'),
-      },
-    },
-    {
-      resolve: '@ianmethyst/gatsby-plugin-react-i18next',
-      options: {
-        localeJsonSourceName: 'content',
-        languages: ['en', 'es'],
-        defaultLanguage: 'en',
-        siteUrl,
-        i18nextOptions: {
-          interpolation: {
-            escapeValue: false,
-          },
-          keySeparator: '.',
-          nsSeparator: false,
-        },
       },
     },
     {
