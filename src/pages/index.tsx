@@ -27,7 +27,7 @@ const IndexPage: React.FC<PageProps> = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
-        <Link to="/">
+        <Link to="/" variant="icon">
           <Heading
             as="h1"
             textTransform="uppercase"

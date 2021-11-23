@@ -33,7 +33,7 @@ const SocialLink: React.FC<SocialLinkProps> = ({ href, icon }) => {
       justifyContent="center"
       w="36px"
       h="36px"
-      _hover={{ background: 'amethyst.100' }}
+      variant="icon"
     >
       <Icon as={icon} fontSize="xl" lineHeight="1" />
     </Link>

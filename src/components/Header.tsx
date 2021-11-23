@@ -77,7 +77,7 @@ const Header: React.FC = (): JSX.Element => {
             },
           }}
         >
-          <Link to="/">
+          <Link to="/" variant="icon">
             <Image px={2} w="64px" color="currentColor" as={Logo} />
           </Link>
         </MotionBox>

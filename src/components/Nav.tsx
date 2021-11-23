@@ -17,9 +17,9 @@ const NavLink: React.FC<{ to: string; Icon: React.FC }> = ({ to, Icon, children 
     textTransform: 'uppercase',
     transition: 'all ease-in-out 0.2s',
     fontWeight: 'medium',
-    _hover: {
-      background: colorMode === 'dark' ? colors.amethyst['800'] : colors.amethyst['200'],
-    },
+    variant: 'icon',
+    display: 'flex',
+    alignItems: 'center',
     activeStyle: {
       background: colorMode === 'dark' ? colors.amethyst['50'] : colors.amethyst['900'],
       color: colorMode === 'dark' ? colors.amethyst['900'] : colors.amethyst['50'],
@@ -27,7 +27,7 @@ const NavLink: React.FC<{ to: string; Icon: React.FC }> = ({ to, Icon, children 
   }
 
   return (
-    <Link to={to} {...linkStyles} display="flex" alignItems="center">
+    <Link to={to} {...linkStyles}>
       <ChakraIcon boxSize={8} as={Icon} />
       <Text pl={6}>{children}</Text>
     </Link>

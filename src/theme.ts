@@ -77,6 +77,9 @@ const theme = extendTheme({
         icon: (props) => ({
           color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
           textDecoration: 'none',
+          _hover: {
+            background: props.colorMode === 'dark' ? 'amethyst.800' : 'amethyst.200',
+          },
         }),
         cta: (props) => ({
           mx: 'auto',
