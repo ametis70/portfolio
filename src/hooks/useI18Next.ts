@@ -1,0 +1,31 @@
+import { TFunction } from 'i18next'
+import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+
+const useI18Next = (language: string, { allContent }: I18NextQuery) => {
+  const { t, i18n } = useTranslation('common')
+
+  let fixedT: TFunction = () => {
+    throw new Error('To use fixedT, pass content prop to useI18Next')
+  }
+
+  const get = <T>(namespace: string): T =>
+    useMemo(() => i18n.getResourceBundle(language, namespace), [namespace, language])
+
+  if (allContent) {
+    let namespaces: string[] = []
+    allContent.edges.forEach(({ node }) => {
+      const { ns, language, data } = node
+      namespaces.push(ns)
+      if (!i18n.getResourceBundle(language, ns)) {
+        i18n.addResourceBundle(language, ns, JSON.parse(data), false, false)
+      }
+    })
+
+    fixedT = i18n.getFixedT(language, namespaces)
+  }
+
+  return { t, i18n, fixedT, get }
+}
+
+export default useI18Next
