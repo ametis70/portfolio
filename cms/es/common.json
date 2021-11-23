@@ -22,12 +22,15 @@
         "in": "en",
         "and": "y"
     },
+    "time": {
+        "present": "Actualidad"
+    },
     "subtitles": {
-        "experience": "experiencia laboral",
-        "projects": "proyectos",
-        "skills": "habilidades",
-        "education": "educación",
-        "college": "universitaria",
-        "certificates": "certificaciones"
+        "experience": "Experiencia laboral",
+        "projects": "Proyectos",
+        "skills": "Habilidades",
+        "education": "Educación",
+        "college": "Universitaria",
+        "certificates": "Certificaciones"
         }
 }

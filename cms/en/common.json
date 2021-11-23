@@ -18,16 +18,19 @@
         "switch_language_specific": "Switch language to {{lang}}",
         "works_cta": "See works and projects"
     },
+    "time": {
+        "present": "Present"
+        },
     "connectors": {
         "in": "in",
         "and": "and"
     },
     "subtitles": {
-        "experience": "work experience",
-        "projects": "projects",
-        "skills": "skills",
-        "education": "education",
-        "college": "college",
-        "certificates": "certificates"
+        "experience": "Work experience",
+        "projects": "Projects",
+        "skills": "Skills",
+        "education": "Education",
+        "college": "College",
+        "certificates": "Certificates"
         }
 }

@@ -26,7 +26,7 @@ collections:
     files:
       - label: General
         name: general
-        file: cms/about/general.json
+        file: cms/about/about.json
         i18n: true
         fields:
           - {
@@ -42,6 +42,8 @@ collections:
               label: Birthday,
               name: birthday,
               widget: datetime,
+              picker_utc: true,
+              time_format: false,
               required: true,
               i18n: duplicate,
             }
@@ -63,6 +65,8 @@ collections:
                   label: 'Start',
                   name: start,
                   widget: datetime,
+                  picker_utc: true,
+                  time_format: false,
                   format: 'MM/YYYY',
                   i18n: duplicate,
                 }
@@ -70,6 +74,8 @@ collections:
                   label: 'End',
                   name: end,
                   widget: datetime,
+                  picker_utc: true,
+                  time_format: false,
                   required: false,
                   format: 'MM/YYYY',
                   i18n: duplicate,
@@ -110,6 +116,8 @@ collections:
                   label: End,
                   name: end,
                   widget: datetime,
+                  picker_utc: true,
+                  time_format: false,
                   required: false,
                   i18n: duplicate,
                 }
@@ -127,11 +135,21 @@ collections:
             widget: list
             fields:
               - { label: Title, name: name, widget: string, i18n: true }
-              - { label: Start, name: start, widget: datetime, i18n: duplicate }
+              - {
+                  label: Start,
+                  name: start,
+                  widget: datetime,
+                  picker_utc: true,
+                  time_format: false,
+                  i18n: duplicate,
+                }
               - {
                   label: End,
                   name: end,
                   widget: datetime,
+                  picker_utc: true,
+                  time_format: false,
+
                   required: false,
                   i18n: duplicate,
                 }

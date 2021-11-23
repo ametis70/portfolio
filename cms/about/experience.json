@@ -1,0 +1,24 @@
+{
+  "en": {
+    "items": [
+      {
+        "start": "02/01/2017",
+        "end": "",
+        "role": "Full Stack developer",
+        "company": "Freelance",
+        "description": "Design and development of multiple websites for clients like [Pakapaka](http://www.pakapaka.gob.ar/), [Ruka Kuyen](https://ruka-kuyen.com.ar/), [Comisión Provincial por la Memoria](https://www.comisionporlamemoria.org/) and [Guardalo.com](https://guardalo.com.ar/)"
+      }
+    ]
+  },
+  "es": {
+    "items": [
+      {
+        "start": "02/01/2017",
+        "end": "",
+        "role": "Desarrollador Full Stack ",
+        "company": "Freelance",
+        "description": "Diseño y desarrollo de multiples sitios web para clientes como [Pakapaka](http://www.pakapaka.gob.ar/), [Ruka Kuyen](https://ruka-kuyen.com.ar/), [Comisión Provincial por la Memoria](https://www.comisionporlamemoria.org/) y [Guardalo.com](https://guardalo.com.ar/)"
+      }
+    ]
+  }
+}
