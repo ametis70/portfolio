@@ -1,15 +1,6 @@
 const { siteMetadata } = require('./gatsby-config')
 const { i18n } = siteMetadata
 
-exports.onCreateBabelConfig = ({ actions }) => {
-  actions.setBabelPlugin({
-    name: '@babel/plugin-transform-react-jsx',
-    options: {
-      runtime: 'automatic',
-    },
-  })
-}
-
 const getTypeOfLocalizedCollection = (node) => {
   let type
   const setType = (t) => {
