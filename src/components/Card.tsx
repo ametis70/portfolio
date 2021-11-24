@@ -8,12 +8,6 @@ import {
   ListItem,
 } from '@chakra-ui/react'
 
-import Hero from './cards/Hero'
-import About from './cards/About'
-import Experience from './cards/Experience'
-import Skills from './cards/Skills'
-import Education from './cards/Education'
-
 export const Card: Record<string, React.FC<any>> = {
   Container: ({ children, pad }) => {
     const { colorMode } = useColorMode()
@@ -66,12 +60,4 @@ export const Card: Record<string, React.FC<any>> = {
   ),
 }
 
-const Cards = {
-  Hero,
-  About,
-  Experience,
-  Skills,
-  Education,
-}
-
-export default Cards
+export default Card

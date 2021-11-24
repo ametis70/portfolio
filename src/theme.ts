@@ -81,6 +81,11 @@ const theme = extendTheme({
             background: props.colorMode === 'dark' ? 'amethyst.800' : 'amethyst.200',
           },
         }),
+        center: {
+          display: 'block',
+          mx: 'auto',
+          textAlign: 'center',
+        },
         cta: (props) => ({
           mx: 'auto',
           textAlign: 'center',

@@ -41,3 +41,6 @@ type CardProps = {
 type CardPropsWithGet = CardProps & {
   get: BundleGetFunction
 }
+
+type LocalizedPageProps = PageProps<{ allContent: AllContentQuery }, { language: string }>
+

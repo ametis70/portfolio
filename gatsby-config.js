@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: 'Ian Mancini',
+    email: 'contacto@ianmancini.com.ar',
     siteUrl: 'https://ianmancini.com.ar',
     description: 'Ian Mancini is a web designer/developer',
     author: '@ametis70',

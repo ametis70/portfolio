@@ -1,11 +1,35 @@
-import { PageProps } from 'gatsby'
+import { graphql } from 'gatsby'
+import { Heading } from '@chakra-ui/react'
 
 import SEO from '../components/Seo'
+import Cards from '../components/Cards'
+import useI18Next from '../hooks/useI18Next'
 
-const ContactPage: React.FC<PageProps> = () => (
-  <>
-    <SEO title="Contacto" />
-  </>
-)
+const ContactPage: React.FC<LocalizedPageProps> = ({ data, pageContext }) => {
+  const { fixedT: t } = useI18Next(pageContext.language, data.allContent)
+
+  return (
+    <>
+      <SEO title="Contacto" />
+      <Heading variant="smallcaps" size="sectionTitle">
+        {t('sections.contact')}
+      </Heading>
+
+      <Cards.Contact t={t} />
+    </>
+  )
+}
+
+export const query = graphql`
+  query ($language: String!) {
+    allContent(filter: { ns: { in: ["contact"] }, language: { eq: $language } }) {
+      edges {
+        node {
+          ...LocalizedContent
+        }
+      }
+    }
+  }
+`
 
 export default ContactPage

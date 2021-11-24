@@ -1,15 +1,13 @@
-import { graphql, PageProps } from 'gatsby'
+import { graphql } from 'gatsby'
 import { Heading } from '@chakra-ui/react'
 
-import Cards from '../components/Card'
+import Cards from '../components/Cards'
 import SEO from '../components/Seo'
 
 import useMoveCamera, { cameraPositions } from '../hooks/useMoveCamera'
 import useI18Next from '../hooks/useI18Next'
 
-type AboutPageProps = PageProps<{ allContent: AllContentQuery }, { language: string }>
-
-const AboutPage: React.FC<AboutPageProps> = ({ data, pageContext }) => {
+const AboutPage: React.FC<LocalizedPageProps> = ({ data, pageContext }) => {
   useMoveCamera(cameraPositions.FRONT)
   const { fixedT: t, get } = useI18Next(pageContext.language, data.allContent)
 
@@ -17,7 +15,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ data, pageContext }) => {
     <>
       <SEO title="Acerca" />
       <Heading variant="smallcaps" size="sectionTitle">
-        Acerca
+        {t('sections.about')}
       </Heading>
 
       <Cards.Hero t={t} />
