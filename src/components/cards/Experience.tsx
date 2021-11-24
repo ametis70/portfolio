@@ -25,7 +25,7 @@ const ExperienceCard: React.VFC<CardPropsWithGet> = ({ t, get }) => {
       <Card.OrderedList>
         {data.items.map((i) => (
           <Card.ListItem key={i.role} pb={4}>
-            <Card.AltText>{printAgeRange(t, i.start, i.end)}</Card.AltText>
+            <Card.AltText>{printAgeRange(t, i.start, i.end, true)}</Card.AltText>
             <Card.IndentBox>
               <Card.MainText>{i.role}</Card.MainText>
               <Text fontSize="sm" pb={4}>

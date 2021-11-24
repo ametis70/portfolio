@@ -9,11 +9,18 @@ export const getAge = (timestamp: string) => {
   return Math.floor(diff / 365.25)
 }
 
-export const printAgeRange = (t: TFunction, t1: string, t2?: string) => {
+export const printAgeRange = (
+  t: TFunction,
+  t1: string,
+  t2?: string,
+  ongoing?: boolean,
+) => {
   const s = new Date(t1).getUTCFullYear()
-  const e = ` — ${
-    t2 ? new Date(t2).getUTCFullYear() : t('time.present', { ns: 'common' })
-  }`
+  const e = t2
+    ? ` — ${new Date(t2).getUTCFullYear()}`
+    : ongoing
+    ? ` — ${t('time.present', { ns: 'common' })}`
+    : ''
 
   return `${s}${e}`
 }
