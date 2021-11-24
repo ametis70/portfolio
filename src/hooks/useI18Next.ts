@@ -2,15 +2,13 @@ import { i18n, TFunction } from 'i18next'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-type GetFunction = <T>(namespace: string) => T
-
 type UseI18NextFunction = (
   language: string,
   content?: AllContentQuery,
 ) => {
   t: TFunction
   fixedT: TFunction
-  get: GetFunction
+  get: BundleGetFunction
   i18n: i18n
 }
 

@@ -31,3 +31,13 @@ type AllContentQuery = {
     }
   }>
 }
+
+type BundleGetFunction = <T>(namespace: string) => T
+
+type CardProps = {
+  t: import('i18next').TFunction
+}
+
+type CardPropsWithGet = CardProps & {
+  get: BundleGetFunction
+}

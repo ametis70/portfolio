@@ -2,15 +2,15 @@
   "en": {
     "college": [
       {
-        "start": "2016-02-01T15:00:32.331Z",
-        "end": "2020-12-01T15:00:32.347Z",
-        "name": "Licenciado en Diseño Multimedial",
+        "start": "2016-02-01T15:00:00.000Z",
+        "end": "2020-12-01T15:00:00.000Z",
+        "name": "Degree in Multimedia Design",
         "school": "Universidad Nacional de La Plata"
       }
     ],
     "certifications": [
       {
-        "start": "2021-11-18T15:09:00.000Z",
+        "start": "2021-11-18T00:00:00.000Z",
         "end": "2021-11-18T00:00:00.000Z",
         "name": "Mercado Pago Certified Developer",
         "school": "Mercado Pago Partners Team"
@@ -36,7 +36,7 @@
       {
         "start": "2016-02-01T15:00:00.000Z",
         "end": "2020-12-01T15:00:00.000Z",
-        "name": "Degree in Multimedia Design",
+        "name": "Licenciado en Diseño Multimedial",
         "school": "Universidad Nacional de La Plata"
       }
     ],

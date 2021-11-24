@@ -59,7 +59,7 @@ const theme = extendTheme({
         fontWeight: 'medium',
       },
       variants: {
-        cardSubtitle: (props) => ({
+        cardAlt: (props) => ({
           color: props.colorMode === 'dark' ? 'amethyst.50-70' : 'amethyst.900-70',
           fontWeight: 'medium',
         }),
