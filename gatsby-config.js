@@ -4,6 +4,7 @@ module.exports = {
   siteMetadata: {
     title: name,
     name,
+    birthday: '1998-04-24T00:00:00.000Z',
     email: 'contacto@ianmancini.com.ar',
     siteUrl: 'https://ianmancini.com.ar',
     description: 'Ian Mancini is a web designer/developer',

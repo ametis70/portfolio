@@ -1,16 +1,10 @@
 {
   "en": {
-    "name": "Ian Mancini",
-    "city": "La Plata",
-    "job": "Web design and development",
-    "birthday": "1998-04-24T15:00:00.000Z",
+    "city": "La Plata, Argentina",
     "about": "Hi! 👋\n\n\nI'm a web developer and designer from Argentina with 4+ years of experience using mostly React. I take advantage of my Multimedia Design background to create products that are true to the creative processes.\n\n\nI'm always looking for something new to learn or some DIY project to carry out. I'm a free/open source software enthusiast, and in my free time I like watching movies, TV shows, reading books and playing video games.\n"
   },
   "es": {
-    "name": "Ian Mancini",
-    "city": "La Plata",
-    "job": "Diseño y desarrollo web",
-    "birthday": "1998-04-24T15:00:00.000Z",
+    "city": "La Plata, Argentina",
     "about": "¡Hola! 👋\n\nSoy un desarrollador y diseñador web de Argentina con 4+ años de experiencia desarrollando sitios web principalmente con React. Mi formación en Diseño Multimedial me permite llevar a cabo productos que son fieles a los procesos creativos.\n\n\nSiempre estoy buscando algo nuevo para aprender o algún proyecto DIY para realizar. Soy un entusiasta del software libre, y en mi tiempo libre me gusta ver películas, series, leer libros o jugar videojuegos.\n"
   }
 }

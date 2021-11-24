@@ -29,24 +29,7 @@ collections:
         file: cms/about/about.json
         i18n: true
         fields:
-          - {
-              label: 'Full Name',
-              name: name,
-              widget: string,
-              required: true,
-              i18n: duplicate,
-            }
-          - { label: job, name: job, widget: string, required: true, i18n: true }
           - { label: City, name: city, widget: string, required: true, i18n: duplicate }
-          - {
-              label: Birthday,
-              name: birthday,
-              widget: datetime,
-              picker_utc: true,
-              time_format: false,
-              required: true,
-              i18n: duplicate,
-            }
           - { label: About, name: about, widget: markdown, required: true, i18n: true }
       - label: Experience
         name: experience
