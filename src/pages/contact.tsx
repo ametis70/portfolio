@@ -16,6 +16,7 @@ const ContactPage: React.FC<LocalizedPageProps> = ({ data, pageContext }) => {
       </Heading>
 
       <Cards.Contact t={t} />
+      <Cards.Social t={t} />
     </>
   )
 }
