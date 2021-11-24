@@ -8,7 +8,7 @@ const SocialCard: React.VFC<CardProps> = ({ t }) => {
     <Card.Container pad>
       <Flex align="center">
         <Text pr={4}>{t('also_find_me', { ns: 'contact' })}</Text>
-        <SocialLinks />
+        <SocialLinks t={t} />
       </Flex>
     </Card.Container>
   )

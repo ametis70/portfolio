@@ -16,7 +16,9 @@
         "light_mode": "Light mode",
         "switch_language": "Switch language",
         "switch_language_specific": "Switch language to {{lang}}",
-        "works_cta": "See works and projects"
+        "works_cta": "See works and projects",
+        "picture_of": "Picture of {{name}}",
+        "social_link": "{{name}} {{in}} {{website}}"
     },
     "time": {
         "present": "Present"

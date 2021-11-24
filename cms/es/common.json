@@ -16,7 +16,9 @@
         "light_mode": "Modo día",
         "switch_language": "Cambiar idioma",
         "switch_language_specific": "Cambiar idioma a {{lang}}",
-        "works_cta": "Ir a página de trabajos"
+        "works_cta": "Ir a página de trabajos",
+        "picture_of": "Foto de {{name}}",
+        "social_link": "{{name}} {{in}} {{website}}"
     },
     "connectors": {
         "in": "en",

@@ -1,19 +1,12 @@
-import { graphql, useStaticQuery } from 'gatsby'
 import { Text } from '@chakra-ui/react'
 
 import { Card } from '../Card'
 import Link from '../Link'
 
+import useMetadata from '../../hooks/useMetadata'
+
 const AboutCard: React.VFC<CardProps> = ({ t }) => {
-  const { email } = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          email
-        }
-      }
-    }
-  `).site.siteMetadata
+  const { email } = useMetadata()
 
   return (
     <Card.Container pad>

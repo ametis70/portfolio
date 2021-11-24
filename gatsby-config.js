@@ -1,6 +1,9 @@
+const name = 'Ian Mancini'
+
 module.exports = {
   siteMetadata: {
-    title: 'Ian Mancini',
+    title: name,
+    name,
     email: 'contacto@ianmancini.com.ar',
     siteUrl: 'https://ianmancini.com.ar',
     description: 'Ian Mancini is a web designer/developer',

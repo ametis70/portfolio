@@ -3,7 +3,7 @@ import Markdown from '../Markdown'
 
 const AboutCard: React.VFC<CardProps> = ({ t }) => (
   <Card.Container pad>
-    <Markdown>{t('about')}</Markdown>
+    <Markdown>{t('about', { ns: 'about' })}</Markdown>
   </Card.Container>
 )
 

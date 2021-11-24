@@ -15,7 +15,7 @@ const AboutPage: React.FC<LocalizedPageProps> = ({ data, pageContext }) => {
     <>
       <SEO title="Acerca" />
       <Heading variant="smallcaps" size="sectionTitle">
-        {t('sections.about')}
+        {t('sections.about', { ns: 'common' })}
       </Heading>
 
       <Cards.Hero t={t} />
