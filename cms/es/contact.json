@@ -1,9 +1,13 @@
 {
     "contact_text": "¡Enviame un mensaje! Podes usar el formulario abajo o escribirme directamente a mi email:",
     "name": "Nombre",
-    "email:": "email",
+    "email": "email",
     "subject": "Asunto",
     "message": "Mensaje",
     "send": "Enviar",
-    "also_find_me": "También podes encontrarme en:"
+    "also_find_me": "También podes encontrarme en:",
+    "validation": {
+        "required": "Este campo es requerido",
+        "pattern": "Dirección de email inválida"
+    }
 }

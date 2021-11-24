@@ -14,7 +14,7 @@ type EducationData = {
   certifications: EducationItemProps[]
 }
 
-const EducationCard: React.VFC<CardPropsWithGet> = ({ t, get }) => {
+const EducationCard: React.VFC<TFunctionWithGetProps> = ({ t, get }) => {
   const data = get<EducationData>('education')
 
   const EducationItem: React.FC<{ item: EducationItemProps }> = ({ item }) => (

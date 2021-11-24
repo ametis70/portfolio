@@ -15,7 +15,7 @@ type ExperienceData = {
   }>
 }
 
-const ExperienceCard: React.VFC<CardPropsWithGet> = ({ t, get }) => {
+const ExperienceCard: React.VFC<TFunctionWithGetProps> = ({ t, get }) => {
   const data = get<ExperienceData>('experience')
 
   return (

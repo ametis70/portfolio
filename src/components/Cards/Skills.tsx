@@ -8,7 +8,7 @@ type SkillsData = {
   }>
 }
 
-const SkillsCard: React.VFC<CardPropsWithGet> = ({ t, get }) => {
+const SkillsCard: React.VFC<TFunctionWithGetProps> = ({ t, get }) => {
   const data = get<SkillsData>('skills')
   return (
     <Card.Container pad>

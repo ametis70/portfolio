@@ -14,6 +14,7 @@
     "@react-three/drei": "^7.22.4",
     "@react-three/fiber": "^7.0.19",
     "@svgr/webpack": "^5.5.0",
+    "autosize": "^5.0.1",
     "chakra-ui-markdown-renderer": "^4.0.0",
     "framer-motion": "^5.3.1",
     "gatsby": "^4.2.0",
@@ -43,6 +44,7 @@
     "zustand": "^3.6.5"
   },
   "devDependencies": {
+    "@types/autosize": "^4.0.0",
     "@types/node": "^16.11.9",
     "@types/react": "^17.0.35",
     "@types/react-dom": "^17.0.11",

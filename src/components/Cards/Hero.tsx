@@ -6,7 +6,7 @@ import SocialLinks from '../SocialLinks'
 
 import useMetadata from '../../hooks/useMetadata'
 
-const HeroCard: React.VFC<CardProps> = ({ t }) => {
+const HeroCard: React.VFC<TFunctionReceiver> = ({ t }) => {
   const { name } = useMetadata()
 
   return (

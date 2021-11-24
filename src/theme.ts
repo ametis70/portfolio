@@ -22,12 +22,87 @@ const smallCaps = {
   fontFeatureSettings: '"smcp"',
 }
 
+const ctaVariant = (props) => ({
+  fontWeight: 'medium',
+  mx: 'auto',
+  textAlign: 'center',
+  display: 'block',
+  height: 'fit-content',
+  px: 6,
+  py: 4,
+  textDecoration: 'none',
+  bg: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
+  color: props.colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50',
+  _hover: {
+    textDecoration: 'none',
+    bg: props.colorMode === 'dark' ? 'amethyst.200' : 'amethyst.700',
+  },
+})
+
 const theme = extendTheme({
   config: {
     initialColorMode: 'dark',
     useSystemColorMode: true,
   },
+  radii: {
+    none: 0,
+  },
   components: {
+    Textarea: {
+      variants: {
+        default: (props) => ({
+          fontWeight: 'medium',
+          borderRadius: 'none',
+          color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
+          background: props.colorMode === 'dark' ? 'amethyst.700' : 'amethyst.5',
+        }),
+      },
+      sizes: {
+        default: (props) => ({
+          borderRadius: 'none',
+        }),
+      },
+      defaultProps: {
+        variant: 'default',
+        sizes: 'default',
+      },
+    },
+    FormLabel: {
+      baseStyle: (props) => ({
+        color: props.colorMode === 'dark' ? 'amethyst.50-70' : 'amethyst.900-70',
+        mb: 1,
+        fontSize: 'sm',
+        _invalid: {
+          color: props.colorMode === 'dark' ? 'red.300' : 'red.500',
+        },
+      }),
+    },
+    Input: {
+      variants: {
+        default: (props) => ({
+          field: {
+            fontWeight: 'medium',
+            borderRadius: 'none',
+            color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
+            background: props.colorMode === 'dark' ? 'amethyst.700' : 'amethyst.5',
+            _invalid: {
+              color: 'red.500',
+            },
+          },
+        }),
+      },
+      sizes: {
+        default: (props) => ({
+          field: {
+            borderRadius: 'none',
+          },
+        }),
+      },
+      defaultProps: {
+        variant: 'default',
+        sizes: 'default',
+      },
+    },
     Divider: {
       baseStyle: (props) => ({
         borderColor: props.colorMode === 'dark' ? 'amethyst.700' : 'amethyst.300',
@@ -86,20 +161,15 @@ const theme = extendTheme({
           mx: 'auto',
           textAlign: 'center',
         },
-        cta: (props) => ({
-          mx: 'auto',
-          textAlign: 'center',
-          display: 'block',
-          px: 4,
-          py: 4,
-          textDecoration: 'none',
-          bg: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
-          color: props.colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50',
-          _hover: {
-            textDecoration: 'none',
-            bg: props.colorMode === 'dark' ? 'amethyst.200' : 'amethyst.700',
-          },
-        }),
+        cta: ctaVariant,
+      },
+    },
+    Button: {
+      baseStyle: {
+        borderRadius: 0,
+      },
+      variants: {
+        cta: ctaVariant,
       },
     },
   },

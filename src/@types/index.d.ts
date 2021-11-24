@@ -34,13 +34,12 @@ type AllContentQuery = {
 
 type BundleGetFunction = <T>(namespace: string) => T
 
-type CardProps = {
+type TFunctionProps = {
   t: import('i18next').TFunction
 }
 
-type CardPropsWithGet = CardProps & {
+type TFunctionWithGetProps = TFunctionProps & {
   get: BundleGetFunction
 }
 
 type LocalizedPageProps = PageProps<{ allContent: AllContentQuery }, { language: string }>
-
