@@ -9,8 +9,6 @@ import useI18Next from '../hooks/useI18Next'
 
 const AboutPage: React.FC<LocalizedPageProps> = ({ data, pageContext }) => {
   useMoveCamera(cameraPositions.FRONT)
-
-  console.log(data)
   const { fixedT: t } = useI18Next(pageContext.language, data.allTranslation)
 
   return (

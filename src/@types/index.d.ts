@@ -22,7 +22,7 @@ type PageContext = {
   lang: string
 }
 
-type AllContentQuery = {
+type AllTranslationQuery = {
   edges: Array<{
     node: {
       ns: string
@@ -42,4 +42,4 @@ type TFunctionWithGetProps = TFunctionProps & {
   get: BundleGetFunction
 }
 
-type LocalizedPageProps = PageProps<{ allContent: AllContentQuery }, { language: string }>
+type LocalizedPageProps = PageProps<{ allTranslation: AllTranslationQuery }, { language: string }>

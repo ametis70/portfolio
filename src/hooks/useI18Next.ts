@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 type UseI18NextFunction = (
   language: string,
-  content?: AllContentQuery,
+  content?: AllTranslationQuery,
 ) => {
   t: TFunction
   fixedT: TFunction
