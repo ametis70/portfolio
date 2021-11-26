@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const name = 'Ian Mancini'
 
 module.exports = {
@@ -16,6 +18,15 @@ module.exports = {
     },
   },
   plugins: [
+    {
+      resolve: `gatsby-source-datocms`,
+      options: {
+        apiToken: process.env.DATOCMS_API_TOKEN,
+        previewMode: true,
+        disableLiveReload: false,
+      },
+    },
+
     'gatsby-plugin-netlify-cms',
     'gatsby-plugin-svgr-svgo',
     'gatsby-plugin-react-helmet',
