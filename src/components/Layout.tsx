@@ -10,11 +10,11 @@ import ChildrenContainer from './ChildrenContainer'
 
 import useStore from '../store'
 import { PageContextProvider } from '../hooks/usePageContext'
+import useCommonTranslations from '../hooks/useCommonTranslations'
 
 import '@fontsource/montserrat/400.css'
 import '@fontsource/montserrat/500.css'
 import '@fontsource/montserrat/600.css'
-import useCommonTranslations from '../hooks/useCommonTranslations'
 
 const Layout: React.FC<PageProps<null, PageContext>> = ({
   path,

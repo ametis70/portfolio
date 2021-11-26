@@ -12,7 +12,6 @@ module.exports = {
     description: 'Ian Mancini is a web designer/developer',
     author: '@ametis70',
     i18n: {
-      filesystemSourceName: 'content',
       languages: ['en', 'es'],
       defaultLanguage: 'en',
     },
@@ -27,24 +26,8 @@ module.exports = {
       },
     },
 
-    'gatsby-plugin-netlify-cms',
     'gatsby-plugin-svgr-svgo',
     'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'images',
-        path: `${__dirname}/static/images/uploads`,
-        ignore: ['**/.*'], // ignore files starting with a dot
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'content',
-        path: `${__dirname}/cms`,
-      },
-    },
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
