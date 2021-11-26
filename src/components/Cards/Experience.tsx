@@ -19,7 +19,7 @@ const ExperienceCard: React.VFC<TFunctionProps & { data: ExperienceItem[] }> = (
 }) => {
   return (
     <Card.Container pad>
-      <Card.Title>{t('subtitles.experience', { ns: 'common' })}</Card.Title>
+      <Card.Title>{t('subtitles.experience', { ns: 'about' })}</Card.Title>
       <Card.Divider />
       <Card.OrderedList>
         {data.map((i) => (

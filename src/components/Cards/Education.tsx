@@ -33,11 +33,11 @@ const EducationCard: React.VFC<TFunctionProps & { data: EducationGroup[] }> = ({
 
   return (
     <Card.Container pad>
-      <Card.Title>{t('subtitles.education', { ns: 'common' })}</Card.Title>
+      <Card.Title>{t('subtitles.education', { ns: 'about' })}</Card.Title>
       <Card.Divider />
       {data.map((e) => (
-        <Box key={e.category}>
-          <Card.AltText>{e.category}</Card.AltText>
+        <Box key={e.category} pb={4}>
+          <Card.AltText textTransform="uppercase">{e.category}</Card.AltText>
           {e.items.map((item) => (
             <EducationItem key={item.name} item={item} />
           ))}

@@ -9,7 +9,7 @@ type SkillItem = {
 const SkillsCard: React.VFC<TFunctionProps & { data: SkillItem[] }> = ({ t, data }) => {
   return (
     <Card.Container pad>
-      <Card.Title>{t('subtitles.skills', { ns: 'common' })}</Card.Title>
+      <Card.Title>{t('subtitles.skills', { ns: 'about' })}</Card.Title>
       <Card.Divider />
       <Card.OrderedList>
         {data.map((i) => (
