@@ -8,13 +8,13 @@ import ContactForm from '../components/ContactForm'
 import useI18Next from '../hooks/useI18Next'
 
 const ContactPage: React.FC<LocalizedPageProps> = ({ data, pageContext }) => {
-  const { fixedT: t } = useI18Next(pageContext.language, data.allContent)
+  const { fixedT: t } = useI18Next(pageContext.language, data.allTranslation)
 
   return (
     <>
       <SEO title="Contacto" />
       <Heading variant="smallcaps" size="sectionTitle">
-        {t('sections.contact')}
+        {t('sections.contact', { ns: 'common' })}
       </Heading>
 
       <Cards.Contact t={t} />

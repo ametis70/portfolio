@@ -47,7 +47,7 @@ const Control: React.FC<ControlProps> = ({ id, t, Component, colSpan = 2 }) => {
   return (
     <GridItem colSpan={colSpan}>
       <FormControl id={id} variant="contact" isInvalid={formState.errors[id]}>
-        <FormLabel>{t(id, { ns: 'contact' })}</FormLabel>
+        <FormLabel>{t(`form.${id}`, { ns: 'contact' })}</FormLabel>
         <Component
           {...register(id, {
             required: true,

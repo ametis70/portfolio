@@ -10,7 +10,7 @@ const AboutCard: React.VFC<TFunctionProps> = ({ t }) => {
 
   return (
     <Card.Container pad>
-      <Text pb={4}>{t('contact_text')}</Text>
+      <Text pb={4}>{t('card_text', { ns: 'contact' })}</Text>
       <Link variant="center" external href={`mailto:${email}`}>
         {email}
       </Link>
