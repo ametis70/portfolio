@@ -26,10 +26,10 @@ const ContactPage: React.FC<LocalizedPageProps> = ({ data, pageContext }) => {
 
 export const query = graphql`
   query ($language: String!) {
-    allContent(filter: { ns: { in: ["contact"] }, language: { eq: $language } }) {
+    allTranslation(filter: { ns: { in: ["contact"] }, language: { eq: $language } }) {
       edges {
         node {
-          ...LocalizedContent
+          ...TranslationData
         }
       }
     }

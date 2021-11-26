@@ -5,25 +5,24 @@ import { Card } from '../Card'
 import Link from '../Link'
 import Markdown from '../Markdown'
 
-type ExperienceData = {
-  items: Array<{
-    start: string
-    end?: string
-    role: string
-    company: string
-    description: string
-  }>
+type ExperienceItem = {
+  start: string
+  end?: string
+  role: string
+  company: string
+  description: string
 }
 
-const ExperienceCard: React.VFC<TFunctionWithGetProps> = ({ t, get }) => {
-  const data = get<ExperienceData>('experience')
-
+const ExperienceCard: React.VFC<TFunctionProps & { data: ExperienceItem[] }> = ({
+  t,
+  data,
+}) => {
   return (
     <Card.Container pad>
       <Card.Title>{t('subtitles.experience', { ns: 'common' })}</Card.Title>
       <Card.Divider />
       <Card.OrderedList>
-        {data.items.map((i) => (
+        {data.map((i) => (
           <Card.ListItem key={i.role} pb={4}>
             <Card.AltText>{printAgeRange(t, i.start, i.end, true)}</Card.AltText>
             <Card.IndentBox>

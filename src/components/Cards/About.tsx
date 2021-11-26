@@ -1,9 +1,9 @@
 import { Card } from '../Card'
 import Markdown from '../Markdown'
 
-const AboutCard: React.VFC<TFunctionProps> = ({ t }) => (
+const AboutCard: React.VFC<{ text: string }> = ({ text }) => (
   <Card.Container pad>
-    <Markdown>{t('about', { ns: 'about' })}</Markdown>
+    <Markdown>{text}</Markdown>
   </Card.Container>
 )
 

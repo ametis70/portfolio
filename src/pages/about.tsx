@@ -9,7 +9,9 @@ import useI18Next from '../hooks/useI18Next'
 
 const AboutPage: React.FC<LocalizedPageProps> = ({ data, pageContext }) => {
   useMoveCamera(cameraPositions.FRONT)
-  const { fixedT: t, get } = useI18Next(pageContext.language, data.allContent)
+
+  console.log(data)
+  const { fixedT: t } = useI18Next(pageContext.language, data.allTranslation)
 
   return (
     <>
@@ -19,26 +21,46 @@ const AboutPage: React.FC<LocalizedPageProps> = ({ data, pageContext }) => {
       </Heading>
 
       <Cards.Hero t={t} />
-      <Cards.About t={t} />
-      <Cards.Experience t={t} get={get} />
-      <Cards.Skills t={t} get={get} />
-      <Cards.Education t={t} get={get} />
+      <Cards.About text={data.datoCmsAbout.about} />
+      <Cards.Experience t={t} data={data.datoCmsAbout.experience} />
+      <Cards.Skills t={t} data={data.datoCmsAbout.skills} />
+      <Cards.Education t={t} data={data.datoCmsAbout.education} />
     </>
   )
 }
 
 export const query = graphql`
   query ($language: String!) {
-    allContent(
-      filter: {
-        ns: { in: ["about", "experience", "skills", "education"] }
-        language: { eq: $language }
-      }
-    ) {
+    allTranslation(filter: { ns: { in: ["about"] }, language: { eq: $language } }) {
       edges {
         node {
-          ...LocalizedContent
+          ...TranslationData
         }
+      }
+    }
+    datoCmsAbout(locale: { eq: $language }) {
+      education {
+        category
+        items {
+          link
+          end
+          start
+          school
+          name
+        }
+      }
+      experience {
+        role
+        start
+        end
+        company
+        description
+      }
+      about
+      city
+      skills {
+        skills
+        category
       }
     }
   }

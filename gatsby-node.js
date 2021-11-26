@@ -5,11 +5,15 @@ const util = require('util')
 const stream = require('stream')
 const pipeline = util.promisify(stream.pipeline)
 
+const { siteMetadata } = require('./gatsby-config')
+const { i18n } = siteMetadata
+
 const downloadDatoCmsSvg = async (node) => {
-  if (
-    node.internal.owner === 'gatsby-source-datocms' &&
-    node.internal.type === 'DatoCmsAsset'
-  ) {
+  const {
+    internal: { owner, type },
+  } = node
+
+  if (owner === 'gatsby-source-datocms' && type === 'DatoCmsAsset') {
     const { entityPayload } = node
     if (entityPayload) {
       const { attributes } = entityPayload
@@ -51,131 +55,75 @@ const downloadDatoCmsSvg = async (node) => {
   }
 }
 
-const { siteMetadata } = require('./gatsby-config')
-const { i18n } = siteMetadata
-
-const getTypeOfLocalizedCollection = (node) => {
-  let type
-  const setType = (t) => {
-    if (!type) {
-      type = t
-      return
-    }
-    throw new Error(
-      `Cannot determine type of localized collection in Netlify CMS: ${type} & ${t} `,
-    )
-  }
-
-  if (i18n.languages.find((l) => node.base.includes(`.${l}.`))) {
-    setType('multiple_files')
-  }
-  if (i18n.languages.find((l) => l === node.relativeDirectory)) {
-    setType('multiple_folders')
-  }
-
-  if (!type) {
-    type = 'single_file'
-  }
-
-  return type
-}
-
-exports.onCreateNode = async ({
+const separateDatoCmsTranslations = async (
   node,
   actions,
-  loadNodeContent,
   createNodeId,
   createContentDigest,
   reporter,
-}) => {
-  await downloadDatoCmsSvg(node)
-
+) => {
   const {
-    absolutePath,
-    internal: { owner, type, mediaType },
-    sourceInstanceName,
-    relativeDirectory,
-    name,
+    internal: { owner, type },
     id,
   } = node
 
-  if (
-    owner !== 'gatsby-source-filesystem' ||
-    type !== 'File' ||
-    mediaType !== 'application/json' ||
-    sourceInstanceName !== i18n.filesystemSourceName
-  ) {
+  if (owner !== 'gatsby-source-datocms' || type !== 'DatoCmsTranslation') {
+    return
+  }
+
+  const { entityPayload, locale } = node
+
+  if (!entityPayload || !locale || locale !== i18n.defaultLanguage) {
+    return
+  }
+
+  const { attributes } = entityPayload
+
+  if (!attributes.namespace || !attributes.data) {
     return
   }
 
   const activity = reporter.activityTimer(
-    `Parsing json from Netlify CMS: ${relativeDirectory}/${name}`,
+    `Separating translations from DatoCMS: ${attributes.namespace}`,
   )
   activity.start()
 
-  const colletionType = getTypeOfLocalizedCollection(node)
-  const content = await loadNodeContent(node)
-
   let parsedContent
-
   try {
-    parsedContent = JSON.parse(content)
+    parsedContent = JSON.parse(attributes.data)
   } catch {
-    const hint = node.absolutePath ? `file ${node.absolutePath}` : `in node ${node.id}`
-    throw new Error(`Unable to parse JSON: ${hint}`)
+    throw new Error(`Unable to parse JSON for namespace: ${namespace}`)
   }
 
-  let nodesData
+  const singleFileLangs = i18n.languages.filter((l) => parsedContent.hasOwnProperty(l))
 
-  const stringify = (data) => JSON.stringify(data, undefined, '')
-
-  switch (colletionType) {
-    case 'single_file':
-      singleFileLangs = i18n.languages.filter((l) => parsedContent.hasOwnProperty(l))
-      if (singleFileLangs.length === 0) {
-        console.warn(
-          `File ${absolutePath} was detected as single_file collection but has no top level language key`,
-        )
-        break
-      }
-      nodesData = singleFileLangs.map((l) => ({
-        language: l,
-        data: stringify(parsedContent[l]),
-      }))
-      break
-    case 'multiple_folders':
-      nodesData = [{ language: relativeDirectory, data: stringify(parsedContent) }]
-      break
-    case 'multiple_files':
-      const _lang = name.split('.')
-      nodesData = [
-        {
-          language: _lang[_lang.length - 1],
-          data: stringify(parsedContent),
-          ns: _lang.splice(0, _lang.length - 1).join(''),
-        },
-      ]
-      break
+  if (singleFileLangs.length === 0) {
+    console.warn(
+      `Translation for namespace ${attributes.namespace} doesn't have any top level language key`,
+    )
   }
+  const nodesData = singleFileLangs.map((l) => ({
+    language: l,
+    data: JSON.stringify(parsedContent[l], undefined, ''),
+    ns: attributes.namespace,
+  }))
 
   if (!nodesData) return
 
   const { createNode, createParentChildLink } = actions
 
   const contentNodes = nodesData.map((d) => ({
-    id: createNodeId(`${id} - ${d.language} >>> Content`),
+    id: createNodeId(`${id} - ${d.language} >>> Translation`),
     children: [],
     parent: id,
     internal: {
       content: d.data,
       contentDigest: createContentDigest(d.data),
-      type: 'Content',
+      type: 'Translation',
     },
     language: d.language,
-    collectionType: d.contentType,
-    ns: d.ns ?? name,
+    ns: d.ns,
     data: d.data,
-    fileAbsolutePath: absolutePath,
   }))
 
   contentNodes.forEach((n) => {
@@ -184,6 +132,17 @@ exports.onCreateNode = async ({
   })
 
   activity.end()
+}
+
+exports.onCreateNode = async ({
+  node,
+  actions,
+  createNodeId,
+  createContentDigest,
+  reporter,
+}) => {
+  await downloadDatoCmsSvg(node)
+  separateDatoCmsTranslations(node, actions, createNodeId, createContentDigest, reporter)
 }
 
 exports.onCreatePage = async ({ page, actions: { createPage, deletePage } }) => {

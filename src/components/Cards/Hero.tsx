@@ -27,7 +27,7 @@ const HeroCard: React.VFC<TFunctionProps> = ({ t }) => {
           <Heading textTransform="uppercase" fontSize="3xl">
             {name}
           </Heading>
-          <Text>{t('job', { ns: 'about' })}</Text>
+          <Text>{t('job', { ns: 'common' })}</Text>
           <Box position="relative" left={-2}>
             <SocialLinks t={t} />
           </Box>

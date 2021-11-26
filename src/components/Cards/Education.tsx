@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react'
 import { printAgeRange } from '../../util'
 import { Card } from '../Card'
 
@@ -9,14 +10,15 @@ type EducationItemProps = {
   link?: string
 }
 
-type EducationData = {
-  college: EducationItemProps[]
-  certifications: EducationItemProps[]
+type EducationGroup = {
+  category: string
+  items: EducationItemProps[]
 }
 
-const EducationCard: React.VFC<TFunctionWithGetProps> = ({ t, get }) => {
-  const data = get<EducationData>('education')
-
+const EducationCard: React.VFC<TFunctionProps & { data: EducationGroup[] }> = ({
+  t,
+  data,
+}) => {
   const EducationItem: React.FC<{ item: EducationItemProps }> = ({ item }) => (
     <Card.OrderedList>
       <Card.ListItem key={item.name}>
@@ -33,13 +35,13 @@ const EducationCard: React.VFC<TFunctionWithGetProps> = ({ t, get }) => {
     <Card.Container pad>
       <Card.Title>{t('subtitles.education', { ns: 'common' })}</Card.Title>
       <Card.Divider />
-      <Card.AltText>{t('subtitles.college', { ns: 'common' })}</Card.AltText>
-      {data.college.map((item) => (
-        <EducationItem item={item} />
-      ))}
-      <Card.AltText>{t('subtitles.certificates', { ns: 'common' })}</Card.AltText>
-      {data.certifications.map((item) => (
-        <EducationItem item={item} />
+      {data.map((e) => (
+        <Box key={e.category}>
+          <Card.AltText>{e.category}</Card.AltText>
+          {e.items.map((item) => (
+            <EducationItem key={item.name} item={item} />
+          ))}
+        </Box>
       ))}
     </Card.Container>
   )

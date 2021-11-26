@@ -1,30 +1,22 @@
 import { Text } from '@chakra-ui/react'
 import { Card } from '../Card'
 
-type SkillsData = {
-  categories: Array<{
-    name: string
-    items: Array<{ item: string }>
-  }>
+type SkillItem = {
+  category: string
+  skills: string
 }
 
-const SkillsCard: React.VFC<TFunctionWithGetProps> = ({ t, get }) => {
-  const data = get<SkillsData>('skills')
+const SkillsCard: React.VFC<TFunctionProps & { data: SkillItem[] }> = ({ t, data }) => {
   return (
     <Card.Container pad>
       <Card.Title>{t('subtitles.skills', { ns: 'common' })}</Card.Title>
       <Card.Divider />
       <Card.OrderedList>
-        {data.categories.map((c) => (
-          <Card.ListItem key={c.name}>
-            <Card.AltText>{c.name}</Card.AltText>
+        {data.map((i) => (
+          <Card.ListItem key={i.category}>
+            <Card.AltText>{i.category}</Card.AltText>
             <Card.IndentBox>
-              <Text>
-                {c.items.map(
-                  (item, index) =>
-                    `${item.item}${index !== c.items.length - 1 ? ', ' : ''}`,
-                )}
-              </Text>
+              <Text>{i.skills.split(',').join(', ')}</Text>
             </Card.IndentBox>
           </Card.ListItem>
         ))}
