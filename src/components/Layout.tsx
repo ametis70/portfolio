@@ -14,12 +14,14 @@ import { PageContextProvider } from '../hooks/usePageContext'
 import '@fontsource/montserrat/400.css'
 import '@fontsource/montserrat/500.css'
 import '@fontsource/montserrat/600.css'
+import useCommonTranslations from '../hooks/useCommonTranslations'
 
 const Layout: React.FC<PageProps<null, PageContext>> = ({
   path,
   children,
   pageContext,
 }) => {
+  useCommonTranslations()
   const setHome = useStore((state) => state.setHome)
 
   const { originalPath } = pageContext

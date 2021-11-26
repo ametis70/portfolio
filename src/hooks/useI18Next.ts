@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
 type UseI18NextFunction = (
-  language: string,
+  language?: string,
   content?: AllTranslationQuery,
 ) => {
   t: TFunction
@@ -13,26 +13,28 @@ type UseI18NextFunction = (
 }
 
 const useI18Next: UseI18NextFunction = (language, content) => {
-  const { t, i18n } = useTranslation('common')
+  const { t, i18n } = useTranslation()
 
   let fixedT: TFunction = () => {
     throw new Error('To use fixedT, pass content prop to useI18Next')
   }
 
   const get = <T>(namespace: string): T =>
-    useMemo(() => i18n.getResourceBundle(language, namespace), [namespace, language])
+    language
+      ? useMemo(() => i18n.getResourceBundle(language, namespace), [namespace, language])
+      : () => {}
 
-  if (content) {
-    let namespaces: string[] = ['common']
+  if (language && content) {
+    let namespaces: string[] = []
     content.edges.forEach(({ node }) => {
       const { ns, language, data } = node
       namespaces.push(ns)
       if (!i18n.getResourceBundle(language, ns)) {
-        i18n.addResourceBundle(language, ns, JSON.parse(data), false, false)
+        i18n.addResourceBundle(language, ns, JSON.parse(data))
       }
     })
 
-    fixedT = i18n.getFixedT(language, namespaces)
+    fixedT = i18n.getFixedT(language, [...namespaces, 'common'])
   }
 
   return { t, i18n, fixedT, get }
