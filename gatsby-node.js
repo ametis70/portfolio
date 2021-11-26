@@ -1,3 +1,56 @@
+const path = require('path')
+const axios = require('axios')
+const fs = require('fs')
+const util = require('util')
+const stream = require('stream')
+const pipeline = util.promisify(stream.pipeline)
+
+const downloadDatoCmsSvg = async (node) => {
+  if (
+    node.internal.owner === 'gatsby-source-datocms' &&
+    node.internal.type === 'DatoCmsAsset'
+  ) {
+    const { entityPayload } = node
+    if (entityPayload) {
+      const { attributes } = entityPayload
+
+      if (attributes.mime_type !== 'image/svg+xml') {
+        return
+      }
+
+      const p = path.join(process.cwd(), 'public', 'datocms', attributes.path)
+
+      if (fs.existsSync(p)) {
+        return
+      }
+
+      try {
+        pathParts = p.split('/')
+        dir = pathParts.splice(0, pathParts.length - 1).join('/')
+
+        if (!fs.existsSync(dir))
+          fs.mkdirSync(dir, {
+            recursive: true,
+          })
+      } catch (e) {
+        console.error(e)
+      }
+
+      try {
+        const request = await axios({
+          method: 'get',
+          url: attributes.url,
+          responseType: 'stream',
+        })
+        await pipeline(request.data, fs.createWriteStream(p))
+        console.log(`Downloaded ${p}`)
+      } catch (e) {
+        console.error(e)
+      }
+    }
+  }
+}
+
 const { siteMetadata } = require('./gatsby-config')
 const { i18n } = siteMetadata
 
@@ -35,6 +88,8 @@ exports.onCreateNode = async ({
   createContentDigest,
   reporter,
 }) => {
+  await downloadDatoCmsSvg(node)
+
   const {
     absolutePath,
     internal: { owner, type, mediaType },
