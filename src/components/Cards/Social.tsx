@@ -3,7 +3,7 @@ import { Flex, Text } from '@chakra-ui/react'
 import { Card } from '../Card'
 import SocialLinks from '../SocialLinks'
 
-const SocialCard: React.VFC<TFunctionReceiver> = ({ t }) => {
+const SocialCard: React.VFC<TFunctionProps> = ({ t }) => {
   return (
     <Card.Container pad>
       <Flex align="center">

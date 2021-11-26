@@ -5,7 +5,7 @@ import Link from '../Link'
 
 import useMetadata from '../../hooks/useMetadata'
 
-const AboutCard: React.VFC<TFunctionReceiver> = ({ t }) => {
+const AboutCard: React.VFC<TFunctionProps> = ({ t }) => {
   const { email } = useMetadata()
 
   return (
