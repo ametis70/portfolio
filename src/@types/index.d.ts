@@ -42,4 +42,26 @@ type TFunctionWithGetProps = TFunctionProps & {
   get: BundleGetFunction
 }
 
-type LocalizedPageProps = PageProps<{ allTranslation: AllTranslationQuery }, { language: string }>
+type LocalizedPageProps<T> = import('gatsby').PageProps<
+  { allTranslation: AllTranslationQuery } & T,
+  { language: string }
+>
+
+// Type for work items in /works page
+type WorksIndexData = {
+  node: {
+    title: string
+    slug: string
+    finishDate: string
+    gradient: string
+    model: {
+      apiKey: string
+    }
+    logo: {
+      path: string
+    }
+    banner: {
+      gatsbyImageData: IGatsbyImageData
+    }
+  }
+}

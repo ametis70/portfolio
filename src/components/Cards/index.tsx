@@ -5,6 +5,7 @@ import Skills from './Skills'
 import Education from './Education'
 import Contact from './Contact'
 import Social from './Social'
+import WorksIndex from './WorksIndex'
 
 const Cards = {
   Hero,
@@ -14,6 +15,7 @@ const Cards = {
   Education,
   Contact,
   Social,
+  WorksIndex,
 }
 
 export default Cards
