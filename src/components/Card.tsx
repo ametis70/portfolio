@@ -6,6 +6,10 @@ import {
   useColorMode,
   OrderedList,
   ListItem,
+  useDisclosure,
+  Button,
+  Collapse,
+  useColorModeValue,
 } from '@chakra-ui/react'
 
 export const Card: Record<string, React.FC<any>> = {
@@ -58,6 +62,34 @@ export const Card: Record<string, React.FC<any>> = {
       {children}
     </Box>
   ),
+
+  Truncate: ({ children, t }) => {
+    const { isOpen, onToggle } = useDisclosure()
+    const gradient = useColorModeValue(
+      'amethyst.light-gradient',
+      'amethyst.dark-gradient',
+    )
+
+    return (
+      <>
+        <Collapse startingHeight="6em" in={isOpen} style={{ position: 'relative' }}>
+          {children}
+          <Box
+            position="absolute"
+            bottom="0%"
+            w="100%"
+            h="4.5em"
+            bg={gradient}
+            opacity={isOpen ? 0 : 1}
+            transition="opacity 0.3s ease-out"
+          />
+        </Collapse>
+        <Button my={5} onClick={onToggle} display="block" mx="auto">
+          {t(isOpen ? 'ui.show_less' : 'ui.show_more', { ns: 'common' })}
+        </Button>
+      </>
+    )
+  },
 }
 
 export default Card

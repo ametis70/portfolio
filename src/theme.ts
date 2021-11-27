@@ -3,6 +3,7 @@ import { extendTheme } from '@chakra-ui/react'
 const fontFamilies = 'Montserrat, system-ui, sans-serif'
 const amethyst = {
   '50-70': 'rgba(250,247,252, 0.7)',
+  '50-50': 'rgba(250,247,252, 0.5)',
   50: '#FAF7FC',
   100: '#F5F0FA',
   200: '#E6D9F2',
@@ -13,7 +14,10 @@ const amethyst = {
   700: '#734D99',
   800: '#5C3D7A',
   900: '#4B3264',
+  '900-50': 'rgba(75, 50, 100, 0.5)',
   '900-70': 'rgba(75, 50, 100, 0.7)',
+  'light-gradient': 'linear-gradient(0, rgba(250,247,252, 1), rgba(250,247,252, 0))',
+  'dark-gradient': 'linear-gradient(0, rgba(75, 50, 100, 1), rgba(75, 50, 100, 0))',
 }
 
 const smallCaps = {
@@ -46,6 +50,13 @@ const theme = extendTheme({
   },
   radii: {
     none: 0,
+  },
+  layerStyles: {
+    container: {
+      px: 12,
+      w: '100%',
+      mx: 0,
+    },
   },
   components: {
     Textarea: {
@@ -170,6 +181,28 @@ const theme = extendTheme({
       },
       variants: {
         cta: ctaVariant,
+      },
+    },
+    List: {
+      variants: {
+        tagList: (props) => ({
+          container: {
+            display: 'flex',
+            flexWrap: 'wrap',
+            listStyleType: 'none',
+            justifyContent: 'center',
+            layerStyle: 'container',
+          },
+          item: {
+            bg: props.colorMode === 'dark' ? 'amethyst.900-50' : 'amethyst.50-50',
+            color: props.colorMode === 'dark' ? 'amethyst.50-70' : 'amethyst.900-70',
+            fontSize: 'sm',
+            w: 'fit-content',
+            px: 3,
+            py: 1,
+            m: 1,
+          },
+        }),
       },
     },
   },

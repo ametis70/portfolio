@@ -52,9 +52,6 @@ export const query = graphql`
           slug
           finishDate
           gradient
-          model {
-            apiKey
-          }
           logo {
             path
           }

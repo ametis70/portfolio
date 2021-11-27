@@ -47,6 +47,8 @@ type LocalizedPageProps<T> = import('gatsby').PageProps<
   { language: string }
 >
 
+type IGatsbyImageData = import('gatsby-plugin-image').IGatsbyImageData
+
 // Type for work items in /works page
 type WorksIndexData = {
   node: {
@@ -54,14 +56,32 @@ type WorksIndexData = {
     slug: string
     finishDate: string
     gradient: string
-    model: {
-      apiKey: string
-    }
     logo: {
       path: string
     }
     banner: {
       gatsbyImageData: IGatsbyImageData
     }
+  }
+}
+
+type WorkPageData = {
+  title: string
+  slug: string
+  finishDate: string
+  gradient: string
+  category: string
+  role: string
+  description: string
+  primaryLink: string
+  primaryLinkText: string
+  secondaryLink: string
+  secondaryLinkText: string
+  tags: string
+  desktopScreenshots: {
+    gatsbyImageData: IGatsbyImageData
+  }
+  mobileScreenshots: {
+    gatsbyImageData: IGatsbyImageData
   }
 }
