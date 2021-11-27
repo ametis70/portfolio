@@ -21,9 +21,7 @@ const amethyst = {
 }
 
 const smallCaps = {
-  textTransform: 'lowercase',
-  fontVariant: 'small-caps',
-  fontFeatureSettings: '"smcp"',
+  fontVariantCaps: 'all-small-caps',
 }
 
 const ctaVariant = (props) => ({
@@ -43,6 +41,19 @@ const ctaVariant = (props) => ({
   },
 })
 
+const workMainLink = {
+  textStyle: 'smallCaps',
+  fontSize: 'lg',
+  px: 0,
+  flex: '0 1 50%',
+  h: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  py: 4,
+  textDecoration: 'none',
+}
+
 const theme = extendTheme({
   config: {
     initialColorMode: 'dark',
@@ -56,6 +67,12 @@ const theme = extendTheme({
       px: 12,
       w: '100%',
       mx: 0,
+    },
+  },
+  textStyles: {
+    smallCaps: {
+      fontVariantCaps: 'all-small-caps',
+      fontWeight: 'semiBold',
     },
   },
   components: {
@@ -157,9 +174,6 @@ const theme = extendTheme({
         textDecoration: props.colorMode === 'dark' ? 'underline' : 'none',
       }),
       variants: {
-        textColor: (props) => ({
-          color: props.colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50',
-        }),
         icon: (props) => ({
           color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
           textDecoration: 'none',
@@ -173,6 +187,26 @@ const theme = extendTheme({
           textAlign: 'center',
         },
         cta: ctaVariant,
+        workCta: (props) => ({
+          ...workMainLink,
+          bg: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
+          color: props.colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50',
+          _hover: {
+            textDecoration: 'none',
+            bg: props.colorMode === 'dark' ? 'amethyst.200' : 'amethyst.700',
+          },
+        }),
+        workSecondary: (props) => ({
+          ...workMainLink,
+          borderStyle: 'solid',
+          borderWidth: '3px',
+          borderColor: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
+          color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
+          _hover: {
+            textDecoration: 'none',
+            bg: props.colorMode === 'dark' ? 'amethyst.900-50' : 'amethyst.50-50',
+          },
+        }),
       },
     },
     Button: {

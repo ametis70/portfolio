@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby'
-import { Box, Heading, ListItem, UnorderedList } from '@chakra-ui/react'
+import { Box, Flex, Heading, ListItem, Stack, UnorderedList } from '@chakra-ui/react'
 
 import SEO from '../components/Seo'
 import Link from '../components/Link'
@@ -11,7 +11,8 @@ const Work: React.FC<LocalizedPageProps<{ datoCmsWork: WorkPageData }>> = ({
   data,
   pageContext,
 }) => {
-  const { title, tags } = data.datoCmsWork
+  const { title, tags, primaryLink, primaryLinkText, secondaryLink, secondaryLinkText } =
+    data.datoCmsWork
   const { fixedT: t } = useI18Next(pageContext.language)
 
   return (
@@ -24,6 +25,27 @@ const Work: React.FC<LocalizedPageProps<{ datoCmsWork: WorkPageData }>> = ({
       <Heading size="sectionTitle" py={4}>
         {title}
       </Heading>
+
+      <Flex
+        layerStyle="container"
+        alignItems="stretch"
+        direction="row-reverse"
+        justify="center"
+        pt={2}
+        pb={6}
+      >
+        <Link external href={primaryLink} variant="workCta">
+          {primaryLinkText}
+        </Link>
+        {secondaryLink && secondaryLinkText ? (
+          <>
+            <Box flex="0 0 1rem" />
+            <Link external href={secondaryLink} variant="workSecondary">
+              {secondaryLinkText}
+            </Link>
+          </>
+        ) : null}
+      </Flex>
 
       <UnorderedList listStyleType="none" variant="tagList">
         {tags.split(',').map((t) => (
