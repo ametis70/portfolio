@@ -145,9 +145,7 @@ exports.onCreateNode = async ({
   separateDatoCmsTranslations(node, actions, createNodeId, createContentDigest, reporter)
 }
 
-exports.onCreatePage = async ({ page, actions: { createPage, deletePage } }) => {
-  await deletePage(page)
-
+const createLocalizedPage = async (page, createPage) => {
   await Promise.all(
     i18n.languages.map(async (language) => {
       const originalPath = page.path
@@ -165,4 +163,47 @@ exports.onCreatePage = async ({ page, actions: { createPage, deletePage } }) => 
       })
     }),
   )
+}
+
+exports.onCreatePage = async ({ page, actions: { createPage, deletePage } }) => {
+  await deletePage(page)
+  await createLocalizedPage(page, createPage)
+}
+
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  const { createPage } = actions
+
+  const result = await graphql(`
+    query {
+      allDatoCmsWork(filter: { locale: { eq: "${i18n.defaultLanguage}" } }) {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+    }
+  `)
+
+  // Handle errors
+  if (result.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`)
+    return
+  }
+  // Create pages for each markdown file.
+  const WorkTemplate = path.resolve(`src/templates/Work.tsx`)
+  result.data.allDatoCmsWork.edges.forEach(async ({ node: { slug } }) => {
+    const path = `/works/${slug}`
+
+    await createLocalizedPage(
+      {
+        path,
+        component: WorkTemplate,
+        context: {
+          slug,
+        },
+      },
+      createPage,
+    )
+  })
 }
