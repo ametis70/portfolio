@@ -16,16 +16,19 @@ const useI18Next: UseI18NextFunction = (language, content) => {
   const { t, i18n } = useTranslation()
 
   let fixedT: TFunction = () => {
-    throw new Error('To use fixedT, pass content prop to useI18Next')
+    throw new Error('To use fixedT, pass language prop to useI18Next')
   }
 
   const get = <T>(namespace: string): T =>
     language
       ? useMemo(() => i18n.getResourceBundle(language, namespace), [namespace, language])
-      : () => {}
+      : () => {
+          throw new Error('To use fixedT, pass language prop to useI18Next')
+        }
 
-  if (language && content) {
-    let namespaces: string[] = []
+  let namespaces: string[] = []
+
+  if (content) {
     content.edges.forEach(({ node }) => {
       const { ns, language, data } = node
       namespaces.push(ns)
@@ -33,7 +36,9 @@ const useI18Next: UseI18NextFunction = (language, content) => {
         i18n.addResourceBundle(language, ns, JSON.parse(data))
       }
     })
+  }
 
+  if (language) {
     fixedT = i18n.getFixedT(language, [...namespaces, 'common'])
   }
 
