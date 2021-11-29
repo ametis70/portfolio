@@ -37,8 +37,9 @@ const LanguageSwitcherButton: React.FC = () => {
       px={3}
       fontWeight="regular"
       onClick={() => switchLanguage()}
-      aria-label={t('ui.switch_language_specific', {
-        lang: spanish ? t('languages.english') : t('languages.spanish'),
+      aria-label={t('ui.switch_language_to', {
+        language: spanish ? t('languages.english') : t('languages.spanish'),
+        ns: 'common',
       })}
       leftIcon={<BiGlobe />}
       iconSpacing={6}
@@ -46,7 +47,9 @@ const LanguageSwitcherButton: React.FC = () => {
       textTransform="uppercase"
     >
       <Text fontSize="sm">
-        {spanish ? t('languages.spanish') : t('languages.english')}
+        {spanish
+          ? t('languages.spanish', { ns: 'common' })
+          : t('languages.english', { ns: 'common' })}
       </Text>
     </Button>
   )

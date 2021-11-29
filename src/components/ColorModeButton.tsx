@@ -13,8 +13,10 @@ const ColorModeButton: React.FC = () => {
       opacity="0.5"
       px={3}
       fontWeight="regular"
-      aria-label={t('ui.switch_color_mode_specific', {
-        mode: dark ? t('ui.dark_mode') : t('ui.light_mode'),
+      aria-label={t('ui.switch_to', {
+        what: dark
+          ? t('ui.dark_mode', { ns: 'common' })
+          : t('ui.light_mode', { ns: 'common' }),
       })}
       onClick={toggleColorMode}
       leftIcon={dark ? <BiMoon /> : <BiSun />}
@@ -22,7 +24,11 @@ const ColorModeButton: React.FC = () => {
       fontSize="xl"
       textTransform="uppercase"
     >
-      <Text fontSize="sm">{dark ? t('ui.dark_mode') : t('ui.light_mode')}</Text>
+      <Text fontSize="sm">
+        {dark
+          ? t('ui.dark_mode', { ns: 'common' })
+          : t('ui.light_mode', { ns: 'common' })}
+      </Text>
     </Button>
   )
 }
