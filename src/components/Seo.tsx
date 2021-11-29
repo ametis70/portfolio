@@ -6,11 +6,11 @@
  */
 
 import { Helmet } from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
+import useMetadata from '../hooks/useMetadata'
+import { usePageContext } from '../hooks/usePageContext'
 
 type SEOProps = {
   description?: string
-  lang?: string
   meta?: ConcatArray<
     | { name: string; content: string; property?: undefined }
     | { property: string; content: string; name?: undefined }
@@ -18,36 +18,20 @@ type SEOProps = {
   title?: string
 }
 
-const SEO: React.FC<SEOProps> = ({
-  title = undefined,
-  lang = 'es',
-  meta = [],
-  description = '',
-}) => {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `,
-  )
+const SEO: React.FC<SEOProps> = ({ title = undefined, meta = [], description = '' }) => {
+  const metadata = useMetadata()
+  const pageContext = usePageContext()
 
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const metaDescription = description ?? metadata.description
+  const metaTitle = title ?? metadata.name
 
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang: pageContext.language,
       }}
-      title={title ?? defaultTitle}
-      titleTemplate={title ? `%s | ${defaultTitle}` : '%s'}
+      title={metaTitle}
+      titleTemplate={title ? `%s | ${metadata.name}` : '%s'}
       meta={[
         {
           name: `description`,
@@ -55,11 +39,15 @@ const SEO: React.FC<SEOProps> = ({
         },
         {
           property: `og:title`,
-          content: title,
+          content: metaTitle,
         },
         {
           property: `og:description`,
           content: metaDescription,
+        },
+        {
+          property: `og:locale`,
+          content: pageContext.language,
         },
         {
           property: `og:type`,
@@ -71,17 +59,33 @@ const SEO: React.FC<SEOProps> = ({
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata?.author || ``,
+          content: metadata.author || ``,
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: metaTitle,
         },
         {
           name: `twitter:description`,
           content: metaDescription,
         },
       ].concat(meta)}
+      link={[
+        {
+          rel: 'canonical',
+          href: `${metadata.siteUrl}/${pageContext.language}${pageContext.originalPath}`,
+        },
+        {
+          rel: 'alternate',
+          hrefLang: 'x-default',
+          href: `${metadata.siteUrl}/${pageContext.originalPath}`,
+        },
+        ...metadata.i18n.languages.map((language) => ({
+          rel: 'alternate',
+          hrefLang: language,
+          href: `${metadata.siteUrl}/${language}${pageContext.originalPath}`,
+        })),
+      ]}
     />
   )
 }

@@ -1,11 +1,8 @@
 require('dotenv').config()
 
-const name = 'Ian Mancini'
-
 module.exports = {
   siteMetadata: {
-    title: name,
-    name,
+    name: 'Ian Mancini',
     birthday: '1998-04-24T00:00:00.000Z',
     email: 'contacto@ianmancini.com.ar',
     siteUrl: 'https://ianmancini.com.ar',
