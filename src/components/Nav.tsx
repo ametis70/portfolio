@@ -4,11 +4,15 @@ import { BiUser, BiBriefcase, BiMessageDetail } from 'react-icons/bi'
 
 import MotionBox from './MotionBox'
 import Link, { LinkProps } from './Link'
-import React from 'react'
+
+import { usePageContext } from '../hooks/usePageContext'
 
 const NavLink: React.FC<{ to: string; Icon: React.FC }> = ({ to, Icon, children }) => {
+  const { originalPath } = usePageContext()
   const { colorMode } = useColorMode()
   const { colors } = useTheme()
+
+  const active = originalPath!.includes(to)
 
   const linkStyles: Partial<LinkProps> = {
     width: 'full',
@@ -20,9 +24,24 @@ const NavLink: React.FC<{ to: string; Icon: React.FC }> = ({ to, Icon, children 
     variant: 'icon',
     display: 'flex',
     alignItems: 'center',
-    activeStyle: {
-      background: colorMode === 'dark' ? colors.amethyst['50'] : colors.amethyst['900'],
-      color: colorMode === 'dark' ? colors.amethyst['900'] : colors.amethyst['50'],
+    bg: active
+      ? colorMode === 'dark'
+        ? colors.amethyst['50']
+        : colors.amethyst['900']
+      : undefined,
+    color: active
+      ? colorMode === 'dark'
+        ? colors.amethyst['900']
+        : colors.amethyst['50']
+      : undefined,
+    _hover: {
+      bg: active
+        ? colorMode === 'dark'
+          ? colors.amethyst['100']
+          : colors.amethyst['800']
+        : colorMode === 'dark'
+        ? colors.amethyst['800']
+        : colors.amethyst['100'],
     },
   }
 
