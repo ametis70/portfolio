@@ -145,12 +145,21 @@ exports.onCreateNode = async ({
   separateDatoCmsTranslations(node, actions, createNodeId, createContentDigest, reporter)
 }
 
-const createLocalizedPage = async (page, createPage) => {
+const createLocalizedPage = async (page, createPage, createRedirect) => {
   await Promise.all(
     i18n.languages.map(async (language) => {
       const originalPath = page.path
       const localizedPath =
         language === i18n.defaultLanguage ? originalPath : `/${language}${page.path}`
+
+      createRedirect({
+        fromPath: originalPath,
+        toPath: localizedPath,
+        Language: language,
+        isPermanent: false,
+        redirectInBrowser: process.env.NODE_ENV === 'development',
+        statusCode: 302,
+      })
 
       await createPage({
         ...page,
@@ -166,13 +175,16 @@ const createLocalizedPage = async (page, createPage) => {
   )
 }
 
-exports.onCreatePage = async ({ page, actions: { createPage, deletePage } }) => {
+exports.onCreatePage = async ({
+  page,
+  actions: { createPage, deletePage, createRedirect },
+}) => {
   await deletePage(page)
-  await createLocalizedPage(page, createPage)
+  await createLocalizedPage(page, createPage, createRedirect)
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
 
   const result = await graphql(`
     query {
@@ -205,6 +217,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         },
       },
       createPage,
+      createRedirect,
     )
   })
 }
