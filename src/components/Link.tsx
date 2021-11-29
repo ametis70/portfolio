@@ -19,8 +19,14 @@ const Link: React.FC<LinkProps> = ({ external = false, href, to, ...rest }) => {
       if (!to) throw new Error('No to prop provided for internal link')
       const localizedTo = language !== defaultLanguage ? `/${language}${to}` : to
       return (
-        // @ts-ignore
-        <ChakraLink as={GatsbyLink} hrefLang={language} to={localizedTo} {...rest} />
+        <ChakraLink
+          // @ts-ignore
+          as={GatsbyLink}
+          hrefLang={language}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          to={localizedTo}
+          {...rest}
+        />
       )
     }
   } catch (e) {
