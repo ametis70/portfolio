@@ -157,7 +157,7 @@ const createLocalizedPage = async (page, createPage, createRedirect) => {
         toPath: localizedPath,
         Language: language,
         isPermanent: false,
-        redirectInBrowser: process.env.NODE_ENV === 'development',
+        // redirectInBrowser: process.env.NODE_ENV === 'development',
         statusCode: 302,
       })
 
