@@ -15,23 +15,6 @@ const defaultTransition: Transition = {
   easing: 'easeInOut',
 }
 
-const headerVariants: Variants = {
-  compact: {
-    transition: {
-      ...defaultTransition,
-    },
-    width: '64px',
-  },
-  expanded: {
-    transition: {
-      ...defaultTransition,
-      when: 'afterChildren',
-      delay: 0.5,
-    },
-    width: '300px',
-  },
-}
-
 const Header: React.FC = (): JSX.Element => {
   const { colorMode } = useColorMode()
   const isHome = useStore((state) => state.isHome)
@@ -39,21 +22,14 @@ const Header: React.FC = (): JSX.Element => {
   return (
     <MotionBox
       as="header"
-      variants={headerVariants}
-      animate={isHome ? 'expanded' : 'compact'}
-      overflow={'hidden'}
+      variants={{ home: {}, page: {} }}
+      animate={isHome ? 'home' : 'page'}
       zIndex="999"
       position="fixed"
       w="64px"
       h="100vh"
       sx={{ transition: 'background-color 0.3s' }}
-      bg={
-        isHome
-          ? 'rgba(0, 0, 0, 0)'
-          : colorMode === 'dark'
-          ? 'amethyst.900'
-          : 'amethyst.50'
-      }
+      bg={colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50'}
     >
       <Grid
         templateRows="1fr 2fr 1fr"
@@ -64,14 +40,15 @@ const Header: React.FC = (): JSX.Element => {
         <MotionBox
           py="1rem"
           w="full"
+          initial={false}
           variants={{
-            expanded: {
-              transition: defaultTransition,
+            home: {
+              transition: { duration: 0.3 },
               opacity: 0,
               y: '-50%',
             },
-            compact: {
-              transition: defaultTransition,
+            page: {
+              transition: { duration: 0.3, delay: 0.4 },
               opacity: 1,
               y: '0%',
             },

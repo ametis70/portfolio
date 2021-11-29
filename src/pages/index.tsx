@@ -29,6 +29,7 @@ const IndexPage: React.FC<PageProps> = () => {
         animate={{ x: '0%', opacity: 1 }}
         initial={{ x: '-10%', opacity: 0 }}
         transition={{ duration: 0.5 }}
+        zIndex="1000"
       >
         <Link to="/" variant="icon">
           <Heading

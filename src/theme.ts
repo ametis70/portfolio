@@ -171,16 +171,45 @@ const theme = extendTheme({
     Link: {
       baseStyle: (props) => ({
         color: props.colorMode === 'dark' ? 'amethyst.400' : 'amethyst.500',
-        textDecoration: props.colorMode === 'dark' ? 'underline' : 'none',
+        textDecoration: 'none',
+        _hover: {
+          textDecoration: 'none',
+        },
       }),
       variants: {
+        body: (props) => ({
+          color: props.colorMode === 'dark' ? 'amethyst.400' : 'amethyst.500',
+          textDecoration: props.colorMode === 'dark' ? 'underline' : 'none',
+        }),
         icon: (props) => ({
           color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
+          background: props.colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50',
+        }),
+        navHover: (props) => ({
+          color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
+          background: props.colorMode === 'dark' ? 'amethyst.800' : 'amethyst.200',
+        }),
+        navActive: (props) => ({
+          color: props.colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50',
+          background: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
+        }),
+        navActiveHover: (props) => ({
+          color: props.colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50',
+          background: props.colorMode === 'dark' ? 'amethyst.200' : 'amethyst.800',
+        }),
+        back: (props) => ({
+          color: props.colorMode === 'dark' ? 'amethyst.50-70' : 'amethyst.900-70',
           textDecoration: 'none',
+          display: 'flex',
+          textStyle: 'smallCaps',
+          fontSize: 'lg',
+          alignItems: 'center',
           _hover: {
-            background: props.colorMode === 'dark' ? 'amethyst.800' : 'amethyst.200',
+            textDecoration: 'none',
+            opacity: 0.8,
           },
         }),
+
         center: {
           display: 'block',
           mx: 'auto',
