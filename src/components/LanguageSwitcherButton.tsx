@@ -1,31 +1,18 @@
 import { navigate } from 'gatsby'
 import { BiGlobe } from 'react-icons/bi'
-import { Text, Button, useColorMode } from '@chakra-ui/react'
-import { useTranslation } from 'react-i18next'
-import { useLocation } from '@reach/router'
-import useI18NextConfig from '../hooks/useI18NextConfig'
+import { Text, Button } from '@chakra-ui/react'
+import useI18Next from '../hooks/useI18Next'
+import { usePageContext } from '../hooks/usePageContext'
 
 const LanguageSwitcherButton: React.FC = () => {
-  const { i18n } = useTranslation()
-  const location = useLocation()
-  const { defaultLanguage, languages } = useI18NextConfig()
-  const { t } = useTranslation('common')
+  const { originalPath, language } = usePageContext()
+  const { t } = useI18Next('common')
 
-  const spanish = i18n.language === 'es'
+  const spanish = language === 'es'
 
   const switchLanguage = () => {
-    spanish ? i18n.changeLanguage('en') : i18n.changeLanguage('es')
-    const langPart = location.pathname.split('/')[1]
-
-    if (i18n.language === defaultLanguage) {
-      if (languages.some((l) => l === langPart)) {
-        const routeWithoutLang = location.pathname.slice(3, location.pathname.length)
-        navigate(routeWithoutLang)
-      }
-    } else {
-      if (location.pathname.slice(0, 3) !== `/${i18n.language}`) {
-        navigate(`/${i18n.language}${location.pathname}`)
-      }
+    if (originalPath) {
+      navigate(spanish ? originalPath : `/es${originalPath}`)
     }
   }
 
@@ -38,7 +25,9 @@ const LanguageSwitcherButton: React.FC = () => {
       fontWeight="regular"
       onClick={() => switchLanguage()}
       aria-label={t('ui.switch_language_to', {
-        language: spanish ? t('languages.english') : t('languages.spanish'),
+        language: spanish
+          ? t('languages.english', { ns: 'common' })
+          : t('languages.spanish', { ns: 'common' }),
         ns: 'common',
       })}
       leftIcon={<BiGlobe />}

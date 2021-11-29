@@ -1,16 +1,14 @@
 import React from 'react'
 import { GatsbyLinkProps } from 'gatsby'
-import { useTranslation } from 'react-i18next'
 import { Link as GatsbyLink } from 'gatsby'
 import { Link as ChakraLink, LinkProps as ChakraLinkProps } from '@chakra-ui/react'
-import useI18NextConfig from '../hooks/useI18NextConfig'
+import { usePageContext } from '../hooks/usePageContext'
 
 export type LinkProps = { external?: boolean } & Partial<ChakraLinkProps> &
   Partial<GatsbyLinkProps<null>>
 
 const Link: React.FC<LinkProps> = ({ external = false, href, to, ...rest }) => {
-  const { i18n } = useTranslation()
-  const { defaultLanguage } = useI18NextConfig()
+  const { language, defaultLanguage } = usePageContext()
 
   try {
     if (external) {
@@ -19,11 +17,10 @@ const Link: React.FC<LinkProps> = ({ external = false, href, to, ...rest }) => {
       return <ChakraLink isExternal href={href} {...rest} />
     } else {
       if (!to) throw new Error('No to prop provided for internal link')
-      const localizedTo =
-        i18n.language !== defaultLanguage ? `/${i18n.language}${to}` : to
+      const localizedTo = language !== defaultLanguage ? `/${language}${to}` : to
       return (
         // @ts-ignore
-        <ChakraLink as={GatsbyLink} hrefLang={i18n.language} to={localizedTo} {...rest} />
+        <ChakraLink as={GatsbyLink} hrefLang={language} to={localizedTo} {...rest} />
       )
     }
   } catch (e) {

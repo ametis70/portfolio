@@ -36,7 +36,7 @@ const ExperienceCard: React.VFC<TFunctionProps & { data: ExperienceItem[] }> = (
         ))}
       </Card.OrderedList>
       <Link variant="cta" to="/works">
-        {t('ui.works_cta', { ns: 'common' })}
+        {t('works_cta', { ns: 'about' })}
       </Link>
     </Card.Container>
   )

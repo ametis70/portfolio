@@ -19,7 +19,8 @@ type DisplayContent = {
 
 type PageContext = {
   originalPath: string
-  lang: string
+  language: string
+  defaultLanguage: string
 }
 
 type AllTranslationQuery = {

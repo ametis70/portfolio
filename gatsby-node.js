@@ -159,6 +159,7 @@ const createLocalizedPage = async (page, createPage) => {
           ...page.context,
           originalPath,
           language,
+          defaultLanguage: i18n.defaultLanguage,
         },
       })
     }),
