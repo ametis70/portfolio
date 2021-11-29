@@ -1,17 +1,24 @@
-import { graphql, PageProps } from 'gatsby'
+import { useIsPresent, Variants } from 'framer-motion'
+import { Heading } from '@chakra-ui/react'
 
 import SEO from '../components/Seo'
 import MotionBox from '../components/MotionBox'
 
 import useMoveCamera, { cameraPositions } from '../hooks/useMoveCamera'
 import useDisplay, { displayStatus, displayContentTypes } from '../hooks/useDisplay'
-import React from 'react'
-import { Heading } from '@chakra-ui/react'
 import Link from '../components/Link'
+
 import useI18Next from '../hooks/useI18Next'
 
-const IndexPage: React.FC<PageProps> = () => {
+const headingVariants: Variants = {
+  exit: { x: '10%', opacity: 0, transition: { duration: 0.1 } },
+  enter: { x: '0%', opacity: 1, transition: { duration: 0.2, delay: 0.5 } },
+}
+
+const IndexPage: React.FC = () => {
   const { t } = useI18Next()
+  const isPresent = useIsPresent()
+
   useDisplay(displayStatus.ON, displayContentTypes.BLANK)
   useMoveCamera(cameraPositions.CLOSE)
 
@@ -19,19 +26,25 @@ const IndexPage: React.FC<PageProps> = () => {
     <>
       <SEO />
       <MotionBox
-        key="home-heading"
+        layoutId="index-heading"
         display="block"
         position="absolute"
         top="0"
         px={4}
         py={4}
-        exit={{ x: '10%', opacity: 0 }}
-        animate={{ x: '0%', opacity: 1 }}
+        variants={headingVariants}
+        exit="exit"
+        animate={isPresent ? 'enter' : 'exit'}
         initial={{ x: '-10%', opacity: 0 }}
-        transition={{ duration: 0.5 }}
         zIndex="1000"
       >
-        <Link to="/" variant="icon">
+        <Link
+          to="/"
+          variant="icon"
+          background="transparent"
+          _hover={{ background: 'transparent' }}
+          tabIndex={1}
+        >
           <Heading
             as="h1"
             textTransform="uppercase"
@@ -48,7 +61,6 @@ const IndexPage: React.FC<PageProps> = () => {
             fontSize={['xl', '2xl', 'xl']}
             letterSpacing="0.065em"
             fontWeight="300"
-            pb="2rem"
           >
             {t('job', { ns: 'common' })}
           </Heading>

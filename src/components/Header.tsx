@@ -10,11 +10,6 @@ import useStore from '../store'
 import Logo from '../images/logo.inline.svg'
 import LanguageSwitcherButton from './LanguageSwitcherButton'
 
-const defaultTransition: Transition = {
-  duration: 0.35,
-  easing: 'easeInOut',
-}
-
 const Header: React.FC = (): JSX.Element => {
   const { colorMode } = useColorMode()
   const isHome = useStore((state) => state.isHome)
@@ -22,14 +17,22 @@ const Header: React.FC = (): JSX.Element => {
   return (
     <MotionBox
       as="header"
-      variants={{ home: {}, page: {} }}
+      variants={{
+        home: { backgroundColor: 'rgba(0, 0, 0, 0)', transition: { delay: 2 } },
+        page: {
+          backgroundColor:
+            colorMode === 'dark'
+              ? 'var(--chakra-colors-amethyst-900)'
+              : 'var(--chakra-colors-amethyst-50)',
+        }, // @ts-ignore
+        transition: { duration: 0.01 },
+      }}
       animate={isHome ? 'home' : 'page'}
       zIndex="999"
       position="fixed"
       w="64px"
       h="100vh"
-      sx={{ transition: 'background-color 0.3s' }}
-      bg={colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50'}
+      sx={{ transition: 'background ease-out 0.3s, color ease-out 0.3s' }}
       pt={2}
     >
       <Grid
@@ -54,7 +57,7 @@ const Header: React.FC = (): JSX.Element => {
             },
           }}
         >
-          <Link to="/" variant="icon">
+          <Link to="/" variant="icon" bg="inherit" tabIndex={isHome ? -1 : 0}>
             <Image bg="inherit" py={2} px={2} w="64px" color="currentColor" as={Logo} />
           </Link>
         </MotionBox>

@@ -16,6 +16,7 @@ import '@fontsource/montserrat/400.css'
 import '@fontsource/montserrat/500.css'
 import '@fontsource/montserrat/600.css'
 import ContentContainer from './ContentContainer'
+import IndexPage from '../pages'
 
 const Layout: React.FC<PageProps<null, PageContext>> = ({
   path,
@@ -40,7 +41,9 @@ const Layout: React.FC<PageProps<null, PageContext>> = ({
 
         <AnimatePresence exitBeforeEnter>
           {originalPath === '/' ? (
-            <motion.div key="/">{children}</motion.div>
+            <motion.div key="/">
+              <IndexPage />
+            </motion.div>
           ) : (
             <ContentBackground key="content-background">
               <AnimatePresence exitBeforeEnter>
