@@ -1,9 +1,9 @@
 import { graphql } from 'gatsby'
-import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { Heading } from '@chakra-ui/react'
 
 import SEO from '../components/Seo'
 import Cards from '../components/Cards'
+import Block from '../components/Block'
 
 import useMoveCamera, { cameraPositions } from '../hooks/useMoveCamera'
 import useDisplay, { displayStatus, displayContentTypes } from '../hooks/useDisplay'
@@ -26,12 +26,16 @@ const WorksPage: React.FC<WorksPageProps> = ({ data, pageContext }) => {
   return (
     <>
       <SEO title="Trabajos" />
-      <Heading variant="smallcaps" size="sectionTitle">
-        {t('sections.works', { ns: 'common' })}
-      </Heading>
+      <Block>
+        <Heading variant="smallcaps" size="sectionTitle">
+          {t('sections.works', { ns: 'common' })}
+        </Heading>
+      </Block>
 
       <Cards.WorksIndex t={t} />
-      <WorksIndex data={data.allDatoCmsWork.edges} />
+      <Block>
+        <WorksIndex data={data.allDatoCmsWork.edges} />
+      </Block>
     </>
   )
 }
@@ -56,7 +60,12 @@ export const query = graphql`
             path
           }
           banner {
-            gatsbyImageData(width: 600, placeholder: BLURRED, forceBlurhash: true)
+            gatsbyImageData(
+              width: 300
+              imgixParams: { w: "300" }
+              placeholder: BLURRED
+              forceBlurhash: true
+            )
           }
         }
       }

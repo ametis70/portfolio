@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import { PageProps } from 'gatsby'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Flex } from '@chakra-ui/react'
 
 import Header from './Header'
 import Canvas from './Canvas'
 import DisplayCanvas from './DisplayCanvas'
-import ChildrenContainer from './ChildrenContainer'
+import ContentBackground from './ContentBackground'
 
 import useStore from '../store'
 import { PageContextProvider } from '../hooks/usePageContext'
@@ -15,6 +15,7 @@ import useCommonTranslations from '../hooks/useCommonTranslations'
 import '@fontsource/montserrat/400.css'
 import '@fontsource/montserrat/500.css'
 import '@fontsource/montserrat/600.css'
+import ContentContainer from './ContentContainer'
 
 const Layout: React.FC<PageProps<null, PageContext>> = ({
   path,
@@ -38,15 +39,15 @@ const Layout: React.FC<PageProps<null, PageContext>> = ({
         <Header key="header" />
 
         <AnimatePresence exitBeforeEnter>
-          <ChildrenContainer
-            exit={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-            key={originalPath === '/' ? '/' : path}
-          >
-            {children}
-          </ChildrenContainer>
+          {originalPath === '/' ? (
+            <motion.div key="/">{children}</motion.div>
+          ) : (
+            <ContentBackground key="content-background">
+              <AnimatePresence exitBeforeEnter>
+                <ContentContainer key={path}>{children}</ContentContainer>
+              </AnimatePresence>
+            </ContentBackground>
+          )}
         </AnimatePresence>
       </Flex>
       <DisplayCanvas />

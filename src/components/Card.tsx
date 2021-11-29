@@ -12,11 +12,17 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 
+import Block from './Block'
+
 export const Card: Record<string, React.FC<any>> = {
   Container: ({ children, pad }) => {
     const { colorMode } = useColorMode()
     return (
-      <Box px={12} w="100%" my={4}>
+      <Block
+        px={12}
+        w="100%"
+        my={4}
+      >
         <Box
           bg={colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50'}
           w="100%"
@@ -25,7 +31,7 @@ export const Card: Record<string, React.FC<any>> = {
         >
           {children}
         </Box>
-      </Box>
+      </Block>
     )
   },
 

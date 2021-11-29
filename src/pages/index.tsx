@@ -23,9 +23,12 @@ const IndexPage: React.FC<PageProps> = () => {
         display="block"
         position="absolute"
         top="0"
-        left="-64px"
         px={4}
         py={4}
+        exit={{ x: '10%', opacity: 0 }}
+        animate={{ x: '0%', opacity: 1 }}
+        initial={{ x: '-10%', opacity: 0 }}
+        transition={{ duration: 0.5 }}
       >
         <Link to="/" variant="icon">
           <Heading

@@ -3,7 +3,7 @@ import { useColorMode } from '@chakra-ui/react'
 import MotionBox, { MotionBoxProps } from './MotionBox'
 import useStore from '../store'
 
-const ChildrenContainer: React.FC<MotionBoxProps> = ({ children, ...props }) => {
+const ContentBackground: React.FC<MotionBoxProps> = ({ children, ...props }) => {
   const isHome = useStore((state) => state.isHome)
   const { colorMode } = useColorMode()
   return (
@@ -15,9 +15,12 @@ const ChildrenContainer: React.FC<MotionBoxProps> = ({ children, ...props }) => 
       justifyContent="flex-start"
       flex="0 1 560px"
       ml="64px"
-      bg={!isHome ? (colorMode === 'dark' ? 'overlay.dark' : 'overlay.light') : 'none'}
-      backdropFilter={!isHome ? 'blur(40px)' : 'none'}
-      py={8}
+      bg={colorMode === 'dark' ? 'overlay.dark' : 'overlay.light'}
+      backdropFilter="blur(40px)"
+      exit={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      transition={{ duration: 1 }}
       {...props}
     >
       {children}
@@ -25,4 +28,4 @@ const ChildrenContainer: React.FC<MotionBoxProps> = ({ children, ...props }) => 
   )
 }
 
-export default ChildrenContainer
+export default ContentBackground

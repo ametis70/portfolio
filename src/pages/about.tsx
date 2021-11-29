@@ -3,6 +3,7 @@ import { Heading } from '@chakra-ui/react'
 
 import Cards from '../components/Cards'
 import SEO from '../components/Seo'
+import Block from '../components/Block'
 
 import useMoveCamera, { cameraPositions } from '../hooks/useMoveCamera'
 import useI18Next from '../hooks/useI18Next'
@@ -39,9 +40,11 @@ const AboutPage: React.FC<LocalizedPageProps<AboutPageData>> = ({
   return (
     <>
       <SEO title="Acerca" />
-      <Heading variant="smallcaps" size="sectionTitle">
-        {t('sections.about', { ns: 'common' })}
-      </Heading>
+      <Block>
+        <Heading variant="smallcaps" size="sectionTitle">
+          {t('sections.about', { ns: 'common' })}
+        </Heading>
+      </Block>
 
       <Cards.Hero t={t} />
       <Cards.About text={data.datoCmsAbout.about} />
