@@ -8,10 +8,13 @@ import useDisplay, { displayStatus, displayContentTypes } from '../hooks/useDisp
 import React from 'react'
 import { Heading } from '@chakra-ui/react'
 import Link from '../components/Link'
+import useI18Next from '../hooks/useI18Next'
 
 const IndexPage: React.FC<PageProps> = () => {
+  const { t } = useI18Next()
   useDisplay(displayStatus.ON, displayContentTypes.BLANK)
   useMoveCamera(cameraPositions.CLOSE)
+
   return (
     <>
       <SEO />
@@ -23,9 +26,6 @@ const IndexPage: React.FC<PageProps> = () => {
         left="-64px"
         px={4}
         py={4}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
       >
         <Link to="/" variant="icon">
           <Heading
@@ -46,7 +46,7 @@ const IndexPage: React.FC<PageProps> = () => {
             fontWeight="300"
             pb="2rem"
           >
-            Diseño y desarrollo web
+            {t('job', { ns: 'common' })}
           </Heading>
         </Link>
       </MotionBox>

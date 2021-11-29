@@ -43,7 +43,7 @@ const Layout: React.FC<PageProps<null, PageContext>> = ({
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
             transition={{ duration: 1 }}
-            key={path}
+            key={originalPath === '/' ? '/' : path}
           >
             {children}
           </ChildrenContainer>
