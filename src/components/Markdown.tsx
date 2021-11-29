@@ -1,12 +1,17 @@
 import ReactMarkdown, { Options } from 'react-markdown'
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer'
-import { Text } from '@chakra-ui/react'
+import { Text, Link } from '@chakra-ui/react'
 
 const defaultStyles = {
   p: ({ children }) => (
     <Text fontSize="md" mb={4}>
       {children}
     </Text>
+  ),
+  a: ({ children }) => (
+    <Link external fontSize="md" variant="body">
+      {children}
+    </Link>
   ),
 }
 

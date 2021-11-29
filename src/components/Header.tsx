@@ -30,6 +30,7 @@ const Header: React.FC = (): JSX.Element => {
       h="100vh"
       sx={{ transition: 'background-color 0.3s' }}
       bg={colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50'}
+      pt={2}
     >
       <Grid
         templateRows="1fr 2fr 1fr"
@@ -38,7 +39,6 @@ const Header: React.FC = (): JSX.Element => {
         h="100%"
       >
         <MotionBox
-          py="1rem"
           w="full"
           initial={false}
           variants={{
@@ -55,7 +55,7 @@ const Header: React.FC = (): JSX.Element => {
           }}
         >
           <Link to="/" variant="icon">
-            <Image px={2} w="64px" color="currentColor" as={Logo} />
+            <Image bg="inherit" py={2} px={2} w="64px" color="currentColor" as={Logo} />
           </Link>
         </MotionBox>
 

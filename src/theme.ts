@@ -184,6 +184,18 @@ const theme = extendTheme({
         icon: (props) => ({
           color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
           background: props.colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50',
+          display: 'block',
+          w: 'fit-content',
+          h: 'fit-content',
+          outline: 'none',
+          _focus: {
+            outline: 'none',
+            boxShadow: 'none',
+            background: props.colorMode === 'dark' ? 'amethyst.800' : 'amethyst.200',
+          },
+          _hover: {
+            background: props.colorMode === 'dark' ? 'amethyst.800' : 'amethyst.200',
+          },
         }),
         navHover: (props) => ({
           color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
