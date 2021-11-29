@@ -43,12 +43,25 @@ type TFunctionWithGetProps = TFunctionProps & {
   get: BundleGetFunction
 }
 
-type LocalizedPageProps<T> = import('gatsby').PageProps<
+type LocalizedPageProps<T = {}> = import('gatsby').PageProps<
   { allTranslation: AllTranslationQuery } & T,
   { language: string }
 >
 
+type DatoCmsEducationItem = {
+  start: string
+  end?: string
+  name: string
+  school: string
+  link?: string
+}
+
 type IGatsbyImageData = import('gatsby-plugin-image').IGatsbyImageData
+
+type DatoCmsImage = Array<{
+  path: string
+  gatsbyImageData: IGatsbyImageData
+}>
 
 // Type for work items in /works page
 type WorksIndexData = {

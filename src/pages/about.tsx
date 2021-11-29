@@ -7,7 +7,32 @@ import SEO from '../components/Seo'
 import useMoveCamera, { cameraPositions } from '../hooks/useMoveCamera'
 import useI18Next from '../hooks/useI18Next'
 
-const AboutPage: React.FC<LocalizedPageProps> = ({ data, pageContext }) => {
+type AboutPageData = {
+  datoCmsAbout: {
+    education: Array<{
+      category: string
+      items: DatoCmsEducationItem[]
+    }>
+    experience: Array<{
+      role: string
+      start: string
+      end?: string
+      company: string
+      description: string
+    }>
+    about: string
+    city: string
+    skills: Array<{
+      skills: string
+      category: string
+    }>
+  }
+}
+
+const AboutPage: React.FC<LocalizedPageProps<AboutPageData>> = ({
+  data,
+  pageContext,
+}) => {
   useMoveCamera(cameraPositions.FRONT)
   const { fixedT: t } = useI18Next(pageContext.language, data.allTranslation)
 

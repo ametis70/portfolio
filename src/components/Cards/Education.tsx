@@ -2,24 +2,16 @@ import { Box } from '@chakra-ui/react'
 import { printAgeRange } from '../../util'
 import { Card } from '../Card'
 
-type EducationItemProps = {
-  start: string
-  end?: string
-  name: string
-  school: string
-  link?: string
-}
-
 type EducationGroup = {
   category: string
-  items: EducationItemProps[]
+  items: DatoCmsEducationItem[]
 }
 
 const EducationCard: React.VFC<TFunctionProps & { data: EducationGroup[] }> = ({
   t,
   data,
 }) => {
-  const EducationItem: React.FC<{ item: EducationItemProps }> = ({ item }) => (
+  const EducationItem: React.FC<{ item: DatoCmsEducationItem }> = ({ item }) => (
     <Card.OrderedList>
       <Card.ListItem key={item.name}>
         <Card.IndentBox>
