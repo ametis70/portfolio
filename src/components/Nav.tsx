@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Icon as ChakraIcon, useColorMode, useTheme } from '@chakra-ui/react'
+import { Icon as ChakraIcon, useColorMode } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { BiUser, BiBriefcase, BiMessageDetail } from 'react-icons/bi'
 import { useFocus, useHover } from '@react-aria/interactions'
@@ -18,8 +18,6 @@ const NavLink: React.FC<{ to: string; Icon: React.FC }> = ({ to, Icon, children 
   const { focusProps } = useFocus({ onFocusChange: (e) => setOpen(e) })
 
   const { originalPath } = usePageContext()
-  const { colorMode } = useColorMode()
-  const { colors } = useTheme()
 
   const active = originalPath!.includes(to)
 
@@ -29,7 +27,7 @@ const NavLink: React.FC<{ to: string; Icon: React.FC }> = ({ to, Icon, children 
     px: '16px',
     py: 4,
     textTransform: 'uppercase',
-    transition: 'all ease-in-out 0.2s',
+    transition: 'all ease-out 0.3s',
     fontWeight: 'medium',
     _focus: { outline: 'none' },
     variant: open

@@ -1,4 +1,12 @@
-import { Box, Flex, Icon, SimpleGrid, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  Icon,
+  ListItem,
+  SimpleGrid,
+  Text,
+  UnorderedList,
+} from '@chakra-ui/react'
 import { BiCategoryAlt, BiCalendar, BiWrench } from 'react-icons/bi'
 import { Card } from '../Card'
 import Markdown from '../Markdown'
@@ -26,7 +34,14 @@ const WorkCard: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, data 
         />
         <SummaryItem icon={BiWrench} tKey="works.role" value={data.role} />
       </Box>
-      <Card.Title>{t('description', { ns: 'works' })}</Card.Title>
+
+      <UnorderedList listStyleType="none" variant="tagList">
+        {data.tags.split(',').map((t) => (
+          <ListItem key={t}> {t} </ListItem>
+        ))}
+      </UnorderedList>
+
+      <Card.Title>{t('works.description', { ns: 'common' })}</Card.Title>
       <Card.Divider />
       <Card.Truncate t={t}>
         <Card.IndentBox>

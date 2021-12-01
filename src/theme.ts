@@ -146,6 +146,13 @@ const theme = extendTheme({
           fontWeight: 'semiBold',
           ...smallCaps,
         },
+        galleryHeading: (props) => ({
+          ...smallCaps,
+          textAlign: 'center',
+          color: props.colorMode === 'dark' ? 'amethyst.50-70' : 'amethyst.900-70',
+          pb: 4,
+          size: 'md',
+        }),
       },
       sizes: {
         sectionTitle: {
@@ -183,7 +190,7 @@ const theme = extendTheme({
         }),
         icon: (props) => ({
           color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
-          background: props.colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50',
+          background: 'inherit',
           display: 'block',
           w: 'fit-content',
           h: 'fit-content',
@@ -266,10 +273,9 @@ const theme = extendTheme({
             flexWrap: 'wrap',
             listStyleType: 'none',
             justifyContent: 'center',
-            layerStyle: 'container',
           },
           item: {
-            bg: props.colorMode === 'dark' ? 'amethyst.900-50' : 'amethyst.50-50',
+            bg: props.colorMode === 'dark' ? 'amethyst.800' : 'amethyst.100',
             color: props.colorMode === 'dark' ? 'amethyst.50-70' : 'amethyst.900-70',
             fontSize: 'sm',
             w: 'fit-content',

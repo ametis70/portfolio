@@ -58,7 +58,7 @@ type DatoCmsEducationItem = {
 
 type IGatsbyImageData = import('gatsby-plugin-image').IGatsbyImageData
 
-type DatoCmsImage = Array<{
+type DatoCmsImages = Array<{
   path: string
   gatsbyImageData: IGatsbyImageData
 }>
@@ -71,11 +71,10 @@ type WorksIndexData = {
     finishDate: string
     gradient: string
     logo: {
+      // SVG
       path: string
     }
-    banner: {
-      gatsbyImageData: IGatsbyImageData
-    }
+    banner: DatoCmsImages
   }
 }
 
@@ -92,10 +91,8 @@ type WorkPageData = {
   secondaryLink: string
   secondaryLinkText: string
   tags: string
-  desktopScreenshots: {
-    gatsbyImageData: IGatsbyImageData
-  }
-  mobileScreenshots: {
-    gatsbyImageData: IGatsbyImageData
-  }
+  desktopScreenshots: DatoCmsImages
+  mobileScreenshots: DatoCmsImages
+  desktopThumbnails: DatoCmsImages
+  mobileThumbnails: DatoCmsImages
 }
