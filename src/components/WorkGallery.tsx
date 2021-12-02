@@ -85,6 +85,7 @@ const WorkGallery: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, da
         onClose={onClose}
         isOpen={isOpen}
         query={value}
+        update={update}
       />
     </Block>
   )
