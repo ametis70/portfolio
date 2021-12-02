@@ -1,6 +1,7 @@
 import { Box, Divider, Heading, SimpleGrid, useDisclosure } from '@chakra-ui/react'
 import { Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
+import { useState } from 'react'
 import useQueryParam from '../hooks/useQueryParam'
 
 import Block from './Block'
@@ -9,6 +10,12 @@ import WorkGalleryModal from './WorkGalleryModal'
 const WorkGallery: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, data }) => {
   const { desktopThumbnails, mobileThumbnails } = data
   const { value, update } = useQueryParam('gallery')
+
+  let _images: DatoCmsImages = []
+  if (data.desktopScreenshots) _images = [..._images, ...data.desktopScreenshots]
+  if (data.mobileScreenshots) _images = [..._images, ...data.mobileScreenshots]
+
+  const [images] = useState<DatoCmsImages>(_images)
 
   const { isOpen, onClose } = useDisclosure({
     isOpen: value !== null,
@@ -31,6 +38,7 @@ const WorkGallery: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, da
       />
     </Link>
   )
+
 
   return (
     <Block>
@@ -86,6 +94,7 @@ const WorkGallery: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, da
         isOpen={isOpen}
         query={value}
         update={update}
+        images={images}
       />
     </Block>
   )
