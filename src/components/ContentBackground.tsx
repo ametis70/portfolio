@@ -1,10 +1,8 @@
 import { useColorMode } from '@chakra-ui/react'
 
 import MotionBox, { MotionBoxProps } from './MotionBox'
-import useStore from '../store'
 
 const ContentBackground: React.FC<MotionBoxProps> = ({ children, ...props }) => {
-  const isHome = useStore((state) => state.isHome)
   const { colorMode } = useColorMode()
   return (
     <MotionBox

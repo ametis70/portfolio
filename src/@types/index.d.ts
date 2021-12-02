@@ -58,10 +58,13 @@ type DatoCmsEducationItem = {
 
 type IGatsbyImageData = import('gatsby-plugin-image').IGatsbyImageData
 
-type DatoCmsImages = Array<{
+type DatoCmsImage = {
   path: string
+  basename: string
   gatsbyImageData: IGatsbyImageData
-}>
+}
+
+type DatoCmsImages = DatoCmsImage[]
 
 // Type for work items in /works page
 type WorksIndexData = {

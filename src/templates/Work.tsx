@@ -79,30 +79,16 @@ export const query = graphql`
       secondaryLinkText
       tags
       desktopScreenshots {
-        path
-        gatsbyImageData(placeholder: BLURRED, forceBlurhash: true)
+        ...DesktopScreenshots
       }
       mobileScreenshots {
-        path
-        gatsbyImageData(placeholder: BLURRED, forceBlurhash: true)
+        ...MobileScreenshots
       }
       desktopThumbnails: desktopScreenshots {
-        path
-        gatsbyImageData(
-          width: 300
-          imgixParams: { w: "300" }
-          placeholder: BLURRED
-          forceBlurhash: true
-        )
+        ...DesktopThumbnails
       }
       mobileThumbnails: mobileScreenshots {
-        path
-        gatsbyImageData(
-          height: 300
-          imgixParams: { h: "300" }
-          placeholder: BLURRED
-          forceBlurhash: true
-        )
+        ...MobileThumbnails
       }
     }
   }

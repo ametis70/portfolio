@@ -9,7 +9,7 @@ const Root: React.FC<{ element: JSX.Element }> = ({ element }) => {
   const methods = useForm()
 
   return (
-    <ChakraProvider theme={theme} resetCSS portalZIndex={40}>
+    <ChakraProvider theme={theme} resetCSS portalZIndex={9999}>
       <I18nextProvider i18n={i18n}>
         <FormProvider {...methods}>{element}</FormProvider>
       </I18nextProvider>
