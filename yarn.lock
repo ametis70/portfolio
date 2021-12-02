@@ -6863,7 +6863,7 @@ fs.realpath@^1.0.0:
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
 
-fsevents@~2.3.2:
+fsevents@*, fsevents@~2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
   integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
@@ -11815,6 +11815,13 @@ react-merge-refs@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-merge-refs/-/react-merge-refs-1.1.0.tgz#73d88b892c6c68cbb7a66e0800faa374f4c38b06"
   integrity sha512-alTKsjEL0dKH/ru1Iyn7vliS2QRcBp9zZPGoWxUOvRGWPUYgjo+V01is7p04It6KhgrzhJGnIj9GgX8W4bZoCQ==
+
+react-prismazoom@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/react-prismazoom/-/react-prismazoom-2.0.3.tgz#d592db06bb47587ee23137a7f9c821b45c08af50"
+  integrity sha512-WKzjFKGoWK5pIKb//leiD20RxXZdILfj7x4GLzylmCwGgo0yzsIDrd/df8RzQSoCSckAO2yF8Z88weywIUyx2g==
+  optionalDependencies:
+    fsevents "*"
 
 react-reconciler@^0.26.2:
   version "0.26.2"

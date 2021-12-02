@@ -1,15 +1,14 @@
 import {
-  Button,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/react'
 import { GatsbyImage } from 'gatsby-plugin-image'
-import useQueryParam from '../hooks/useQueryParam'
+
+import PrismaZoom from 'react-prismazoom'
 
 const WorkGalleryModal: React.VFC<
   TFunctionProps & {
@@ -26,27 +25,30 @@ const WorkGalleryModal: React.VFC<
   return (
     <Modal onClose={onClose} size="full" isOpen={isOpen}>
       <ModalOverlay backdropFilter="blur(40px)" />
-      <ModalContent bg="transparent">
+      <ModalContent bg="transparent" h="100vh" display="flex" flexDirection="column">
         <ModalHeader
           bg="amethyst.50"
           display="flex"
           alignItems="center"
           justifyContent="space-between"
+          flex="0 0 64px"
         >
           {`${data.title} — ${t('ui.gallery', { ns: 'common' })}`}
           <ModalCloseButton position="static" borderRadius="none" />
         </ModalHeader>
-        <ModalBody>
+        <ModalBody flex="1 1 100%" overflow="hidden">
           {query && query[0] ? (
-            <GatsbyImage
-              alt={t('ui.screenshot_of', { ns: 'common', project: data.title })}
-              image={images.find((i) => i.basename === query[0])!.gatsbyImageData}
-            />
+            <PrismaZoom style={{ width: '100%', height: '100%' }}>
+                <GatsbyImage
+                  objectFit="contain"
+                  style={{ width: '100%', height: '100%' }}
+                  imgStyle={{ width: '100%', height: '100%' }}
+                  alt={t('ui.screenshot_of', { ns: 'common', project: data.title })}
+                  image={images.find((i) => i.basename === query[0])!.gatsbyImageData}
+                />
+            </PrismaZoom>
           ) : null}
         </ModalBody>
-        <ModalFooter>
-          <Button onClick={onClose}>Close</Button>
-        </ModalFooter>
       </ModalContent>
     </Modal>
   )
