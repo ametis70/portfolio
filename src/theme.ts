@@ -246,9 +246,9 @@ const theme = extendTheme({
         }),
         workSecondary: (props) => ({
           ...workMainLink,
-          borderStyle: 'solid',
-          borderWidth: '3px',
-          borderColor: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
+          outlineWidth: '3px',
+          outlineOffset: '-3px',
+          outlineColor: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
           color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
           _hover: {
             textDecoration: 'none',
