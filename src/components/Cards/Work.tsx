@@ -35,7 +35,7 @@ const WorkCard: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, data 
         <SummaryItem icon={BiWrench} tKey="works.role" value={data.role} />
       </Box>
 
-      <UnorderedList listStyleType="none" variant="tagList">
+      <UnorderedList listStyleType="none" variant="tagList" pb={4}>
         {data.tags.split(',').map((t) => (
           <ListItem key={t}> {t} </ListItem>
         ))}
@@ -43,11 +43,15 @@ const WorkCard: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, data 
 
       <Card.Title>{t('works.description', { ns: 'common' })}</Card.Title>
       <Card.Divider />
-      <Card.Truncate t={t}>
-        <Card.IndentBox>
-          <Markdown>{data.description}</Markdown>
-        </Card.IndentBox>
-      </Card.Truncate>
+      {data.description.length < 280 ? (
+        <Markdown>{data.description}</Markdown>
+      ) : (
+        <Card.Truncate t={t}>
+          <Card.IndentBox>
+            <Markdown>{data.description}</Markdown>
+          </Card.IndentBox>
+        </Card.Truncate>
+      )}
     </Card.Container>
   )
 }

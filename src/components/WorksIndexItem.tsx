@@ -59,6 +59,7 @@ const WorksIndexItem: React.VFC<{ data: WorksIndexData }> = ({ data }) => {
               fontSize="md"
               fontWeight="semiBold"
               textTransform="uppercase"
+              textAlign="center"
             >
               {title}
             </Heading>
