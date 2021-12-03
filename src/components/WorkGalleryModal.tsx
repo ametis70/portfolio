@@ -48,7 +48,6 @@ const WorkGalleryModal: React.VFC<
   }
 
   useEffect(() => {
-    console.log(selectedImage.current)
     if (selectedImage.current) {
       selectedImage.current.scrollIntoView({
         behavior: 'smooth',

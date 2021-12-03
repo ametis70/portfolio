@@ -11,8 +11,6 @@ const WorkGallery: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, da
   const { desktopThumbnails, mobileThumbnails } = data
   const { value, update } = useQueryParam('gallery')
 
-  console.log(mobileThumbnails)
-
   let _images: DatoCmsImages = []
   if (data.desktopScreenshots.length > 0)
     _images = [..._images, ...data.desktopScreenshots]
