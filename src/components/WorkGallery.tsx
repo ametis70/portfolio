@@ -11,9 +11,12 @@ const WorkGallery: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, da
   const { desktopThumbnails, mobileThumbnails } = data
   const { value, update } = useQueryParam('gallery')
 
+  console.log(mobileThumbnails)
+
   let _images: DatoCmsImages = []
-  if (data.desktopScreenshots) _images = [..._images, ...data.desktopScreenshots]
-  if (data.mobileScreenshots) _images = [..._images, ...data.mobileScreenshots]
+  if (data.desktopScreenshots.length > 0)
+    _images = [..._images, ...data.desktopScreenshots]
+  if (data.mobileScreenshots.length > 0) _images = [..._images, ...data.mobileScreenshots]
 
   const [images] = useState<DatoCmsImages>(_images)
 
@@ -39,7 +42,6 @@ const WorkGallery: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, da
     </Link>
   )
 
-
   return (
     <Block>
       <Box layerStyle="container" py={4}>
@@ -48,7 +50,7 @@ const WorkGallery: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, da
         </Heading>
         <Divider w="100%" mt={2} mb={6} />
 
-        {desktopThumbnails && mobileThumbnails ? (
+        {desktopThumbnails.length > 0 && mobileThumbnails.length > 0 ? (
           <Heading
             color="amethyst.900-70"
             as="h3"
@@ -67,7 +69,7 @@ const WorkGallery: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, da
           </SimpleGrid>
         ) : null}
 
-        {desktopThumbnails && mobileThumbnails ? (
+        {desktopThumbnails.length > 0 && mobileThumbnails.length > 0 ? (
           <Heading
             color="amethyst.900-70"
             as="h3"
@@ -78,7 +80,7 @@ const WorkGallery: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, da
           </Heading>
         ) : null}
 
-        {mobileThumbnails ? (
+        {mobileThumbnails.length > 0 ? (
           <SimpleGrid columns={3} spacing={4}>
             {mobileThumbnails.map((s) => (
               <Thumbnail key={s.path} image={s} />
