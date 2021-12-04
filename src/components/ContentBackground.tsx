@@ -20,8 +20,10 @@ const ContentBackground: React.FC<MotionBoxProps> = ({ children, ...props }) => 
       justifyContent="flex-start"
       flex="0 1 560px"
       m={use3D ? '0 0 0 64px' : '0 auto'}
-      bg={colorMode === 'dark' ? 'overlay.dark' : 'overlay.light'}
-      backdropFilter="blur(40px)"
+      bg={
+        !use3D ? 'transparent ' : colorMode === 'dark' ? 'overlay.dark' : 'overlay.light'
+      }
+      backdropFilter={use3D ? 'none' : 'blur(40px)'}
       exit={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}

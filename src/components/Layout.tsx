@@ -17,6 +17,7 @@ import useCommonTranslations from '../hooks/useCommonTranslations'
 import '@fontsource/montserrat/400.css'
 import '@fontsource/montserrat/500.css'
 import '@fontsource/montserrat/600.css'
+import SimpleBackground from './SimpleBackground'
 
 const Layout: React.FC<PageProps<null, PageContext>> = ({
   path,
@@ -40,7 +41,7 @@ const Layout: React.FC<PageProps<null, PageContext>> = ({
         <Header key="header" />
 
         <AnimatePresence>
-          {use3D ? <Canvas key="3d-bg" /> : null}
+          {use3D ? <Canvas key="3d-bg" /> : <SimpleBackground key="2d-bg" />}
           {originalPath === '/' ? (
             <motion.div key="/">
               <IndexPage />
