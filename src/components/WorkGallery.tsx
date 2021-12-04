@@ -1,10 +1,10 @@
 import { Box, Divider, Heading, SimpleGrid, useDisclosure } from '@chakra-ui/react'
-import { Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import { useState } from 'react'
 import useQueryParam from '../hooks/useQueryParam'
 
 import Block from './Block'
+import Link from './Link'
 import WorkGalleryModal from './WorkGalleryModal'
 
 const WorkGallery: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, data }) => {
@@ -49,12 +49,7 @@ const WorkGallery: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, da
         <Divider w="100%" mt={2} mb={6} />
 
         {desktopThumbnails.length > 0 && mobileThumbnails.length > 0 ? (
-          <Heading
-            color="amethyst.900-70"
-            as="h3"
-            variant="galleryHeading"
-            size="galleryHeading"
-          >
+          <Heading as="h3" variant="galleryHeading" size="galleryHeading">
             {t('ui.desktop', { ns: 'common' })}
           </Heading>
         ) : null}
@@ -68,12 +63,7 @@ const WorkGallery: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, da
         ) : null}
 
         {desktopThumbnails.length > 0 && mobileThumbnails.length > 0 ? (
-          <Heading
-            color="amethyst.900-70"
-            as="h3"
-            variant="galleryHeading"
-            size="galleryHeading"
-          >
+          <Heading as="h3" variant="galleryHeading" size="galleryHeading">
             {t('ui.mobile', { ns: 'common' })}
           </Heading>
         ) : null}
