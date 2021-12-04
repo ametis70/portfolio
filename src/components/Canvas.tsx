@@ -9,12 +9,20 @@ import Logo from './3d/Logo'
 import House from './3d/House'
 import Pc from './3d/Pc'
 import Camera from './3d/Camera'
+import MotionBox from './MotionBox'
 
 const Canvas: React.FC = () => {
   const ContextBridge = useContextBridge(ColorModeContext)
 
   return (
-    <Box w="100%" h="100vh" position="fixed">
+    <MotionBox
+      w="100%"
+      h="100vh"
+      position="fixed"
+      exit={{ opacity: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
       <DisplayCanvas />
       <ThreeCanvas
         style={{ width: '100%', height: '100%' }}
@@ -48,7 +56,7 @@ const Canvas: React.FC = () => {
           </Suspense>
         </ContextBridge>
       </ThreeCanvas>
-    </Box>
+    </MotionBox>
   )
 }
 

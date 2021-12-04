@@ -54,7 +54,7 @@ const CollapsibleButton: React.FC<{
           open: {
             width: 'fit-content',
             paddingLeft: '0.5rem',
-            paddingRight: '0.5rem',
+            paddingRight: '1rem',
             transition: {
               initial: false,
               duration: 0.2,

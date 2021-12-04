@@ -36,11 +36,11 @@ const Layout: React.FC<PageProps<null, PageContext>> = ({
 
   return (
     <PageContextProvider pageContext={pageContext}>
-      {use3D ? <Canvas /> : null}
       <Flex minH="100vh" w="100%" alignContent="flex-start" justifyContent="flex-start">
         <Header key="header" />
 
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence>
+          {use3D ? <Canvas key="3d-bg" /> : null}
           {originalPath === '/' ? (
             <motion.div key="/">
               <IndexPage />
