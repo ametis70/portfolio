@@ -62,6 +62,10 @@ const theme = extendTheme({
   radii: {
     none: 0,
   },
+  shadows: {
+    outline: '0 0 0 4px rgba(153, 102, 204, 0.8)',
+    darkOutline: '0 0 0 4px rgba(184, 148, 219, 0.8)',
+  },
   layerStyles: {
     container: {
       px: 12,
@@ -182,6 +186,9 @@ const theme = extendTheme({
         _hover: {
           textDecoration: 'none',
         },
+        _focus: {
+          boxShadow: props.colorMode === 'dark' ? 'darkOutline' : 'outline',
+        },
       }),
       variants: {
         body: (props) => ({
@@ -269,7 +276,7 @@ const theme = extendTheme({
         }),
         navButton: (props) => ({
           color: props.colorMode === 'dark' ? 'amethyst.50-50' : 'amethyst.900-50',
-          background: props.colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50',
+          background: 'inherit',
         }),
       },
     },
