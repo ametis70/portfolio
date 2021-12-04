@@ -8,6 +8,7 @@ import useStore from '../store'
 
 import Logo from '../images/logo.inline.svg'
 import LanguageSwitcherButton from './LanguageSwitcherButton'
+import BackgroundSwitcher from './BackgroundSwitcher'
 
 const Header: React.FC = (): JSX.Element => {
   const { colorMode } = useColorMode()
@@ -64,6 +65,7 @@ const Header: React.FC = (): JSX.Element => {
         <Nav />
 
         <Flex direction="column" alignItems="flex-start" justify="flex-end" pb={2}>
+          <BackgroundSwitcher />
           <LanguageSwitcherButton />
           <ColorModeButton />
         </Flex>

@@ -53,7 +53,7 @@ const CollapsibleButton: React.FC<{
         variants={{
           open: {
             width: 'calc(36rem / 4)',
-            paddingLeft: '1rem',
+            paddingLeft: '0.5rem',
             transition: {
               initial: false,
               duration: 0.2,
