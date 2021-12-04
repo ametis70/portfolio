@@ -5,18 +5,18 @@ import { Flex } from '@chakra-ui/react'
 
 import Header from './Header'
 import Canvas from './Canvas'
-import DisplayCanvas from './DisplayCanvas'
 import ContentBackground from './ContentBackground'
+import ContentContainer from './ContentContainer'
+import IndexPage from '../pages'
 
 import useStore from '../store'
+import usePersistentStore from '../store/persistent'
 import { PageContextProvider } from '../hooks/usePageContext'
 import useCommonTranslations from '../hooks/useCommonTranslations'
 
 import '@fontsource/montserrat/400.css'
 import '@fontsource/montserrat/500.css'
 import '@fontsource/montserrat/600.css'
-import ContentContainer from './ContentContainer'
-import IndexPage from '../pages'
 
 const Layout: React.FC<PageProps<null, PageContext>> = ({
   path,
@@ -25,17 +25,18 @@ const Layout: React.FC<PageProps<null, PageContext>> = ({
 }) => {
   useCommonTranslations()
   const setHome = useStore((state) => state.setHome)
+  const use3D = usePersistentStore((state) => state.use3D)
 
   const { originalPath } = pageContext
 
   useEffect(() => {
     if (originalPath === '/') setHome(true)
     else setHome(false)
-  }, [originalPath])
+  }, [setHome, originalPath])
 
   return (
     <PageContextProvider pageContext={pageContext}>
-      <Canvas />
+      {use3D ? <Canvas /> : null}
       <Flex minH="100vh" w="100%" alignContent="flex-start" justifyContent="flex-start">
         <Header key="header" />
 
@@ -53,7 +54,6 @@ const Layout: React.FC<PageProps<null, PageContext>> = ({
           )}
         </AnimatePresence>
       </Flex>
-      <DisplayCanvas />
     </PageContextProvider>
   )
 }

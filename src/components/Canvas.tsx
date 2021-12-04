@@ -1,18 +1,21 @@
 import { Suspense } from 'react'
 import { Canvas as ThreeCanvas } from '@react-three/fiber'
 import { Box, ColorModeContext } from '@chakra-ui/react'
+import { useContextBridge } from '@react-three/drei'
+
+import DisplayCanvas from './DisplayCanvas'
 
 import Logo from './3d/Logo'
 import House from './3d/House'
 import Pc from './3d/Pc'
 import Camera from './3d/Camera'
-import { useContextBridge } from '@react-three/drei'
 
 const Canvas: React.FC = () => {
   const ContextBridge = useContextBridge(ColorModeContext)
 
   return (
     <Box w="100%" h="100vh" position="fixed">
+      <DisplayCanvas />
       <ThreeCanvas
         style={{ width: '100%', height: '100%' }}
         camera={{

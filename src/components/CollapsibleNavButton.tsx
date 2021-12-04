@@ -52,8 +52,9 @@ const CollapsibleButton: React.FC<{
         w={0}
         variants={{
           open: {
-            width: 'calc(36rem / 4)',
+            width: 'fit-content',
             paddingLeft: '0.5rem',
+            paddingRight: '0.5rem',
             transition: {
               initial: false,
               duration: 0.2,
@@ -62,6 +63,8 @@ const CollapsibleButton: React.FC<{
           },
           closed: {
             width: 0,
+            paddingLeft: 0,
+            paddingRight: '0',
           },
         }}
         animate={isHome || open ? 'open' : 'closed'}
