@@ -141,7 +141,7 @@ exports.onCreateNode = async ({
   createContentDigest,
   reporter,
 }) => {
-  await downloadDatoCmsSvg(node)
+  downloadDatoCmsSvg(node)
   separateDatoCmsTranslations(node, actions, createNodeId, createContentDigest, reporter)
 }
 
@@ -152,14 +152,14 @@ const createLocalizedPage = async (page, createPage, createRedirect) => {
       const localizedPath =
         language === i18n.defaultLanguage ? originalPath : `/${language}${page.path}`
 
-      createRedirect({
-        fromPath: originalPath,
-        toPath: localizedPath,
-        Language: language,
-        isPermanent: false,
-        // redirectInBrowser: process.env.NODE_ENV === 'development',
-        statusCode: 302,
-      })
+      // createRedirect({
+      //   fromPath: originalPath,
+      //   toPath: localizedPath,
+      //   Language: language,
+      //   isPermanent: false,
+      //   // redirectInBrowser: process.env.NODE_ENV === 'development',
+      //   statusCode: 302,
+      // })
 
       await createPage({
         ...page,
