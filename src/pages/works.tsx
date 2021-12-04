@@ -49,7 +49,10 @@ export const query = graphql`
         }
       }
     }
-    allDatoCmsWork(filter: { locale: { eq: $language } }) {
+    allDatoCmsWork(
+      sort: { order: DESC, fields: priority }
+      filter: { locale: { eq: $language } }
+    ) {
       edges {
         node {
           title
