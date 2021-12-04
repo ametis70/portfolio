@@ -263,6 +263,14 @@ const theme = extendTheme({
       },
       variants: {
         cta: ctaVariant,
+        navHover: (props) => ({
+          color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
+          background: props.colorMode === 'dark' ? 'amethyst.800' : 'amethyst.200',
+        }),
+        navButton: (props) => ({
+          color: props.colorMode === 'dark' ? 'amethyst.50-50' : 'amethyst.900-50',
+          background: props.colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50',
+        }),
       },
     },
     List: {

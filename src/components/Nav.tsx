@@ -21,7 +21,7 @@ const NavLink: React.FC<{ to: string; Icon: React.FC }> = ({ to, Icon, children 
 
   const active = originalPath!.includes(to)
 
-  const linkStyles: Partial<LinkProps> = {
+  const linkStyles: LinkProps = {
     position: 'relative',
     width: 'full',
     px: '16px',

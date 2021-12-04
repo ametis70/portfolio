@@ -1,5 +1,4 @@
 import { Flex, Image, useColorMode, Grid } from '@chakra-ui/react'
-import { Transition, Variants } from 'framer-motion'
 
 import Nav from './Nav'
 import Link from './Link'
@@ -64,7 +63,7 @@ const Header: React.FC = (): JSX.Element => {
 
         <Nav />
 
-        <Flex direction="column" alignItems="flex-start" justify="flex-end" px={3} pb={2}>
+        <Flex direction="column" alignItems="flex-start" justify="flex-end" pb={2}>
           <LanguageSwitcherButton />
           <ColorModeButton />
         </Flex>
