@@ -87,6 +87,9 @@ const theme = extendTheme({
           borderRadius: 'none',
           color: props.colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
           background: props.colorMode === 'dark' ? 'amethyst.700' : 'amethyst.5',
+          _focus: {
+            boxShadow: props.colorMode === 'dark' ? 'darkOutline' : 'outline',
+          },
         }),
       },
       sizes: {
@@ -119,6 +122,9 @@ const theme = extendTheme({
             background: props.colorMode === 'dark' ? 'amethyst.700' : 'amethyst.5',
             _invalid: {
               color: 'red.500',
+            },
+            _focus: {
+              boxShadow: props.colorMode === 'dark' ? 'darkOutline' : 'outline',
             },
           },
         }),
@@ -238,6 +244,7 @@ const theme = extendTheme({
 
         center: {
           display: 'block',
+          width: 'fit-content',
           mx: 'auto',
           textAlign: 'center',
         },
