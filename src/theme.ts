@@ -265,9 +265,12 @@ const theme = extendTheme({
       },
     },
     Button: {
-      baseStyle: {
+      baseStyle: (props) => ({
         borderRadius: 0,
-      },
+        _focus: {
+          boxShadow: props.colorMode === 'dark' ? 'darkOutline' : 'outline',
+        },
+      }),
       variants: {
         cta: ctaVariant,
         navHover: (props) => ({
