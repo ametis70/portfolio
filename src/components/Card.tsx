@@ -18,11 +18,7 @@ export const Card: Record<string, React.FC<any>> = {
   Container: ({ children, pad }) => {
     const { colorMode } = useColorMode()
     return (
-      <Block
-        px={12}
-        w="100%"
-        my={4}
-      >
+      <Block px={[6, 6, 12]} w="100%" my={4}>
         <Box
           bg={colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50'}
           w="100%"
