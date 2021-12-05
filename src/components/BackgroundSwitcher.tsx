@@ -17,6 +17,7 @@ const BackgroundSwitcher: React.FC = () => {
     <CollapsibleNavButton
       onClick={() => toggleUse3D()}
       ariaLabel={t('ui.switch_to', {
+        ns: 'common',
         what: use3D
           ? t('ui.3d_background', { ns: 'common' })
           : t('ui.2d_background', { ns: 'common' }),

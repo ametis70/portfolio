@@ -2,6 +2,7 @@ import { BiMoon, BiSun } from 'react-icons/bi'
 import { useColorMode } from '@chakra-ui/react'
 
 import CollapsibleNavButton from './CollapsibleNavButton'
+
 import useI18Next from '../hooks/useI18Next'
 
 const ColorModeButton: React.FC = () => {
@@ -13,6 +14,7 @@ const ColorModeButton: React.FC = () => {
     <CollapsibleNavButton
       onClick={() => toggleColorMode()}
       ariaLabel={t('ui.switch_to', {
+        ns: 'common',
         what: dark
           ? t('ui.dark_mode', { ns: 'common' })
           : t('ui.light_mode', { ns: 'common' }),
