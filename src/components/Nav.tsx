@@ -8,10 +8,13 @@ import MotionBox from './MotionBox'
 import Link, { LinkProps } from './Link'
 
 import { usePageContext } from '../hooks/usePageContext'
+import usePersistentStore from '../store/persistent'
 import useStore from '../store'
 
 const NavLink: React.FC<{ to: string; Icon: React.FC }> = ({ to, Icon, children }) => {
   const isHome = useStore((state) => state.isHome)
+  const use3D = usePersistentStore((state) => state.use3D)
+
   const [open, setOpen] = useState<boolean>(isHome ?? false)
 
   const { hoverProps } = useHover({ onHoverChange: (e) => setOpen(e) })
@@ -66,7 +69,7 @@ const NavLink: React.FC<{ to: string; Icon: React.FC }> = ({ to, Icon, children 
             transition: {
               initial: false,
               duration: 0.2,
-              delay: isHome ? 2 : 0,
+              delay: isHome && use3D ? 2 : 0,
             },
           },
           closed: {

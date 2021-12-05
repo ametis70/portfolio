@@ -9,14 +9,28 @@ import useI18Next from '../hooks/useI18Next'
 import Cards from '../components/Cards'
 import Block from '../components/Block'
 import WorkGallery from '../components/WorkGallery'
+import useStore from '../store'
+import { useEffect } from 'react'
 
 const Work: React.FC<LocalizedPageProps<{ datoCmsWork: WorkPageData }>> = ({
   data,
   pageContext,
 }) => {
-  const { title, primaryLink, primaryLinkText, secondaryLink, secondaryLinkText } =
-    data.datoCmsWork
+  const {
+    title,
+    primaryLink,
+    primaryLinkText,
+    secondaryLink,
+    secondaryLinkText,
+    gradient,
+  } = data.datoCmsWork
   const { fixedT: t } = useI18Next(pageContext.language)
+  const setWorkGradient = useStore((state) => state.setWorkGradient)
+
+  useEffect(() => {
+    setWorkGradient(gradient)
+    return () => setWorkGradient(undefined)
+  }, [gradient, setWorkGradient])
 
   return (
     <>

@@ -1,23 +1,45 @@
 import { useColorMode } from '@chakra-ui/react'
-import MotionBox from './MotionBox'
+import { AnimatePresence } from 'framer-motion'
+import useStore from '../store'
+import MotionBox, { MotionBoxProps } from './MotionBox'
+
+const sharedProps: MotionBoxProps = {
+  w: '100%',
+  h: '100vh',
+  position: 'fixed',
+  exit: { opacity: 0 },
+  initial: { opacity: 0 },
+}
 
 const SimpleBackground: React.FC = () => {
   const { colorMode } = useColorMode()
+  const workGradient = useStore((state) => state.workGradient)
+
   return (
-    <MotionBox
-      w="100%"
-      h="100vh"
-      position="fixed"
-      exit={{ opacity: 0 }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      sx={{ transition: 'all 0.3s ease-out' }}
-      bg={
-        colorMode === 'dark'
-          ? 'linear-gradient(110deg, var(--chakra-colors-amethyst-700) , var(--chakra-colors-amethyst-900))'
-          : 'linear-gradient(110deg, var(--chakra-colors-amethyst-200) , var(--chakra-colors-amethyst-400))'
-      }
-    />
+    <AnimatePresence>
+      {workGradient ? (
+        <MotionBox
+          {...sharedProps}
+          key={workGradient}
+          animate={{
+            opacity: 1,
+            background: workGradient,
+          }}
+        />
+      ) : (
+        <MotionBox
+          {...sharedProps}
+          key={`default-simple-${colorMode}`}
+          animate={{
+            opacity: 1,
+            background:
+              colorMode === 'dark'
+                ? 'linear-gradient(110deg, var(--chakra-colors-amethyst-700), var(--chakra-colors-amethyst-900))'
+                : 'linear-gradient(110deg, var(--chakra-colors-amethyst-200), var(--chakra-colors-amethyst-400))',
+          }}
+        />
+      )}
+    </AnimatePresence>
   )
 }
 

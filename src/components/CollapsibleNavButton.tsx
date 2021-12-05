@@ -1,8 +1,11 @@
 import { Button, ButtonProps, Icon as ChakraIcon } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useFocus, useHover } from '@react-aria/interactions'
-import useStore from '../store'
+
 import MotionBox from './MotionBox'
+
+import useStore from '../store'
+import usePersistentStore from '../store/persistent'
 
 const CollapsibleButton: React.FC<{
   ariaLabel: string
@@ -12,6 +15,7 @@ const CollapsibleButton: React.FC<{
 }> = ({ ariaLabel, onClick, label, Icon }) => {
   const isHome = useStore((state) => state.isHome)
   const [open, setOpen] = useState<boolean>(isHome ?? false)
+  const use3D = usePersistentStore((state) => state.use3D)
 
   const { hoverProps } = useHover({ onHoverChange: (e) => setOpen(e) })
   const { focusProps } = useFocus({ onFocusChange: (e) => setOpen(e) })
@@ -53,18 +57,18 @@ const CollapsibleButton: React.FC<{
         variants={{
           open: {
             width: 'fit-content',
-            paddingLeft: '0.5rem',
-            paddingRight: '1rem',
+            paddingLeft: 8,
+            paddingRight: 16,
             transition: {
               initial: false,
               duration: 0.2,
-              delay: isHome ? 2 : 0,
+              delay: isHome && use3D ? 2 : 0,
             },
           },
           closed: {
             width: 0,
             paddingLeft: 0,
-            paddingRight: '0',
+            paddingRight: 0,
           },
         }}
         animate={isHome || open ? 'open' : 'closed'}

@@ -8,30 +8,43 @@ import { displayStatus, displayContentTypes } from './constants'
 
 type StoreType = {
   isHome?: boolean
-  setHome: (value: boolean) => void
   cameraPosition?: number
-  setCameraPosition: (cp: number) => void
   displayContent?: DisplayContent
-  setDisplayContent: (status: number, contentType?: number, data?: string) => void
   displayCanvas?: HTMLCanvasElement
-  setDisplayCanvas?: (el: HTMLCanvasElement | undefined) => void
+  workGradient?: string
+  setDisplayCanvas: (el: HTMLCanvasElement) => void
+  setHome: (value: boolean) => void
+  setDisplayContent: (dp: { status: number; contentType?: number; data?: string }) => void
+  setCameraPosition: (cp: number) => void
+  setWorkGradient: (value?: string) => void
 }
 
-const useStore = create<
-  StoreType,
-  SetState<StoreType>,
-  GetState<StoreType>,
-  StoreApiWithSubscribeWithSelector<StoreType>
->(
-  subscribeWithSelector((set, _) => ({
-    isHome: undefined,
-    cameraPosition: undefined,
-    displayContent: { status: displayStatus.OFF, contentType: displayContentTypes.BLANK },
-    setHome: (value) => set({ isHome: value }),
-    setDisplayContent: (status, contentType, data) =>
-      set({ displayContent: { status, contentType, data } }),
-    setCameraPosition: (cp: number) => set({ cameraPosition: cp }),
-    setDisplayCanvas: (el) => set({ displayCanvas: el }),
+const useStore = create(
+  subscribeWithSelector<
+    StoreType,
+    SetState<StoreType>,
+    GetState<StoreType>,
+    StoreApiWithSubscribeWithSelector<StoreType>
+  >((set, _) => ({
+    displayContent: {
+      status: displayStatus.OFF,
+      contentType: displayContentTypes.BLANK,
+    },
+    setHome: (value) => {
+      set({ isHome: value })
+    },
+    setDisplayContent: (dp) => {
+      set({ displayContent: dp })
+    },
+    setCameraPosition: (cp) => {
+      set({ cameraPosition: cp })
+    },
+    setDisplayCanvas: (el) => {
+      set({ displayCanvas: el })
+    },
+    setWorkGradient: (value) => {
+      set({ workGradient: value })
+    },
   })),
 )
 

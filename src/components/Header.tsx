@@ -4,21 +4,28 @@ import Nav from './Nav'
 import Link from './Link'
 import MotionBox from './MotionBox'
 import ColorModeButton from './ColorModeButton'
-import useStore from '../store'
-
-import Logo from '../images/logo.inline.svg'
 import LanguageSwitcherButton from './LanguageSwitcherButton'
 import BackgroundSwitcher from './BackgroundSwitcher'
+
+import useStore from '../store'
+import usePersistentStore from '../store/persistent'
+
+import Logo from '../images/logo.inline.svg'
 
 const Header: React.FC = (): JSX.Element => {
   const { colorMode } = useColorMode()
   const isHome = useStore((state) => state.isHome)
 
+  const use3D = usePersistentStore((state) => state.use3D)
+
   return (
     <MotionBox
       as="header"
       variants={{
-        home: { backgroundColor: 'rgba(0, 0, 0, 0)', transition: { delay: 2 } },
+        home: {
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+          transition: { delay: use3D ? 2 : 0 },
+        },
         page: {
           backgroundColor:
             colorMode === 'dark'
