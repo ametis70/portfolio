@@ -74,7 +74,7 @@ const Layout: React.FC<PageProps<null, PageContext>> = ({
 
   return (
     <PageContextProvider pageContext={pageContext}>
-      <Flex minH="100vh" w="100%" alignContent="flex-start" justifyContent="flex-start">
+      <Flex w="100%" minH="100%" alignContent="flex-start" justifyContent="flex-start">
         <Header />
         <MobileHeader />
 

@@ -61,7 +61,7 @@ const ContentBackground: React.FC<MotionBoxProps> = ({ children, ...props }) => 
       m={use3D ? '0 0 0 64px' : '0 auto 0 auto'}
       backdropFilter={'blur(40px)'}
       variants={variants}
-      minH="100vh"
+      minH="100%"
       exit="final"
       initial="enter"
       animate={currentVariant}

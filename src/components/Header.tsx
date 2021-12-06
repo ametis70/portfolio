@@ -39,7 +39,7 @@ const Header: React.FC = (): JSX.Element => {
       zIndex="999"
       position="fixed"
       w="64px"
-      h="100vh"
+      h="100%"
       sx={{ transition: 'background ease-out 0.3s, color ease-out 0.3s' }}
       pt={2}
     >

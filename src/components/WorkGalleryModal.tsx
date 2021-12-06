@@ -95,7 +95,7 @@ const WorkGalleryModal: React.VFC<
       <ModalOverlay backdropFilter="blur(40px)" />
       <ModalContent
         bg="transparent"
-        h="100vh"
+        h="100%"
         display="flex"
         flexDirection="column"
         {...keyboardProps}

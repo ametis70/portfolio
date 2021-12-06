@@ -25,6 +25,7 @@ const MobileHeader: React.FC = () => {
     <Box
       as="header"
       position="fixed"
+      overflowX="hidden"
       w="100%"
       zIndex="999"
       display={['block', 'block', 'none']}
@@ -104,35 +105,35 @@ const MobileHeader: React.FC = () => {
 
         <MotionBox
           key="mobile-nav"
-          pt={12}
-          pb={4}
+          layout="position"
           variants={{
-            open: { opacity: 1 },
-            home: { opacity: 1 },
-            closed: { opacity: 0 },
+            open: { opacity: 1, transitionEnd: { position: 'static' } },
+            home: {
+              opacity: 1,
+              transition: { delay: 0.1 },
+              position: 'fixed',
+            },
+            closed: {
+              opacity: 0,
+              transition: { duration: 0.1 },
+              transitionEnd: { position: 'static' },
+            },
           }}
+          top="0"
+          h="100%"
         >
-          <Grid
-            gridAutoRows="1fr 1fr 1fr"
-            templateColumns="100%"
-            justifyContent="start"
-            h="fit-content"
-          >
+          <Flex direction="column" h="100%" justify="space-between">
             <Box />
-            <Nav alwaysOpen onLinkClick={() => setOpen(false)} />
+            <Box pt={12} pb={4}>
+              <Nav alwaysOpen onLinkClick={() => setOpen(false)} />
+            </Box>
 
-            <Flex
-              pt={8}
-              direction="column"
-              alignItems="flex-start"
-              justify="flex-end"
-              pb={2}
-            >
+            <Flex direction="column" alignItems="flex-start" justify="flex-end" py={4}>
               <BackgroundSwitcher alwaysOpen />
               <LanguageSwitcherButton alwaysOpen />
               <ColorModeButton alwaysOpen />
             </Flex>
-          </Grid>
+          </Flex>
         </MotionBox>
       </MotionBox>
     </Box>

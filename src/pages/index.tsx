@@ -26,7 +26,6 @@ const IndexPage: React.FC = () => {
     <>
       <SEO />
       <MotionBox
-        layoutId="index-heading"
         display="block"
         position="absolute"
         top="0"

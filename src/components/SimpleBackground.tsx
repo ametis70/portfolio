@@ -5,7 +5,7 @@ import MotionBox, { MotionBoxProps } from './MotionBox'
 
 const sharedProps: MotionBoxProps = {
   w: '100%',
-  h: '100vh',
+  h: '100%',
   position: 'fixed',
   exit: { opacity: 0 },
   initial: { opacity: 0 },

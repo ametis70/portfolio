@@ -17,7 +17,7 @@ const Canvas: React.FC = () => {
   return (
     <MotionBox
       w="100%"
-      h="100vh"
+      h="100%"
       position="fixed"
       exit={{ opacity: 0 }}
       initial={{ opacity: 0 }}
