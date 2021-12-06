@@ -68,7 +68,7 @@ const theme = extendTheme({
   },
   layerStyles: {
     container: {
-      px: 12,
+      px: [6, 6, 12],
       w: '100%',
       mx: 0,
     },

@@ -25,8 +25,7 @@ const Container: React.FC = ({ children }) => {
       templateColumns="repeat(2, 1fr)"
       rowGap={6}
       columnGap={4}
-      px={12}
-      w="100%"
+      layerStyle="container"
       my={8}
       onSubmit={handleSubmit(onSubmit, onError)}
     >
