@@ -31,7 +31,7 @@ const HeroCard: React.VFC<TFunctionProps> = ({ t }) => {
               src="../../images/avatar.jpeg"
               alt={t('ui.picture_of', { ns: 'common', name })}
               placeholder="blurred"
-              layout="fullWidth"
+              layout="constrained"
               quality={90}
               width={128}
               height={128}
