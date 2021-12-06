@@ -2,20 +2,22 @@ import create, { GetState, SetState } from 'zustand'
 import { persist, StoreApiWithPersist } from 'zustand/middleware'
 
 type PersistentState = {
-  use3D: number
+  use3D: boolean
   toggleUse3D: () => void
 }
 
-const useStore = create<
-  PersistentState,
-  SetState<PersistentState>,
-  GetState<PersistentState>,
-  StoreApiWithPersist<PersistentState>
->(
-  persist(
+const useStore = create(
+  persist<
+    PersistentState,
+    SetState<PersistentState>,
+    GetState<PersistentState>,
+    StoreApiWithPersist<PersistentState>
+  >(
     (set, get) => ({
-      use3D: 0,
-      toggleUse3D: () => set({ use3D: get().use3D === 0 ? 1 : 0 }),
+      use3D: false,
+      toggleUse3D: process.env.GATSBY_DISABLE_3D
+        ? () => set({ use3D: false })
+        : () => set({ use3D: !get().use3D }),
     }),
     { name: 'persistent-store' },
   ),

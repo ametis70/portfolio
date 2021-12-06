@@ -113,7 +113,7 @@ const MobileHeader: React.FC = () => {
           }}
         >
           <Grid
-            templateAutoRows="1fr 1fr 1fr"
+            gridAutoRows="1fr 1fr 1fr"
             templateColumns="100%"
             justifyContent="start"
             h="fit-content"

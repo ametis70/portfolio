@@ -15,6 +15,10 @@ const BackgroundSwitcher: React.FC<Partial<CollapsibleButtonProps>> = ({
     shallow,
   )
 
+  if (process.env.GATSBY_DISABLE_3D === 'true') {
+    return null
+  }
+
   return (
     <CollapsibleNavButton
       onClick={() => toggleUse3D()}
