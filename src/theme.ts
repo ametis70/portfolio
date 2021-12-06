@@ -42,12 +42,14 @@ const ctaVariant = (props) => ({
 })
 
 const workMainLink = {
+  textAlign: 'center',
   textStyle: 'smallCaps',
   fontSize: 'lg',
-  px: 0,
+  px: 2,
   flex: '0 1 50%',
   h: '100%',
   display: 'flex',
+  flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
   py: 4,

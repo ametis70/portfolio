@@ -101,33 +101,35 @@ const WorkGalleryModal: React.VFC<
         {...keyboardProps}
       >
         <ModalHeader bg={colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50'}>
-          <Grid templateColumns="repeat(3, 1fr)">
+          <Grid templateColumns="2fr 1fr" alignItems="center">
             <Heading as="h3" fontSize="xl">
               {`${data.title} — ${t('ui.gallery', { ns: 'common' })}`}
             </Heading>
-            <Flex
-              justify="center"
-              align="center"
-              color={colorMode === 'dark' ? 'amethyst.50-70' : 'amethyst.900-70'}
-            >
-              <Text fontSize="sm">
+            <Flex justify="flex-end">
+              <Text
+                fontSize="sm"
+                lineHeight="2.5"
+                color={colorMode === 'dark' ? 'amethyst.50-70' : 'amethyst.900-70'}
+                pr={4}
+              >
                 {currentIndex !== null ? `${currentIndex + 1} / ${images.length}` : null}
               </Text>
-            </Flex>
-            <Flex justify="flex-end">
-              <ModalCloseButton position="static" borderRadius="none" />
+
+              <ModalCloseButton position="static" borderRadius="none" fontSize="lg" />
             </Flex>
           </Grid>
         </ModalHeader>
         <ModalBody flex="1 1 100%" overflow="hidden" position="relative">
           <Box
+            display="flex"
+            flexDirection={['row', 'row', 'column']}
             py={4}
-            w={32}
+            w={['100%', '100%', 32]}
             position="absolute"
             left="0"
             top="0"
-            h="100%"
-            overflowY="scroll"
+            h={[32, 32, '100%']}
+            overflow={['scroll hidden', 'scroll hidden', 'hidden scroll']}
             zIndex={100}
             bg={colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50'}
             px={4}
@@ -153,6 +155,7 @@ const WorkGalleryModal: React.VFC<
             {images.map((i) => (
               <Link
                 variant="icon"
+                mx={2}
                 key={i.path}
                 to={`?gallery=${i.basename}`}
                 onClick={(e) => {
@@ -193,7 +196,7 @@ const WorkGalleryModal: React.VFC<
               </Link>
             ))}
           </Box>
-          <Box pl={32} w="100%" h="100%">
+          <Box pt={[32, 32, 0]} pl={[0, 0, 32]} w="100%" h="100%">
             {currentImage ? (
               <PrismaZoom style={{ width: '100%', height: '100%' }} maxZoom={2}>
                 <GatsbyImage

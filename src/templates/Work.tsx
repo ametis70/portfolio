@@ -43,7 +43,7 @@ const Work: React.FC<LocalizedPageProps<{ datoCmsWork: WorkPageData }>> = ({
       </Box>
 
       <Block>
-        <Heading size="sectionTitle" py={4}>
+        <Heading size="sectionTitle" py={4} textAlign="center">
           {title}
         </Heading>
       </Block>
@@ -54,6 +54,8 @@ const Work: React.FC<LocalizedPageProps<{ datoCmsWork: WorkPageData }>> = ({
           alignItems="stretch"
           direction="row-reverse"
           justify="center"
+          h="fit-content"
+          flexDirection="column"
           pt={2}
           pb={6}
         >
