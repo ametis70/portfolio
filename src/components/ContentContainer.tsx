@@ -16,7 +16,8 @@ const ContentContainer: React.FC<MotionBoxProps> = ({ children, ...props }) => {
       alignItems="center"
       justifyContent="flex-start"
       w="100%"
-      py={8}
+      pt={[20, 20, 8]}
+      pb={8}
       variants={{ enter: { transition }, exit: { transition } }}
       exit="exit"
       animate={isPresent ? 'enter' : 'exit'}

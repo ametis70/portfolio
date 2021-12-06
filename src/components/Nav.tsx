@@ -11,11 +11,16 @@ import { usePageContext } from '../hooks/usePageContext'
 import usePersistentStore from '../store/persistent'
 import useStore from '../store'
 
-const NavLink: React.FC<{ to: string; Icon: React.FC }> = ({ to, Icon, children }) => {
+const NavLink: React.FC<{
+  to: string
+  Icon: React.FC
+  alwaysOpen?: boolean
+  onLinkClick?: () => void
+}> = ({ to, Icon, children, onLinkClick, alwaysOpen = false }) => {
   const isHome = useStore((state) => state.isHome)
   const use3D = usePersistentStore((state) => state.use3D)
 
-  const [open, setOpen] = useState<boolean>(isHome ?? false)
+  const [open, setOpen] = useState<boolean>(alwaysOpen || (isHome ?? false))
 
   const { hoverProps } = useHover({ onHoverChange: (e) => setOpen(e) })
   const { focusProps } = useFocus({ onFocusChange: (e) => setOpen(e) })
@@ -26,20 +31,21 @@ const NavLink: React.FC<{ to: string; Icon: React.FC }> = ({ to, Icon, children 
 
   const linkStyles: LinkProps = {
     position: 'relative',
-    width: 'full',
+    width: ['64px', '64px', 'full'],
     px: '16px',
     py: 4,
     textTransform: 'uppercase',
     transition: 'all ease-out 0.3s',
     fontWeight: 'medium',
     _focus: { outline: 'none' },
-    variant: open
-      ? active
-        ? 'navActiveHover'
-        : 'navHover'
-      : active
-      ? 'navActive'
-      : 'icon',
+    variant:
+      open && !alwaysOpen
+        ? active
+          ? 'navActiveHover'
+          : 'navHover'
+        : active
+        ? 'navActive'
+        : 'icon',
     display: 'flex',
     alignItems: 'center',
   }
@@ -50,7 +56,12 @@ const NavLink: React.FC<{ to: string; Icon: React.FC }> = ({ to, Icon, children 
       {...linkStyles}
       {...hoverProps}
       {...focusProps}
-      onClick={() => setOpen(false)}
+      onClick={() => {
+        setOpen(false)
+        if (onLinkClick) {
+          onLinkClick()
+        }
+      }}
     >
       <ChakraIcon boxSize={8} as={Icon} />
       <MotionBox
@@ -64,7 +75,7 @@ const NavLink: React.FC<{ to: string; Icon: React.FC }> = ({ to, Icon, children 
         w={0}
         variants={{
           open: {
-            width: 'calc(36rem / 4)',
+            width: alwaysOpen ? '100vw' : 'calc(36rem / 4)',
             paddingLeft: '0.5rem',
             transition: {
               initial: false,
@@ -76,7 +87,7 @@ const NavLink: React.FC<{ to: string; Icon: React.FC }> = ({ to, Icon, children 
             width: 0,
           },
         }}
-        animate={isHome || open ? 'open' : 'closed'}
+        animate={alwaysOpen || isHome || open ? 'open' : 'closed'}
       >
         {children}
       </MotionBox>
@@ -84,7 +95,10 @@ const NavLink: React.FC<{ to: string; Icon: React.FC }> = ({ to, Icon, children 
   )
 }
 
-const Nav: React.FC = () => {
+const Nav: React.FC<{ alwaysOpen?: boolean; onLinkClick?: () => void }> = ({
+  alwaysOpen = false,
+  onLinkClick,
+}) => {
   const { t } = useTranslation('common')
   const { colorMode } = useColorMode()
 
@@ -98,13 +112,28 @@ const Nav: React.FC = () => {
       w="full"
       color={colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900'}
     >
-      <NavLink to="/about" Icon={BiUser}>
+      <NavLink
+        to="/about"
+        Icon={BiUser}
+        alwaysOpen={alwaysOpen}
+        onLinkClick={onLinkClick}
+      >
         {t('sections.about')}
       </NavLink>
-      <NavLink to="/works" Icon={BiBriefcase}>
+      <NavLink
+        to="/works"
+        Icon={BiBriefcase}
+        alwaysOpen={alwaysOpen}
+        onLinkClick={onLinkClick}
+      >
         {t('sections.works')}
       </NavLink>
-      <NavLink to="/contact" Icon={BiMessageDetail}>
+      <NavLink
+        to="/contact"
+        Icon={BiMessageDetail}
+        alwaysOpen={alwaysOpen}
+        onLinkClick={onLinkClick}
+      >
         {t('sections.contact')}
       </NavLink>
     </MotionBox>

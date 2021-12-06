@@ -12,7 +12,7 @@ import useI18Next from '../hooks/useI18Next'
 
 const headingVariants: Variants = {
   exit: { x: '10%', opacity: 0, transition: { duration: 0.1 } },
-  enter: { x: '0%', opacity: 1, transition: { duration: 0.2, delay: 0.5 } },
+  enter: { x: '0%', opacity: 1, transition: { duration: 0.2, delay: 0.6 } },
 }
 
 const IndexPage: React.FC = () => {
@@ -48,7 +48,7 @@ const IndexPage: React.FC = () => {
           <Heading
             as="h1"
             textTransform="uppercase"
-            fontSize={['xl', '2xl', '5xl']}
+            fontSize={['4xl', '4xl', '5xl']}
             letterSpacing="0.05em"
             fontWeight="normal"
           >
@@ -58,7 +58,7 @@ const IndexPage: React.FC = () => {
             w="100%"
             as="h2"
             textTransform="uppercase"
-            fontSize={['xl', '2xl', 'xl']}
+            fontSize={['lg', 'lg', 'xl']}
             letterSpacing="0.065em"
             fontWeight="300"
           >

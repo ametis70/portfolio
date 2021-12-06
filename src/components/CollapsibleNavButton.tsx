@@ -7,12 +7,21 @@ import MotionBox from './MotionBox'
 import useStore from '../store'
 import usePersistentStore from '../store/persistent'
 
-const CollapsibleButton: React.FC<{
+export type CollapsibleButtonProps = {
   ariaLabel: string
   onClick: () => void
   label: string
   Icon: React.FC
-}> = ({ ariaLabel, onClick, label, Icon }) => {
+  alwaysOpen?: boolean
+}
+
+const CollapsibleButton: React.FC<CollapsibleButtonProps> = ({
+  ariaLabel,
+  onClick,
+  label,
+  Icon,
+  alwaysOpen = false,
+}) => {
   const isHome = useStore((state) => state.isHome)
   const [open, setOpen] = useState<boolean>(isHome ?? false)
   const use3D = usePersistentStore((state) => state.use3D)
@@ -22,14 +31,14 @@ const CollapsibleButton: React.FC<{
 
   const ButtonStyles: ButtonProps = {
     position: 'relative',
-    width: 'full',
-    px: '16px',
+    width: alwaysOpen ? '16px' : 'full',
+    px: '32px',
     py: 5,
     textTransform: 'uppercase',
     transition: 'all ease-out 0.3s',
     fontWeight: 'medium',
     _focus: { outline: 'none' },
-    variant: open ? 'navHover' : 'navButton',
+    variant: open && !alwaysOpen ? 'navHover' : 'navButton',
     display: 'flex',
     alignItems: 'center',
     fontSize: 'xl',
@@ -53,10 +62,9 @@ const CollapsibleButton: React.FC<{
         alignItems="center"
         overflow="hidden"
         bg="inherit"
-        w={0}
         variants={{
           open: {
-            width: 'fit-content',
+            width: alwaysOpen ? '100vw' : 'fit-content',
             paddingLeft: 8,
             paddingRight: 16,
             transition: {
@@ -71,7 +79,7 @@ const CollapsibleButton: React.FC<{
             paddingRight: 0,
           },
         }}
-        animate={isHome || open ? 'open' : 'closed'}
+        animate={alwaysOpen || isHome || open ? 'open' : 'closed'}
         fontSize="sm"
       >
         {label}

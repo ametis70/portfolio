@@ -1,12 +1,14 @@
 import { BiSquare, BiCube } from 'react-icons/bi'
 import shallow from 'zustand/shallow'
 
-import CollapsibleNavButton from './CollapsibleNavButton'
+import CollapsibleNavButton, { CollapsibleButtonProps } from './CollapsibleNavButton'
 
 import usePersistentStore from '../store/persistent'
 import useI18Next from '../hooks/useI18Next'
 
-const BackgroundSwitcher: React.FC = () => {
+const BackgroundSwitcher: React.FC<Partial<CollapsibleButtonProps>> = ({
+  alwaysOpen = false,
+}) => {
   const { t } = useI18Next('common')
   const { use3D, toggleUse3D } = usePersistentStore(
     (state) => ({ use3D: state.use3D, toggleUse3D: state.toggleUse3D }),
@@ -28,6 +30,7 @@ const BackgroundSwitcher: React.FC = () => {
           ? t('ui.3d_background', { ns: 'common' })
           : t('ui.2d_background', { ns: 'common' })
       }
+      alwaysOpen={alwaysOpen}
     />
   )
 }

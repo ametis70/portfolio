@@ -317,6 +317,8 @@ const theme = extendTheme({
     overlay: {
       light: 'rgba(250, 247, 252, 0.80)',
       dark: 'rgba(75, 50, 100, 0.80)',
+      lighter: 'rgba(250, 247, 252, 0.95)',
+      darker: 'rgba(75, 50, 100, 0.98)',
       fadeLight: 'rgba(250, 247, 252, 0)',
       fadeDark: 'rgba(75, 50, 100, 0)',
     },

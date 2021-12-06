@@ -1,12 +1,14 @@
 import { navigate } from 'gatsby'
 import { BiGlobe } from 'react-icons/bi'
 
-import CollapsibleNavButton from './CollapsibleNavButton'
+import CollapsibleNavButton, { CollapsibleButtonProps } from './CollapsibleNavButton'
 
 import useI18Next from '../hooks/useI18Next'
 import { usePageContext } from '../hooks/usePageContext'
 
-const LanguageSwitcherButton: React.FC = () => {
+const LanguageSwitcherButton: React.FC<Partial<CollapsibleButtonProps>> = ({
+  alwaysOpen = false,
+}) => {
   const { t } = useI18Next('common')
   const { originalPath, language } = usePageContext()
 
@@ -33,6 +35,7 @@ const LanguageSwitcherButton: React.FC = () => {
           ? t('languages.spanish', { ns: 'common' })
           : t('languages.english', { ns: 'common' })
       }
+      alwaysOpen={alwaysOpen}
     />
   )
 }

@@ -21,6 +21,7 @@ const Header: React.FC = (): JSX.Element => {
   return (
     <MotionBox
       as="header"
+      display={['none', 'none', 'block']}
       variants={{
         home: {
           backgroundColor: 'rgba(0, 0, 0, 0)',
@@ -31,8 +32,8 @@ const Header: React.FC = (): JSX.Element => {
             colorMode === 'dark'
               ? 'var(--chakra-colors-amethyst-900)'
               : 'var(--chakra-colors-amethyst-50)',
-        }, // @ts-ignore
-        transition: { duration: 0.01 },
+          transition: { duration: 0.01 },
+        },
       }}
       animate={isHome ? 'home' : 'page'}
       zIndex="999"
