@@ -58,11 +58,8 @@ const Header: React.FC = (): JSX.Element => {
     <>
       <MotionBox
         as="header"
-        h="0px"
-        w="0px"
-        overflow="hidden"
         backgroundColor={colorMode === 'dark' ? 'overlay.darker' : 'overlay.lighter'}
-        initial={false}
+        initial={{ ...homePosition }}
         variants={{
           home: {
             ...homePosition,
@@ -81,6 +78,7 @@ const Header: React.FC = (): JSX.Element => {
         zIndex="999"
         position="fixed"
         w={['100%', '100%', '64px']}
+        h={['64px', '64px', '100%']}
         overflow={['hidden', 'hidden', 'visible']}
       >
         <HeaderGrid>

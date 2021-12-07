@@ -47,6 +47,7 @@ const CollapsibleBase: React.FC<CollapsibleBaseProps> = ({
         alignItems="center"
         overflow="hidden"
         bg="inherit"
+        initial={false}
         variants={{
           open: {
             width,
