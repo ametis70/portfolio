@@ -9,7 +9,7 @@ export type CollapsibleBaseProps = {
   hoverProps: HTMLAttributes<HTMLElement>
   focusProps: HTMLAttributes<HTMLElement>
   ariaLabel: string
-  onClick: () => void
+  onClick?: () => void
   label: string
   Icon: React.FC
   iconSize: number

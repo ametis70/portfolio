@@ -6,9 +6,9 @@ import Link from '../Link'
 import MotionBox from '../MotionBox'
 
 import useStore from '../../store'
-import usePersistentStore from '../../store/persistent'
 
 import Logo from '../../images/logo.inline.svg'
+import HeaderGrid from './Grid'
 
 const Header: React.FC = (): JSX.Element => {
   const { colorMode } = useColorMode()
@@ -20,8 +20,6 @@ const Header: React.FC = (): JSX.Element => {
     lg: { x: '-64px', y: 0 },
   })
 
-  const use3D = usePersistentStore((state) => state.use3D)
-
   return (
     <MotionBox
       as="header"
@@ -29,10 +27,12 @@ const Header: React.FC = (): JSX.Element => {
       variants={{
         home: {
           ...homePosition,
+          transitionEnd: { display: 'none' },
         },
         page: {
           x: 0,
           y: 0,
+          display: 'block',
           transition: { duration: 0.3 },
         },
       }}
@@ -42,12 +42,7 @@ const Header: React.FC = (): JSX.Element => {
       w={['100%', '100%', '64px']}
       h={['64px', '64px', '100%']}
     >
-      <Grid
-        templateRows="1fr 2fr 1fr"
-        templateColumns="100%"
-        justifyContent="start"
-        h={['fit-content', 'fit-content', '100%']}
-      >
+      <HeaderGrid>
         <Link to="/" variant="icon" bg="inherit" tabIndex={isHome ? -1 : 0}>
           <Image bg="inherit" py={2} px={2} w="64px" color="currentColor" as={Logo} />
         </Link>
@@ -55,7 +50,7 @@ const Header: React.FC = (): JSX.Element => {
         <Nav />
 
         <Settings />
-      </Grid>
+      </HeaderGrid>
     </MotionBox>
   )
 }

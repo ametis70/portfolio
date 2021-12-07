@@ -6,7 +6,7 @@ import { usePageContext } from '../../../hooks/usePageContext'
 
 type CollapsibleLinkProps = Omit<
   CollapsibleBaseProps,
-  'WrapperElement' | 'wrapperProps' | 'hoverProps' | 'focusProps'
+  'WrapperElement' | 'wrapperProps' | 'hoverProps' | 'focusProps' | 'ariaLabel'
 > & { to: string }
 
 const CollapsibleLink: React.FC<CollapsibleLinkProps> = ({
@@ -25,7 +25,7 @@ const CollapsibleLink: React.FC<CollapsibleLinkProps> = ({
 
   const linkStyles: LinkProps = {
     position: 'relative',
-    width: ['64px', '64px', 'full'],
+    width: ['64px', '64px', 'fit-content'],
     px: '16px',
     py: 4,
     textTransform: 'uppercase',
@@ -33,14 +33,13 @@ const CollapsibleLink: React.FC<CollapsibleLinkProps> = ({
     fontWeight: 'medium',
     fontSize: 'xl',
     _focus: { outline: 'none' },
-    variant:
-      open || eventsStatus
-        ? active
-          ? 'navActiveHover'
-          : 'navHover'
-        : active
-        ? 'navActive'
-        : 'icon',
+    variant: eventsStatus
+      ? active
+        ? 'navActiveHover'
+        : 'navHover'
+      : active
+      ? 'navActive'
+      : 'icon',
     display: 'flex',
     alignItems: 'center',
   }

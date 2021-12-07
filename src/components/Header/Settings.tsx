@@ -101,7 +101,7 @@ const LanguageSwitcherButton: React.FC<SettingsButtonProps> = ({ open }) => {
 
 const Settings: React.FC<SettingsButtonProps> = ({ open }) => {
   return (
-    <Flex direction="column" alignItems="flex-start" justify="flex-end" pb={2}>
+    <Flex h="100%" direction="column" alignItems="flex-start" justify="flex-end" pb={2}>
       <BackgroundSwitcher open={open} />
       <LanguageSwitcherButton open={open} />
       <ColorModeButton open={open} />

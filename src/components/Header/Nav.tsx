@@ -16,6 +16,7 @@ const Nav: React.FC<{ open?: boolean; onClick?: () => void }> = ({
 
   return (
     <MotionBox
+      h="100%"
       as="nav"
       display="flex"
       fontSize="xl"

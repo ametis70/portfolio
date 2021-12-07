@@ -20,17 +20,18 @@ const CollapsibleButton: React.FC<CollapsibleButtonProps> = ({
 
   const ButtonStyles: ButtonProps = {
     position: 'relative',
-    width: open || eventsStatus ? 'full' : '16px',
-    px: '32px',
-    py: 5,
+    width: open || eventsStatus ? 'fit-content' : 4,
+    px: 5,
+    py: 2,
     textTransform: 'uppercase',
     transition: 'all ease-out 0.3s',
     fontWeight: 'medium',
     _focus: { outline: 'none' },
-    variant: open || eventsStatus ? 'navHover' : 'navButton',
+    variant: eventsStatus ? 'navHover' : 'navButton',
     display: 'flex',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
     fontSize: 'sm',
+    h: 'fit-content',
   }
 
   return (

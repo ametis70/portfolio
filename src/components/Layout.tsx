@@ -74,7 +74,12 @@ const Layout: React.FC<PageProps<null, PageContext>> = ({
 
   return (
     <PageContextProvider pageContext={pageContext}>
-      <Flex w="100%" minH="100%" alignContent="flex-start" justifyContent="flex-start">
+      <Flex
+        w="100%"
+        minH="calc(100 * var(--vh))"
+        alignContent="flex-start"
+        justifyContent="flex-start"
+      >
         <Header />
         <MobileHeader />
 
@@ -85,9 +90,7 @@ const Layout: React.FC<PageProps<null, PageContext>> = ({
 
         <AnimatePresence>
           {originalPath === '/' ? (
-            <motion.div key="/">
-              <IndexPage />
-            </motion.div>
+            <IndexPage key="/" />
           ) : (
             <ContentBackground key="content-background">
               <AnimatePresence exitBeforeEnter>
