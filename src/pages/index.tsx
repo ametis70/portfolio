@@ -9,6 +9,8 @@ import useDisplay, { displayStatus, displayContentTypes } from '../hooks/useDisp
 import Link from '../components/Link'
 
 import useI18Next from '../hooks/useI18Next'
+import Nav from '../components/Nav'
+import Block from '../components/Block'
 
 const headingVariants: Variants = {
   exit: { x: '10%', opacity: 0, transition: { duration: 0.1 } },
@@ -27,7 +29,6 @@ const IndexPage: React.FC = () => {
       <SEO />
       <MotionBox
         display="block"
-        position="absolute"
         top="0"
         px={4}
         py={4}

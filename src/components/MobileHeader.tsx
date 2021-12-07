@@ -1,13 +1,9 @@
 import { useState } from 'react'
-import { Box, Flex, Grid, IconButton, Image, useColorMode } from '@chakra-ui/react'
+import { Box, Flex, IconButton, Image, useColorMode } from '@chakra-ui/react'
 import { BiMenu, BiX } from 'react-icons/bi'
 
-import BackgroundSwitcher from './BackgroundSwitcher'
-import ColorModeButton from './ColorModeButton'
-import LanguageSwitcherButton from './LanguageSwitcherButton'
 import Link from './Link'
 import MotionBox from './MotionBox'
-import Nav from './Nav'
 
 import useI18Next from '../hooks/useI18Next'
 import useStore from '../store'
@@ -124,15 +120,7 @@ const MobileHeader: React.FC = () => {
         >
           <Flex direction="column" h="100%" justify="space-between">
             <Box />
-            <Box pt={12} pb={4}>
-              <Nav alwaysOpen onLinkClick={() => setOpen(false)} />
-            </Box>
-
-            <Flex direction="column" alignItems="flex-start" justify="flex-end" py={4}>
-              <BackgroundSwitcher alwaysOpen />
-              <LanguageSwitcherButton alwaysOpen />
-              <ColorModeButton alwaysOpen />
-            </Flex>
+            <Box pt={12} pb={4}></Box>
           </Flex>
         </MotionBox>
       </MotionBox>
