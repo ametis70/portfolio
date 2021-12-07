@@ -84,11 +84,14 @@ export const Card: Record<string, React.FC<any>> = {
             bg={gradient}
             opacity={isOpen ? 0 : 1}
             transition="opacity 0.3s ease-out"
+            pointerEvents="none"
           />
         </Collapse>
-        <Button my={5} onClick={onToggle} display="block" mx="auto">
-          {t(isOpen ? 'ui.show_less' : 'ui.show_more', { ns: 'common' })}
-        </Button>
+        <Box py={5}>
+          <Button onClick={onToggle} display="block" mx="auto">
+            {t(isOpen ? 'ui.show_less' : 'ui.show_more', { ns: 'common' })}
+          </Button>
+        </Box>
       </>
     )
   },
