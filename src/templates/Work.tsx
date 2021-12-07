@@ -35,7 +35,7 @@ const Work: React.FC<LocalizedPageProps<{ datoCmsWork: WorkPageData }>> = ({
   return (
     <>
       <SEO title={title} />
-      <Box alignSelf="flex-start" pl={8}>
+      <Box alignSelf="flex-start" pl={[4, 4, 8]}>
         <Link to="/works" variant="back">
           <Icon as={BiLeftArrowAlt} w={6} h={6} mr={2} />
           {t('ui.go_back', { ns: 'common' })}

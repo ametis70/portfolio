@@ -17,7 +17,9 @@ const WorkCard: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, data 
       <Flex as="li" justify="space-between" my={1} fontSize="lg">
         <Flex alignItems="center" pr={4} flex="0 0" opacity={0.7}>
           <Icon as={icon} mr={2} />
-          <Text lineHeight="1"> {t(tKey, { ns: 'common' })} </Text>
+          <Text lineHeight="1" textAlign="right">
+            {t(tKey, { ns: 'common' })}
+          </Text>
         </Flex>
         <Text> {value} </Text>
       </Flex>

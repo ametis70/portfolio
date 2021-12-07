@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { PageProps } from 'gatsby'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import { Flex } from '@chakra-ui/react'
 
 import Header from './Header'
 import ContentBackground from './ContentBackground'
 import ContentContainer from './ContentContainer'
+import SimpleBackground from './SimpleBackground'
 import IndexPage from '../pages'
 
 import useStore from '../store'
@@ -16,7 +17,7 @@ import useCommonTranslations from '../hooks/useCommonTranslations'
 import '@fontsource/montserrat/400.css'
 import '@fontsource/montserrat/500.css'
 import '@fontsource/montserrat/600.css'
-import SimpleBackground from './SimpleBackground'
+import 'focus-visible/dist/focus-visible'
 
 let CanvasModule: React.FC | undefined
 

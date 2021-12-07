@@ -15,7 +15,7 @@ import useLockScroll from '../hooks/useLockScroll'
 import useI18Next from '../hooks/useI18Next'
 
 const headingVariants: Variants = {
-  exit: { x: '10%', opacity: 0, transition: { duration: 0.1 } },
+  exit: { transition: { duration: 0.3, staggerChildren: 0.1 } },
   enter: {
     transition: { delayChildren: 0.3, staggerChildren: 0.1 },
   },
@@ -46,21 +46,20 @@ const IndexPage: React.FC = () => {
         h="100%"
       >
         <HeaderGrid minH="fit-content" h="calc(100 * var(--vh))">
-          <Block>
+          <Block py={2}>
             <Link
               to="/"
               variant="icon"
               background="transparent"
               pl={4}
               _hover={{ background: 'transparent' }}
-              tabIndex={1}
             >
               <Heading
                 as="h1"
                 textTransform="uppercase"
                 fontSize={['4xl', '4xl', '5xl']}
                 letterSpacing="0.05em"
-                fontWeight="normal"
+                fontWeight="medium"
               >
                 Ian Mancini
               </Heading>

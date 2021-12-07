@@ -22,7 +22,7 @@ export const Card: Record<string, React.FC<any>> = {
         <Box
           bg={colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50'}
           w="100%"
-          px={pad ? 8 : 4}
+          px={[pad ? 6 : 2, pad ? 6 : 2, pad ? 8 : 4]}
           py={pad ? 6 : 0}
         >
           {children}

@@ -19,15 +19,14 @@ const HeroCard: React.VFC<TFunctionProps> = ({ t }) => {
           flexShrink="0"
         >
           <Box
-            left={[-8, -8, -12]}
+            left={[-6, -6, -12]}
             top={[-12, -12, -16]}
             position="absolute"
             w="128px"
-            borderRadius="50%"
-            overflow="hidden"
             _before={{ content: '""', float: 'left', pt: '100%' }}
           >
             <StaticImage
+              imgStyle={{ borderRadius: '50%' }}
               src="../../images/avatar.jpeg"
               alt={t('ui.picture_of', { ns: 'common', name })}
               placeholder="blurred"
@@ -38,7 +37,7 @@ const HeroCard: React.VFC<TFunctionProps> = ({ t }) => {
             />
           </Box>
         </Box>
-        <Flex position="relative" pl={4} direction="column">
+        <Flex position="relative" pl={6} direction="column">
           <Heading textTransform="uppercase" fontSize={['2xl', '2xl', '3xl']} mb={0}>
             {name}
           </Heading>
