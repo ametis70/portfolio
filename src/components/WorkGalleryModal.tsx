@@ -44,6 +44,7 @@ const WorkGalleryModal: React.VFC<
           currentIndex = index
           return true
         }
+        return false
       }) ?? null
   }
 
@@ -91,13 +92,17 @@ const WorkGalleryModal: React.VFC<
   })
 
   return (
-    <Modal onClose={onClose} size="full" isOpen={isOpen}>
-      <ModalOverlay backdropFilter="blur(40px)" />
+    <Modal onClose={onClose} size="full" isOpen={isOpen} scrollBehavior="outside">
+      <ModalOverlay
+        backdropFilter={['none', 'none', 'blur(40px)']}
+        backgroundColor="rgba(0, 0, 0, 0.90)"
+        h="100vh"
+      />
       <ModalContent
         bg="transparent"
-        h="100%"
         display="flex"
         flexDirection="column"
+        h="100vh"
         {...keyboardProps}
       >
         <ModalHeader bg={colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50'}>
@@ -156,6 +161,7 @@ const WorkGalleryModal: React.VFC<
               <Link
                 variant="icon"
                 mx={2}
+                mb={2}
                 key={i.path}
                 to={`?gallery=${i.basename}`}
                 onClick={(e) => {
@@ -180,7 +186,6 @@ const WorkGalleryModal: React.VFC<
                   }
                   w={20}
                   h={20}
-                  mb={2}
                   transition="opacity 0.2s ease-out"
                   _hover={{ opacity: 1 }}
                   ref={currentImage?.basename === i.basename ? selectedImage : null}
@@ -196,9 +201,9 @@ const WorkGalleryModal: React.VFC<
               </Link>
             ))}
           </Box>
-          <Box pt={[32, 32, 0]} pl={[0, 0, 32]} w="100%" h="100%">
+          <Box pt={[32, 32, 0]} pb={[16, 16, 0]} pl={[0, 0, 32]} w="100%" h="100%">
             {currentImage ? (
-              <PrismaZoom style={{ width: '100%', height: '100%' }} maxZoom={2}>
+              <PrismaZoom style={{ width: '100%', height: '100%' }} maxZoom={3}>
                 <GatsbyImage
                   objectFit="contain"
                   style={{ width: '100%', height: '100%' }}

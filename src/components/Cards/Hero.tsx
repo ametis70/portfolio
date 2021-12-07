@@ -23,10 +23,12 @@ const HeroCard: React.VFC<TFunctionProps> = ({ t }) => {
             top={[-12, -12, -16]}
             position="absolute"
             w="128px"
+            overflow="hidden"
+            borderRadius="50%"
             _before={{ content: '""', float: 'left', pt: '100%' }}
           >
             <StaticImage
-              imgStyle={{ borderRadius: '50%' }}
+              imgStyle={{ borderRadius: '50%', overflow: 'hidden' }}
               src="../../images/avatar.jpeg"
               alt={t('ui.picture_of', { ns: 'common', name })}
               placeholder="blurred"

@@ -14,14 +14,12 @@ import Markdown from '../Markdown'
 const WorkCard: React.VFC<TFunctionProps & { data: WorkPageData }> = ({ t, data }) => {
   const SummaryItem: React.FC<{ icon: React.FC; tKey: string; value: number | string }> =
     ({ icon, tKey, value }) => (
-      <Flex as="li" justify="space-between" my={1} fontSize="lg">
-        <Flex alignItems="center" pr={4} flex="0 0" opacity={0.7}>
-          <Icon as={icon} mr={2} />
-          <Text lineHeight="1" textAlign="right">
-            {t(tKey, { ns: 'common' })}
-          </Text>
+      <Flex as="li" align="baseline" justify="space-between" my={1} fontSize="lg">
+        <Flex alignItems="baseline" pr={4} flex="0 0" opacity={0.7} lineHeight={1.5}>
+          <Icon alignSelf="center" as={icon} mr={2} />
+          <Text lineHeight="1">{t(tKey, { ns: 'common' })}</Text>
         </Flex>
-        <Text> {value} </Text>
+        <Text textAlign="right"> {value} </Text>
       </Flex>
     )
 

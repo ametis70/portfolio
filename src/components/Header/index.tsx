@@ -20,6 +20,7 @@ import { useEffect, useState } from 'react'
 import useI18Next from '../../hooks/useI18Next'
 import { BiMenu, BiX } from 'react-icons/bi'
 import useLockScroll from '../../hooks/useLockScroll'
+import { AnimatePresence } from 'framer-motion'
 
 const Header: React.FC = (): JSX.Element => {
   const [isOpen, setOpen] = useState(false)
@@ -54,61 +55,85 @@ const Header: React.FC = (): JSX.Element => {
   useLockScroll(isOpen)
 
   return (
-    <MotionBox
-      as="header"
-      backgroundColor={colorMode === 'dark' ? 'overlay.darker' : 'overlay.lighter'}
-      initial={false}
-      variants={{
-        home: {
-          ...homePosition,
-          transitionEnd: { display: 'none' },
-          ...headerHeight,
-        },
-        page: {
-          x: 0,
-          y: 0,
-          display: 'block',
-          transition: { duration: 0.3 },
-          ...headerHeight,
-        },
-      }}
-      animate={isHome ? 'home' : 'page'}
-      zIndex="999"
-      position="fixed"
-      w={['100%', '100%', '64px']}
-      overflow={['hidden', 'hidden', 'visible']}
-    >
-      <HeaderGrid>
-        <Flex direction="row" justify="space-between" align="center" w="full" h="64px">
-          <Link to="/" variant="icon" bg="inherit" onClick={() => setOpen(false)}>
-            <Image bg="inherit" py={2} px={2} w="64px" color="currentColor" as={Logo} />
-          </Link>
+    <>
+      <MotionBox
+        as="header"
+        h="0px"
+        w="0px"
+        overflow="hidden"
+        backgroundColor={colorMode === 'dark' ? 'overlay.darker' : 'overlay.lighter'}
+        initial={false}
+        variants={{
+          home: {
+            ...homePosition,
+            transitionEnd: { display: 'none' },
+            ...headerHeight,
+          },
+          page: {
+            x: 0,
+            y: 0,
+            display: 'block',
+            transition: { duration: 0.3 },
+            ...headerHeight,
+          },
+        }}
+        animate={isHome ? 'home' : 'page'}
+        zIndex="999"
+        position="fixed"
+        w={['100%', '100%', '64px']}
+        overflow={['hidden', 'hidden', 'visible']}
+      >
+        <HeaderGrid>
+          <Flex direction="row" justify="space-between" align="center" w="full" h="64px">
+            <Link to="/" variant="icon" bg="inherit" onClick={() => setOpen(false)}>
+              <Image bg="inherit" py={2} px={2} w="64px" color="currentColor" as={Logo} />
+            </Link>
 
-          {isMobile ? (
-            <IconButton
-              aria-label={
-                isOpen
-                  ? t('ui.close_nav', { ns: 'common' })
-                  : t('ui.open_nav', { ns: 'common' })
-              }
-              onClick={() => setOpen(!isOpen)}
-              icon={isOpen ? <BiX /> : <BiMenu />}
-              mr={5}
-              fontSize="3xl"
-              size="lg"
-              variant="icon"
-              _focus={{ boxShadow: 'none', outline: 'none' }}
-            />
-          ) : null}
-        </Flex>
+            {isMobile ? (
+              <IconButton
+                aria-label={
+                  isOpen
+                    ? t('ui.close_nav', { ns: 'common' })
+                    : t('ui.open_nav', { ns: 'common' })
+                }
+                onClick={() => setOpen(!isOpen)}
+                icon={isOpen ? <BiX /> : <BiMenu />}
+                mr={5}
+                fontSize="3xl"
+                size="lg"
+                variant="icon"
+                _focus={{ boxShadow: 'none', outline: 'none' }}
+              />
+            ) : null}
+          </Flex>
 
-        <Nav open={isMobile} onClick={() => setOpen(false)} />
+          <Nav open={isMobile} onClick={() => setOpen(false)} />
 
-        <Box py={[4, 4, 0]} h="100%" w="100%">
-          <Settings open={isMobile} />
-        </Box>
-      </HeaderGrid>
-    </MotionBox>
+          <Box py={[4, 4, 0]} h="100%" w="100%">
+            <Settings open={isMobile} />
+          </Box>
+        </HeaderGrid>
+      </MotionBox>
+      <AnimatePresence>
+        {isOpen ? (
+          <MotionBox
+            key="nav-overlay"
+            onClick={() => setOpen(false)}
+            position="fixed"
+            backgroundColor="rgba(0, 0, 0, 0.5)"
+            h="100vh"
+            w="100%"
+            top="0"
+            left="0"
+            zIndex="998"
+            initial={{ opacity: 0 }}
+            exit={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          />
+        ) : null}
+      </AnimatePresence>
+    </>
   )
 }
 
