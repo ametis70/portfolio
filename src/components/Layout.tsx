@@ -17,7 +17,6 @@ import '@fontsource/montserrat/400.css'
 import '@fontsource/montserrat/500.css'
 import '@fontsource/montserrat/600.css'
 import SimpleBackground from './SimpleBackground'
-import MobileHeader from './MobileHeader'
 
 let CanvasModule: React.FC | undefined
 
@@ -81,9 +80,9 @@ const Layout: React.FC<PageProps<null, PageContext>> = ({
         justifyContent="flex-start"
       >
         <Header />
-        <MobileHeader />
 
-        <SimpleBackground key="2d-bg" />
+        <SimpleBackground />
+
         <AnimatePresence>
           {use3D && loadedCanvas && CanvasModule ? <CanvasModule key="3d-bg" /> : null}
         </AnimatePresence>

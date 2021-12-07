@@ -1,4 +1,4 @@
-import { ButtonProps, Icon as ChakraIcon } from '@chakra-ui/react'
+import { ButtonProps, Icon as ChakraIcon, useBreakpointValue } from '@chakra-ui/react'
 import { HTMLAttributes } from 'react'
 import { LinkProps } from '../../Link'
 import MotionBox from '../../MotionBox'
@@ -8,7 +8,7 @@ export type CollapsibleBaseProps = {
   wrapperProps: ButtonProps | LinkProps
   hoverProps: HTMLAttributes<HTMLElement>
   focusProps: HTMLAttributes<HTMLElement>
-  ariaLabel: string
+  ariaLabel?: string
   onClick?: () => void
   label: string
   Icon: React.FC
@@ -28,6 +28,8 @@ const CollapsibleBase: React.FC<CollapsibleBaseProps> = ({
   iconSize,
   open,
 }) => {
+  const width = useBreakpointValue({ base: '100vw', md: '100vw', lg: 'fit-content' })
+
   return (
     <WrapperElement
       {...wrapperProps}
@@ -47,7 +49,7 @@ const CollapsibleBase: React.FC<CollapsibleBaseProps> = ({
         bg="inherit"
         variants={{
           open: {
-            width: 'fit-content',
+            width,
             paddingLeft: 8,
             paddingRight: 16,
             transition: {
@@ -59,6 +61,9 @@ const CollapsibleBase: React.FC<CollapsibleBaseProps> = ({
             width: 0,
             paddingLeft: 0,
             paddingRight: 0,
+            transition: {
+              duration: 0.2,
+            },
           },
         }}
         animate={open ? 'open' : 'closed'}

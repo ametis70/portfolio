@@ -1,4 +1,11 @@
-import { Image, useColorMode, Grid, useBreakpointValue } from '@chakra-ui/react'
+import {
+  Image,
+  useColorMode,
+  useBreakpointValue,
+  Flex,
+  IconButton,
+  Box,
+} from '@chakra-ui/react'
 
 import Nav from './Nav'
 import Settings from './Settings'
@@ -9,10 +16,16 @@ import useStore from '../../store'
 
 import Logo from '../../images/logo.inline.svg'
 import HeaderGrid from './Grid'
+import { useEffect, useState } from 'react'
+import useI18Next from '../../hooks/useI18Next'
+import { BiMenu, BiX } from 'react-icons/bi'
+import useLockScroll from '../../hooks/useLockScroll'
 
 const Header: React.FC = (): JSX.Element => {
+  const [isOpen, setOpen] = useState(false)
   const { colorMode } = useColorMode()
   const isHome = useStore((state) => state.isHome)
+  const { t } = useI18Next()
 
   const homePosition = useBreakpointValue({
     base: { x: 0, y: '-64px' },
@@ -20,36 +33,80 @@ const Header: React.FC = (): JSX.Element => {
     lg: { x: '-64px', y: 0 },
   })
 
+  const headerHeight = useBreakpointValue({
+    base: { height: isOpen ? 'fit-content' : '64px' },
+    md: { height: isOpen ? 'fit-content' : '64px' },
+    lg: { height: '100%' },
+  })
+
+  const isMobile = useBreakpointValue({
+    base: true,
+    md: true,
+    lg: false,
+  })
+
+  useEffect(() => {
+    if (!isMobile && isOpen) {
+      setOpen(false)
+    }
+  }, [isMobile, isOpen, setOpen])
+
+  useLockScroll(isOpen)
+
   return (
     <MotionBox
       as="header"
-      backgroundColor={colorMode === 'dark' ? 'amethyst.900' : 'amethyst.50'}
+      backgroundColor={colorMode === 'dark' ? 'overlay.darker' : 'overlay.lighter'}
+      initial={false}
       variants={{
         home: {
           ...homePosition,
           transitionEnd: { display: 'none' },
+          ...headerHeight,
         },
         page: {
           x: 0,
           y: 0,
           display: 'block',
           transition: { duration: 0.3 },
+          ...headerHeight,
         },
       }}
       animate={isHome ? 'home' : 'page'}
       zIndex="999"
       position="fixed"
       w={['100%', '100%', '64px']}
-      h={['64px', '64px', '100%']}
+      overflow={['hidden', 'hidden', 'visible']}
     >
       <HeaderGrid>
-        <Link to="/" variant="icon" bg="inherit" tabIndex={isHome ? -1 : 0}>
-          <Image bg="inherit" py={2} px={2} w="64px" color="currentColor" as={Logo} />
-        </Link>
+        <Flex direction="row" justify="space-between" align="center" w="full" h="64px">
+          <Link to="/" variant="icon" bg="inherit" onClick={() => setOpen(false)}>
+            <Image bg="inherit" py={2} px={2} w="64px" color="currentColor" as={Logo} />
+          </Link>
 
-        <Nav />
+          {isMobile ? (
+            <IconButton
+              aria-label={
+                isOpen
+                  ? t('ui.close_nav', { ns: 'common' })
+                  : t('ui.open_nav', { ns: 'common' })
+              }
+              onClick={() => setOpen(!isOpen)}
+              icon={isOpen ? <BiX /> : <BiMenu />}
+              mr={5}
+              fontSize="3xl"
+              size="lg"
+              variant="icon"
+              _focus={{ boxShadow: 'none', outline: 'none' }}
+            />
+          ) : null}
+        </Flex>
 
-        <Settings />
+        <Nav open={isMobile} onClick={() => setOpen(false)} />
+
+        <Box py={[4, 4, 0]} h="100%" w="100%">
+          <Settings open={isMobile} />
+        </Box>
       </HeaderGrid>
     </MotionBox>
   )

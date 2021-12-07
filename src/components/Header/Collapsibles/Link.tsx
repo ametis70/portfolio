@@ -11,7 +11,6 @@ type CollapsibleLinkProps = Omit<
 
 const CollapsibleLink: React.FC<CollapsibleLinkProps> = ({
   to,
-  ariaLabel,
   onClick,
   label,
   Icon,
@@ -25,7 +24,6 @@ const CollapsibleLink: React.FC<CollapsibleLinkProps> = ({
 
   const linkStyles: LinkProps = {
     position: 'relative',
-    width: ['64px', '64px', 'fit-content'],
     px: '16px',
     py: 4,
     textTransform: 'uppercase',
@@ -50,7 +48,6 @@ const CollapsibleLink: React.FC<CollapsibleLinkProps> = ({
       hoverProps={hoverProps}
       focusProps={focusProps}
       wrapperProps={{ ...linkStyles, to }}
-      ariaLabel={ariaLabel}
       onClick={onClick}
       label={label}
       Icon={Icon}

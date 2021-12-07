@@ -20,7 +20,7 @@ const CollapsibleButton: React.FC<CollapsibleButtonProps> = ({
 
   const ButtonStyles: ButtonProps = {
     position: 'relative',
-    width: open || eventsStatus ? 'fit-content' : 4,
+    width: 'fit-content',
     px: 5,
     py: 2,
     textTransform: 'uppercase',

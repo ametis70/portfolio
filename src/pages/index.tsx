@@ -3,16 +3,16 @@ import { Heading } from '@chakra-ui/react'
 
 import SEO from '../components/Seo'
 import MotionBox from '../components/MotionBox'
-
-import useMoveCamera, { cameraPositions } from '../hooks/useMoveCamera'
-import useDisplay, { displayStatus, displayContentTypes } from '../hooks/useDisplay'
-import Link from '../components/Link'
-
-import useI18Next from '../hooks/useI18Next'
 import Block from '../components/Block'
 import Nav from '../components/Header/Nav'
 import Settings from '../components/Header/Settings'
 import HeaderGrid from '../components/Header/Grid'
+import Link from '../components/Link'
+
+import useMoveCamera, { cameraPositions } from '../hooks/useMoveCamera'
+import useDisplay, { displayStatus, displayContentTypes } from '../hooks/useDisplay'
+import useLockScroll from '../hooks/useLockScroll'
+import useI18Next from '../hooks/useI18Next'
 
 const headingVariants: Variants = {
   exit: { x: '10%', opacity: 0, transition: { duration: 0.1 } },
@@ -27,6 +27,8 @@ const IndexPage: React.FC = () => {
 
   useDisplay(displayStatus.ON, displayContentTypes.BLANK)
   useMoveCamera(cameraPositions.CLOSE)
+
+  useLockScroll(true)
 
   return (
     <>

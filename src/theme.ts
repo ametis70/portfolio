@@ -344,7 +344,6 @@ const theme = extendTheme({
         fontWeight: 'medium',
         letterSpacing: '0.065em',
         w: '100%',
-        overflow: 'hidden visible',
       },
     }),
   },
