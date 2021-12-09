@@ -22,7 +22,7 @@ import { BiMenu, BiX } from 'react-icons/bi'
 import useLockScroll from '../../hooks/useLockScroll'
 import { AnimatePresence } from 'framer-motion'
 
-const Header: React.FC = (): JSX.Element => {
+const Header: React.FC = () => {
   const [isOpen, setOpen] = useState(false)
   const { colorMode } = useColorMode()
   const isHome = useStore((state) => state.isHome)
@@ -54,12 +54,24 @@ const Header: React.FC = (): JSX.Element => {
 
   useLockScroll(isOpen)
 
+  if (
+    // @ts-ignore
+    homePosition === 'undefined' ||
+    // @ts-ignore
+    !headerHeight === 'undefined' ||
+    // @ts-ignore
+    !isMobile === 'undefined'
+  ) {
+    return null
+  }
+
   return (
     <>
       <MotionBox
         as="header"
         backgroundColor={colorMode === 'dark' ? 'overlay.darker' : 'overlay.lighter'}
-        initial={{ ...homePosition }}
+        initial={false}
+        display="none"
         variants={{
           home: {
             ...homePosition,
@@ -77,6 +89,11 @@ const Header: React.FC = (): JSX.Element => {
         animate={isHome ? 'home' : 'page'}
         zIndex="999"
         position="fixed"
+        transform={[
+          'translate(0px, -64px)',
+          'translate(0px, -64px)',
+          'translate(-64px, 0px)',
+        ]}
         w={['100%', '100%', '64px']}
         h={['64px', '64px', '100%']}
         overflow={['hidden', 'hidden', 'visible']}
