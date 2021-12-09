@@ -185,6 +185,11 @@ const theme = extendTheme({
           color: props.colorMode === 'dark' ? 'amethyst.50-70' : 'amethyst.900-70',
           fontWeight: 'medium',
         }),
+        error: (props) => ({
+          textAlign: 'center',
+          color: props.colorMode === 'dark' ? 'red.300' : 'red.500',
+          fontSize: 'sm',
+        }),
       },
     },
     Link: {

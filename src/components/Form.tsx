@@ -8,16 +8,33 @@ import {
   GridItem,
   useMergeRefs,
   InputProps,
+  useColorMode,
 } from '@chakra-ui/react'
 import autosize from 'autosize'
 import { forwardRef, useEffect, useRef } from 'react'
 import { RegisterOptions, useFormContext } from 'react-hook-form'
 
+type ContactFormData = {
+  name: string
+  subject: string
+  message: string
+  email: string
+}
+
 const Container: React.FC = ({ children }) => {
   const { handleSubmit } = useFormContext()
 
-  const onSubmit = (data, e) => console.log(data, e)
-  const onError = (errors, e) => console.log(errors, e)
+  const onSubmit = async (data: ContactFormData) => {
+    await fetch(
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:8888/.netlify/functions/send-contact-mail'
+        : '/.netlify/functions/send-contact-mail',
+      {
+        body: JSON.stringify(data),
+        method: 'POST',
+      },
+    )
+  }
 
   return (
     <Grid
@@ -27,7 +44,7 @@ const Container: React.FC = ({ children }) => {
       columnGap={4}
       layerStyle="container"
       my={8}
-      onSubmit={handleSubmit(onSubmit, onError)}
+      onSubmit={handleSubmit(onSubmit)}
     >
       {children}
     </Grid>
@@ -41,13 +58,17 @@ type ControlProps = TFunctionProps & {
 }
 
 const Control: React.FC<ControlProps> = ({ id, t, Component, colSpan = 2 }) => {
-  const { register, formState } = useFormContext()
+  const {
+    register,
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+  } = useFormContext()
 
   return (
     <GridItem colSpan={colSpan}>
-      <FormControl id={id} variant="contact" isInvalid={formState.errors[id]}>
+      <FormControl id={id} variant="contact" isInvalid={errors[id]}>
         <FormLabel>{t(`form.${id}`, { ns: 'contact' })}</FormLabel>
         <Component
+          disabled={isSubmitting || isSubmitSuccessful}
           {...register(id, {
             required: true,
             pattern:
@@ -57,9 +78,7 @@ const Control: React.FC<ControlProps> = ({ id, t, Component, colSpan = 2 }) => {
           })}
         />
         <FormErrorMessage>
-          {formState.errors[id]
-            ? t(`validation.${formState.errors[id].type}`, { ns: 'contact' })
-            : null}
+          {errors[id] ? t(`validation.${errors[id].type}`, { ns: 'contact' }) : null}
         </FormErrorMessage>
       </FormControl>
     </GridItem>
@@ -71,22 +90,39 @@ const Textarea = forwardRef((props, ref) => {
   const refs = useMergeRefs(internalRef, ref)
 
   useEffect(() => {
+    const _internalRef = internalRef.current
     if (internalRef.current) {
       autosize(internalRef.current)
     }
     return () => {
-      if (internalRef.current) {
-        autosize.destroy(internalRef.current)
+      if (_internalRef) {
+        autosize.destroy(_internalRef)
       }
     }
-  }, [internalRef.current])
+  }, [internalRef])
 
   return <ChakraTextarea minrows={3} transition="height none" ref={refs} {...props} />
 })
 
 const Submit: React.FC = ({ children, ...props }) => {
+  const { colorMode } = useColorMode()
+  const {
+    formState: { isSubmitting, isSubmitSuccessful },
+  } = useFormContext()
+
   return (
-    <Button type="submit" variant="cta" mx="0" {...props}>
+    <Button
+      type="submit"
+      disabled={isSubmitting || isSubmitSuccessful}
+      variant="cta"
+      mx="0"
+      sx={{
+        '&:hover[disabled]': {
+          bg: colorMode === 'dark' ? 'amethyst.50' : 'amethyst.900',
+        },
+      }}
+      {...props}
+    >
       {children}
     </Button>
   )
