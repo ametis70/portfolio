@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import {
   Image,
   useColorMode,
@@ -6,26 +7,25 @@ import {
   IconButton,
   Box,
 } from '@chakra-ui/react'
+import { BiMenu, BiX } from 'react-icons/bi'
+import { AnimatePresence } from 'framer-motion'
 
 import Nav from './Nav'
 import Settings from './Settings'
 import Link from '../Link'
 import MotionBox from '../MotionBox'
+import HeaderGrid from './Grid'
 
-import useStore from '../../store'
+import { usePageContext } from '../../hooks/usePageContext'
+import useI18Next from '../../hooks/useI18Next'
+import useLockScroll from '../../hooks/useLockScroll'
 
 import Logo from '../../images/logo.inline.svg'
-import HeaderGrid from './Grid'
-import { useEffect, useState } from 'react'
-import useI18Next from '../../hooks/useI18Next'
-import { BiMenu, BiX } from 'react-icons/bi'
-import useLockScroll from '../../hooks/useLockScroll'
-import { AnimatePresence } from 'framer-motion'
 
 const Header: React.FC = () => {
   const [isOpen, setOpen] = useState(false)
   const { colorMode } = useColorMode()
-  const isHome = useStore((state) => state.isHome)
+  const { isHome } = usePageContext()
   const { t } = useI18Next()
 
   const homePosition = useBreakpointValue({
@@ -58,9 +58,9 @@ const Header: React.FC = () => {
     // @ts-ignore
     homePosition === 'undefined' ||
     // @ts-ignore
-    !headerHeight === 'undefined' ||
+    headerHeight === 'undefined' ||
     // @ts-ignore
-    !isMobile === 'undefined'
+    isMobile === 'undefined'
   ) {
     return null
   }
@@ -70,7 +70,7 @@ const Header: React.FC = () => {
       <MotionBox
         as="header"
         backgroundColor={colorMode === 'dark' ? 'overlay.darker' : 'overlay.lighter'}
-        initial={false}
+        initial={{ display: 'none', ...homePosition }}
         display="none"
         variants={{
           home: {

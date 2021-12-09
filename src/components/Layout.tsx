@@ -27,7 +27,6 @@ const Layout: React.FC<PageProps<null, PageContext>> = ({
   pageContext,
 }) => {
   useCommonTranslations()
-  const setHome = useStore((state) => state.setHome)
   const use3D = usePersistentStore((state) => state.use3D)
   const toggleUse3D = usePersistentStore((state) => state.toggleUse3D)
   const [loadedCanvas, setLoadedCanvas] = useState<boolean>(false)
@@ -39,11 +38,6 @@ const Layout: React.FC<PageProps<null, PageContext>> = ({
       toggleUse3D()
     }
   }, [use3D, toggleUse3D])
-
-  useEffect(() => {
-    if (originalPath === '/') setHome(true)
-    else setHome(false)
-  }, [setHome, originalPath])
 
   useEffect(() => {
     if (use3D && !loadedCanvas) {

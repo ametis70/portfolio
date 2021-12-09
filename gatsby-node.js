@@ -169,6 +169,7 @@ const createLocalizedPage = async (page, createPage, createRedirect) => {
           originalPath,
           language,
           defaultLanguage: i18n.defaultLanguage,
+          isHome: originalPath === '/',
         },
       })
     }),

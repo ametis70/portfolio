@@ -21,6 +21,7 @@ type PageContext = {
   originalPath: string
   language: string
   defaultLanguage: string
+  isHome: boolean
 }
 
 type AllTranslationQuery = {

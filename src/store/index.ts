@@ -7,13 +7,11 @@ import {
 import { displayStatus, displayContentTypes } from './constants'
 
 type StoreType = {
-  isHome?: boolean
   cameraPosition?: number
   displayContent?: DisplayContent
   displayCanvas?: HTMLCanvasElement
   workGradient?: string
   setDisplayCanvas: (el: HTMLCanvasElement) => void
-  setHome: (value: boolean) => void
   setDisplayContent: (dp: { status: number; contentType?: number; data?: string }) => void
   setCameraPosition: (cp: number) => void
   setWorkGradient: (value?: string) => void
@@ -29,9 +27,6 @@ const useStore = create(
     displayContent: {
       status: displayStatus.OFF,
       contentType: displayContentTypes.BLANK,
-    },
-    setHome: (value) => {
-      set({ isHome: value })
     },
     setDisplayContent: (dp) => {
       set({ displayContent: dp })
