@@ -6,7 +6,7 @@ module.exports = {
     birthday: '1998-04-24T00:00:00.000Z',
     email: 'contacto@ianmancini.com.ar',
     siteUrl: 'https://ianmancini.com.ar',
-    description: 'Ian Mancini is a web designer/developer',
+    description: 'Ian Mancini is a web developer/designer based in La Plata, Argentina',
     author: '@ametis70',
     i18n: {
       languages: ['en', 'es'],
@@ -37,7 +37,7 @@ module.exports = {
         background_color: '#663399',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'src/images/favicon.png', // This path is relative to the root of the site.
+        icon: 'src/images/favicon.jpg', // This path is relative to the root of the site.
       },
     },
     'gatsby-plugin-netlify',

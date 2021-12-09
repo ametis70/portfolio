@@ -25,7 +25,10 @@ const WorksPage: React.FC<WorksPageProps> = ({ data, pageContext }) => {
 
   return (
     <>
-      <SEO title="Trabajos" />
+      <SEO
+        title={t('sections.works', { ns: 'common' })}
+        description={t('section_card', { ns: 'works' })}
+      />
       <Block>
         <Heading variant="smallcaps" size="sectionTitle">
           {t('sections.works', { ns: 'common' })}

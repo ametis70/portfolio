@@ -6,68 +6,74 @@
  */
 
 import { Helmet } from 'react-helmet'
+import useI18Next from '../hooks/useI18Next'
 import useMetadata from '../hooks/useMetadata'
 import { usePageContext } from '../hooks/usePageContext'
 
 type SEOProps = {
   description?: string
-  meta?: ConcatArray<
-    | { name: string; content: string; property?: undefined }
-    | { property: string; content: string; name?: undefined }
-  >
   title?: string
+  image?: string
+  meta?: ConcatArray<
+    { name: string; content: string } | { property: string; content: string }
+  >
 }
 
-const SEO: React.FC<SEOProps> = ({ title = undefined, meta = [], description = '' }) => {
+const SEO: React.FC<SEOProps> = ({ title, description, image, meta = [] }) => {
+  const { t } = useI18Next()
   const metadata = useMetadata()
   const pageContext = usePageContext()
 
-  const metaDescription = description ?? metadata.description
-  const metaTitle = title ?? metadata.name
+  const computedTitle = title ? `${title} | ${metadata.name}` : metadata.name
+  const computedDescription =
+    description ?? t('seo.about', { lng: pageContext.language, ns: 'common' })
 
   return (
     <Helmet
       htmlAttributes={{
         lang: pageContext.language,
       }}
-      title={metaTitle}
-      titleTemplate={title ? `%s | ${metadata.name}` : '%s'}
+      title={computedTitle}
       meta={[
         {
-          name: `description`,
-          content: metaDescription,
+          name: 'description',
+          content: computedDescription,
         },
         {
-          property: `og:title`,
-          content: metaTitle,
+          property: 'og:title',
+          content: computedTitle,
         },
         {
-          property: `og:description`,
-          content: metaDescription,
+          property: 'og:description',
+          content: computedDescription,
         },
         {
-          property: `og:locale`,
+          property: 'og:locale',
           content: pageContext.language,
         },
         {
-          property: `og:type`,
-          content: `website`,
+          property: 'og:image',
+          content: image ?? `${metadata.siteUrl}/og.jpg`,
         },
         {
-          name: `twitter:card`,
-          content: `summary`,
+          property: 'og:type',
+          content: 'website',
         },
         {
-          name: `twitter:creator`,
-          content: metadata.author || ``,
+          name: 'twitter:card',
+          content: 'summary',
         },
         {
-          name: `twitter:title`,
-          content: metaTitle,
+          name: 'twitter:creator',
+          content: metadata.author || '',
         },
         {
-          name: `twitter:description`,
-          content: metaDescription,
+          name: 'twitter:title',
+          content: computedTitle,
+        },
+        {
+          name: 'twitter:description',
+          content: computedDescription,
         },
       ].concat(meta)}
       link={[

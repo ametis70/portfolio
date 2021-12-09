@@ -98,4 +98,8 @@ type WorkPageData = {
   mobileScreenshots: DatoCmsImages
   desktopThumbnails: DatoCmsImages
   mobileThumbnails: DatoCmsImages
+  ogImage: {
+    url: string
+  }
+  ogDescription: string
 }

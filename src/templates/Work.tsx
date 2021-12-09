@@ -23,6 +23,8 @@ const Work: React.FC<LocalizedPageProps<{ datoCmsWork: WorkPageData }>> = ({
     secondaryLink,
     secondaryLinkText,
     gradient,
+    ogDescription,
+    ogImage,
   } = data.datoCmsWork
   const { fixedT: t } = useI18Next(pageContext.language)
   const setWorkGradient = useStore((state) => state.setWorkGradient)
@@ -34,7 +36,7 @@ const Work: React.FC<LocalizedPageProps<{ datoCmsWork: WorkPageData }>> = ({
 
   return (
     <>
-      <SEO title={title} />
+      <SEO title={title} description={ogDescription} image={ogImage.url} />
       <Box alignSelf="flex-start" pl={[4, 4, 8]}>
         <Link to="/works" variant="back">
           <Icon as={BiLeftArrowAlt} w={6} h={6} mr={2} />
@@ -106,6 +108,10 @@ export const query = graphql`
       mobileThumbnails: mobileScreenshots {
         ...MobileThumbnails
       }
+      ogImage {
+        url
+      }
+      ogDescription
     }
   }
 `

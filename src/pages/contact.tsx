@@ -13,7 +13,10 @@ const ContactPage: React.FC<LocalizedPageProps> = ({ data, pageContext }) => {
 
   return (
     <>
-      <SEO title="Contacto" />
+      <SEO
+        title={t('sections.contact', { ns: 'common' })}
+        description={t('seo.contact', { ns: 'common' })}
+      />
       <Block>
         <Heading variant="smallcaps" size="sectionTitle">
           {t('sections.contact', { ns: 'common' })}
