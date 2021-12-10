@@ -8,6 +8,7 @@ import Nav from '../components/Header/Nav'
 import Settings from '../components/Header/Settings'
 import HeaderGrid from '../components/Header/Grid'
 import Link from '../components/Link'
+import Logo from '../components/Logo'
 
 import useMoveCamera, { cameraPositions } from '../hooks/useMoveCamera'
 import useDisplay, { displayStatus, displayContentTypes } from '../hooks/useDisplay'
@@ -45,6 +46,7 @@ const IndexPage: React.FC = () => {
         zIndex="1000"
         h="100%"
       >
+        <Logo />
         <HeaderGrid minH="fit-content" h="calc(100 * var(--vh))">
           <Block py={2}>
             <Link
