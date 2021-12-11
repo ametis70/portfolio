@@ -7,7 +7,7 @@ import { usePageContext } from '../hooks/usePageContext'
 export type LinkProps = { external?: boolean } & Partial<ChakraLinkProps> &
   Partial<GatsbyLinkProps<null>>
 
-const Link: React.FC<LinkProps> = ({ external = false, href, to, ...rest }) => {
+const Link: React.FC<LinkProps> = ({ external = false, href, to, onClick, ...rest }) => {
   const { language, defaultLanguage } = usePageContext()
 
   try {
@@ -23,7 +23,10 @@ const Link: React.FC<LinkProps> = ({ external = false, href, to, ...rest }) => {
           // @ts-ignore
           as={GatsbyLink}
           hrefLang={language}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={(e) => {
+            if (onClick) onClick(e)
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }}
           to={localizedTo}
           {...rest}
         />
