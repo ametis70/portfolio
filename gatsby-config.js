@@ -15,7 +15,7 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-source-datocms`,
+      resolve: 'gatsby-source-datocms',
       options: {
         apiToken: process.env.DATOCMS_API_TOKEN,
         previewMode: true,
@@ -43,6 +43,8 @@ module.exports = {
     'gatsby-plugin-netlify',
     'gatsby-plugin-robots-txt',
     'gatsby-plugin-sitemap',
+    'gatsby-plugin-perf-budgets',
+    'gatsby-plugin-webpack-bundle-analyser-v2',
     // "gatsby-plugin-offline",
   ],
 }
