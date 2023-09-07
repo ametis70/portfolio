@@ -24,7 +24,7 @@
     "gatsby": "^4.2.0",
     "gatsby-plugin-image": "2.2.0",
     "gatsby-plugin-manifest": "^4.2.0",
-    "gatsby-plugin-netlify": "^5.1.0",
+    "gatsby-plugin-netlify": "^4.4.0",
     "gatsby-plugin-offline": "^5.2.0",
     "gatsby-plugin-perf-budgets": "^0.0.18",
     "gatsby-plugin-react-helmet": "^5.2.0",
