@@ -1,6 +1,6 @@
 import { Stack, Icon } from '@chakra-ui/react'
 import { TFunction } from 'i18next'
-import { BsTwitter, BsLinkedin, BsGithub } from 'react-icons/bs'
+import { BsLinkedin, BsGithub } from 'react-icons/bs'
 import useMetadata from '../hooks/useMetadata'
 
 import Link from './Link'
@@ -17,11 +17,6 @@ const links: SocialLinkProps[] = [
     website: 'LinkedIn',
     icon: BsLinkedin,
     href: 'https://www.linkedin.com/in/ian-mancini/',
-  },
-  {
-    website: 'Twitter',
-    icon: BsTwitter,
-    href: 'https://twitter.com/ametis70',
   },
 ]
 
