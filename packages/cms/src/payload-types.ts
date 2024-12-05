@@ -32,9 +32,11 @@ export interface Config {
   };
   globals: {
     about: About;
+    translation: Translation;
   };
   globalsSelect: {
     about: AboutSelect<false> | AboutSelect<true>;
+    translation: TranslationSelect<false> | TranslationSelect<true>;
   };
   locale: 'en' | 'es';
   user: User & {
@@ -352,6 +354,28 @@ export interface About {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "translation".
+ */
+export interface Translation {
+  id: string;
+  namespaces?:
+    | {
+        namespace: string;
+        translations?:
+          | {
+              key: string;
+              value: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about_select".
  */
 export interface AboutSelect<T extends boolean = true> {
@@ -392,6 +416,28 @@ export interface AboutSelect<T extends boolean = true> {
               title?: T;
               school?: T;
               link?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "translation_select".
+ */
+export interface TranslationSelect<T extends boolean = true> {
+  namespaces?:
+    | T
+    | {
+        namespace?: T;
+        translations?:
+          | T
+          | {
+              key?: T;
+              value?: T;
               id?: T;
             };
         id?: T;
