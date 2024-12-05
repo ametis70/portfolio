@@ -13,6 +13,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    works: Work;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -21,6 +22,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    works: WorksSelect<false> | WorksSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -99,6 +101,45 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "works".
+ */
+export interface Work {
+  id: string;
+  enabled?: boolean | null;
+  title: string;
+  slug: string;
+  priority: number;
+  description: string;
+  role: string;
+  category: string;
+  tags: string;
+  gradient: string;
+  finishDate: string;
+  primaryLinkUrl: string;
+  primaryLinkText: string;
+  secondaryLinkUrl?: string | null;
+  secondaryLinkText?: string | null;
+  logo: string | Media;
+  banner: string | Media;
+  screenshotsCategories?:
+    | {
+        title: string;
+        screenshots?:
+          | {
+              screenshot?: (string | null) | Media;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  ogImage: string | Media;
+  ogDescription: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -111,6 +152,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'works';
+        value: string | Work;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -189,6 +234,44 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "works_select".
+ */
+export interface WorksSelect<T extends boolean = true> {
+  enabled?: T;
+  title?: T;
+  slug?: T;
+  priority?: T;
+  description?: T;
+  role?: T;
+  category?: T;
+  tags?: T;
+  gradient?: T;
+  finishDate?: T;
+  primaryLinkUrl?: T;
+  primaryLinkText?: T;
+  secondaryLinkUrl?: T;
+  secondaryLinkText?: T;
+  logo?: T;
+  banner?: T;
+  screenshotsCategories?:
+    | T
+    | {
+        title?: T;
+        screenshots?:
+          | T
+          | {
+              screenshot?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  ogImage?: T;
+  ogDescription?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
@@ -225,15 +308,15 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface About {
   id: string;
-  Name: string;
-  Subtitle: string;
-  City: string;
-  Description: string;
-  Experience?:
+  name: string;
+  subtitle: string;
+  city: string;
+  description: string;
+  experience?:
     | {
-        'Experience Item': {
-          Start: string;
-          End?: string | null;
+        experienceItem: {
+          start: string;
+          end?: string | null;
           role: string;
           company: string;
           description: string;
@@ -241,23 +324,23 @@ export interface About {
         id?: string | null;
       }[]
     | null;
-  Skills?:
+  skills?:
     | {
-        Category: string;
+        category: string;
         skills: string;
         id?: string | null;
       }[]
     | null;
-  Education?:
+  education?:
     | {
         category: string;
-        Items?:
+        items?:
           | {
-              Start: string;
-              End?: string | null;
-              Title: string;
-              School: string;
-              Link?: string | null;
+              start: string;
+              end?: string | null;
+              title: string;
+              school: string;
+              link?: string | null;
               id?: string | null;
             }[]
           | null;
@@ -272,43 +355,43 @@ export interface About {
  * via the `definition` "about_select".
  */
 export interface AboutSelect<T extends boolean = true> {
-  Name?: T;
-  Subtitle?: T;
-  City?: T;
-  Description?: T;
-  Experience?:
+  name?: T;
+  subtitle?: T;
+  city?: T;
+  description?: T;
+  experience?:
     | T
     | {
-        'Experience Item'?:
+        experienceItem?:
           | T
           | {
-              Start?: T;
-              End?: T;
+              start?: T;
+              end?: T;
               role?: T;
               company?: T;
               description?: T;
             };
         id?: T;
       };
-  Skills?:
-    | T
-    | {
-        Category?: T;
-        skills?: T;
-        id?: T;
-      };
-  Education?:
+  skills?:
     | T
     | {
         category?: T;
-        Items?:
+        skills?: T;
+        id?: T;
+      };
+  education?:
+    | T
+    | {
+        category?: T;
+        items?:
           | T
           | {
-              Start?: T;
-              End?: T;
-              Title?: T;
-              School?: T;
-              Link?: T;
+              start?: T;
+              end?: T;
+              title?: T;
+              school?: T;
+              link?: T;
               id?: T;
             };
         id?: T;
