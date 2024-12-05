@@ -28,9 +28,13 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {};
-  globalsSelect: {};
-  locale: null;
+  globals: {
+    about: About;
+  };
+  globalsSelect: {
+    about: AboutSelect<false> | AboutSelect<true>;
+  };
+  locale: 'en' | 'es';
   user: User & {
     collection: 'users';
   };
@@ -214,6 +218,104 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about".
+ */
+export interface About {
+  id: string;
+  Name: string;
+  Subtitle: string;
+  City: string;
+  Description: string;
+  Experience?:
+    | {
+        'Experience Item': {
+          Start: string;
+          End?: string | null;
+          role: string;
+          company: string;
+          description: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  Skills?:
+    | {
+        Category: string;
+        skills: string;
+        id?: string | null;
+      }[]
+    | null;
+  Education?:
+    | {
+        category: string;
+        Items?:
+          | {
+              Start: string;
+              End?: string | null;
+              Title: string;
+              School: string;
+              Link?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about_select".
+ */
+export interface AboutSelect<T extends boolean = true> {
+  Name?: T;
+  Subtitle?: T;
+  City?: T;
+  Description?: T;
+  Experience?:
+    | T
+    | {
+        'Experience Item'?:
+          | T
+          | {
+              Start?: T;
+              End?: T;
+              role?: T;
+              company?: T;
+              description?: T;
+            };
+        id?: T;
+      };
+  Skills?:
+    | T
+    | {
+        Category?: T;
+        skills?: T;
+        id?: T;
+      };
+  Education?:
+    | T
+    | {
+        category?: T;
+        Items?:
+          | T
+          | {
+              Start?: T;
+              End?: T;
+              Title?: T;
+              School?: T;
+              Link?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
