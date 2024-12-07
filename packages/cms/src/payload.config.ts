@@ -1,9 +1,8 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
-import { buildConfig } from 'payload'
+import { buildConfig, TypedLocale } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
@@ -13,9 +12,18 @@ import { Works } from './collections/Works'
 
 import { About } from './globals/About'
 import { Translation } from './globals/Translation'
+import { seedPlugin } from './plugins/seed'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+const locales: {
+  locales: TypedLocale[]
+  defaultLocale: TypedLocale
+} = {
+  locales: ['en', 'es'],
+  defaultLocale: 'en',
+} as const
 
 export default buildConfig({
   admin: {
@@ -24,11 +32,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  localization: {
-    locales: ['en', 'es'],
-    defaultLocale: 'en',
-  },
   serverURL: process.env.DEV_URL,
+  localization: locales,
   globals: [About, Translation],
   collections: [Users, Media, Works],
   editor: lexicalEditor(),
@@ -41,7 +46,11 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    payloadCloudPlugin(),
-    // storage-adapter-placeholder
+    seedPlugin({
+      enabled: process.env.SEED === 'true',
+      defaultLocale: locales.defaultLocale,
+      additionalLocales: locales.locales,
+      seedsDir: process.env.SEEDS_DIR as string,
+    }),
   ],
 })
