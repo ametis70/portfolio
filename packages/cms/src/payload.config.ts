@@ -28,6 +28,7 @@ export default buildConfig({
     locales: ['en', 'es'],
     defaultLocale: 'en',
   },
+  serverURL: process.env.DEV_URL,
   globals: [About, Translation],
   collections: [Users, Media, Works],
   editor: lexicalEditor(),
