@@ -1,0 +1,23 @@
+{
+  auto_https off
+  http_port 80
+}
+
+http:// {
+  @insecure {
+    header X-Forwarded-Proto http
+  }
+  redir @insecure https://{host}{uri} permanent
+
+	@payload {
+		path /cms*
+	}
+
+	handle @payload {
+		reverse_proxy http://cms:3002
+	}
+
+	handle {
+		reverse_proxy http://app:3001
+	}
+}
