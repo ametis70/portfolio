@@ -4,6 +4,11 @@ export const Works: CollectionConfig = {
   slug: 'works',
   fields: [
     {
+      name: 'id',
+      required: true,
+      type: 'text',
+    },
+    {
       name: 'enabled',
       type: 'checkbox',
     },
