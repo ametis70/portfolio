@@ -1,0 +1,96 @@
+{
+  "globalType": "about",
+  "description": "¡Hola! 👋\n\nSoy un desarrollador y diseñador web de Argentina con 6+ años de experiencia realizando sitios web principalmente con React. Mi formación en Diseño Multimedial me permite llevar a cabo productos que son fieles a los procesos creativos.\n\n\nSiempre estoy buscando algo nuevo para aprender o algún proyecto DIY para realizar. Soy un entusiasta del software libre, y en mi tiempo libre me gusta ver películas, series, leer libros o jugar videojuegos.\n",
+  "createdAt": "2024-12-05T02:38:29.680Z",
+  "updatedAt": "2024-12-07T00:57:54.424Z",
+  "city": "La Plata",
+  "education": [
+    {
+      "category": "Universitaria",
+      "items": [
+        {
+          "start": "2016-02-01T12:00:00.000Z",
+          "end": "2020-12-15T12:00:00.000Z",
+          "title": "Licenciatura en Diseño Multimedial",
+          "school": "Universidad Nacional de La Plata",
+          "id": "675398a6a3e3ed6121964c01"
+        }
+      ],
+      "id": "675398a4a3e3ed6121964bff"
+    },
+    {
+      "category": "Certificaciones",
+      "items": [
+        {
+          "start": "2021-11-17T12:00:00.000Z",
+          "end": "2021-11-17T12:00:00.000Z",
+          "title": "Mercado Pago Certified Developer",
+          "school": "Mercado Pago Partners Team",
+          "id": "67539c60a3e3ed6121964c05"
+        },
+        {
+          "start": "2020-12-26T12:00:00.000Z",
+          "end": "2020-12-26T12:00:00.000Z",
+          "title": "Architecting with Google Kubernetes Engine Specialization",
+          "school": "Coursera — Google Cloud Training",
+          "link": "https://www.coursera.org/account/accomplishments/specialization/certificate/XREPLYHH26YC",
+          "id": "67539c9da3e3ed6121964c07"
+        },
+        {
+          "start": "2020-12-22T12:00:00.000Z",
+          "end": "2020-12-22T12:00:00.000Z",
+          "title": "Google IT Support Specialization",
+          "school": "Coursera — Google Career Certificates",
+          "link": "https://www.coursera.org/account/accomplishments/specialization/certificate/98SXAH2GJBMC",
+          "id": "67539cb4a3e3ed6121964c09"
+        }
+      ],
+      "id": "67539c4ba3e3ed6121964c03"
+    }
+  ],
+  "experience": [
+    {
+      "experienceItem": {
+        "start": "2022-02-14T12:00:00.000Z",
+        "role": "Sr. Software Engineer",
+        "company": "MercadoLibre",
+        "description": "Me encuentro trabajando en una posición full-stack con el equipo de CX-IT en proyectos relacionados al asistente virtual del portal de ayuda. Trabajé en el front-end de la experiencia de escritorio del chat y en un refactor completo de su sistema de animaciones. Posteriormente, colaboré en la creación una biblioteca interna para trabajar con grafos y actualmente estoy trabajando en un administrador interno que sirve para editar flujos del asistene virtual"
+      },
+      "id": "675397f8a3e3ed6121964bf3"
+    },
+    {
+      "experienceItem": {
+        "start": "2017-02-01T12:00:00.000Z",
+        "end": "2022-02-14T12:00:00.000Z",
+        "role": "Desarrollador Full Stack",
+        "company": "Freelance",
+        "description": "Diseño y desarrollo de multiples sitios web para clientes como [Pakapaka](http://www.pakapaka.gob.ar/), [Ruka Kuyen](https://ruka-kuyen.com.ar/), [Comisión Provincial por la Memoria](https://www.comisionporlamemoria.org/) y [Guardalo.com](https://guardalo.com.ar/)"
+      },
+      "id": "67539859a3e3ed6121964bf7"
+    }
+  ],
+  "name": "Ian Mancini",
+  "skills": [
+    {
+      "category": "Lenguajes",
+      "skills": "Javascript/Typescript, HTML, CSS, Python, SQL, PHP",
+      "id": "67539852a3e3ed6121964bf5"
+    },
+    {
+      "category": "Tecnologías",
+      "skills": "React,Gatsby,Next.js,Alpine.js,i18next,Tailwind CSS,Node.js,Storybook,Jest,Laravel,REST,GraphQL,Docker,Directus,DatoCMS",
+      "id": "67539885a3e3ed6121964bf9"
+    },
+    {
+      "category": "Software Creativo",
+      "skills": "Figma,Adobe Illustrator/Inkscape,Adobe Photoshop/GIMP,Adobe Premiere,Blender",
+      "id": "6753988ea3e3ed6121964bfb"
+    },
+    {
+      "category": "Platforms",
+      "skills": "Vercel,Netlify,Heroku,GCP",
+      "id": "67539897a3e3ed6121964bfd"
+    }
+  ],
+  "subtitle": "Diseño y Desarrollo Web"
+}
