@@ -12,10 +12,9 @@ export interface Config {
   };
   collections: {
     users: User;
-    media: Media;
     logos: Logo;
     'banner-backgrounds': BannerBackground;
-    screenshot: Screenshot;
+    screenshots: Screenshot;
     'og-banners': OgBanner;
     works: Work;
     'payload-locked-documents': PayloadLockedDocument;
@@ -25,10 +24,9 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
     logos: LogosSelect<false> | LogosSelect<true>;
     'banner-backgrounds': BannerBackgroundsSelect<false> | BannerBackgroundsSelect<true>;
-    screenshot: ScreenshotSelect<false> | ScreenshotSelect<true>;
+    screenshots: ScreenshotsSelect<false> | ScreenshotsSelect<true>;
     'og-banners': OgBannersSelect<false> | OgBannersSelect<true>;
     works: WorksSelect<false> | WorksSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -92,30 +90,11 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: string;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "logos".
  */
 export interface Logo {
-  id: string;
   alt: string;
+  id: string;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -149,7 +128,7 @@ export interface BannerBackground {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "screenshot".
+ * via the `definition` "screenshots".
  */
 export interface Screenshot {
   id: string;
@@ -205,21 +184,21 @@ export interface Work {
   primaryLinkText: string;
   secondaryLinkUrl?: string | null;
   secondaryLinkText?: string | null;
-  logo: string | Media;
-  banner: string | Media;
+  logo: string | Logo;
+  banner: string | BannerBackground;
   screenshotsCategories?:
     | {
         title: string;
         screenshots?:
           | {
-              screenshot?: (string | null) | Media;
+              screenshot?: (string | null) | Screenshot;
               id?: string | null;
             }[]
           | null;
         id?: string | null;
       }[]
     | null;
-  ogImage: string | Media;
+  ogImage: string | OgBanner;
   ogDescription: string;
   updatedAt: string;
   createdAt: string;
@@ -236,10 +215,6 @@ export interface PayloadLockedDocument {
         value: string | User;
       } | null)
     | ({
-        relationTo: 'media';
-        value: string | Media;
-      } | null)
-    | ({
         relationTo: 'logos';
         value: string | Logo;
       } | null)
@@ -248,7 +223,7 @@ export interface PayloadLockedDocument {
         value: string | BannerBackground;
       } | null)
     | ({
-        relationTo: 'screenshot';
+        relationTo: 'screenshots';
         value: string | Screenshot;
       } | null)
     | ({
@@ -318,29 +293,11 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
- */
-export interface MediaSelect<T extends boolean = true> {
-  alt?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "logos_select".
  */
 export interface LogosSelect<T extends boolean = true> {
-  id?: T;
   alt?: T;
+  id?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -358,7 +315,6 @@ export interface LogosSelect<T extends boolean = true> {
  * via the `definition` "banner-backgrounds_select".
  */
 export interface BannerBackgroundsSelect<T extends boolean = true> {
-  id?: T;
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -374,10 +330,9 @@ export interface BannerBackgroundsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "screenshot_select".
+ * via the `definition` "screenshots_select".
  */
-export interface ScreenshotSelect<T extends boolean = true> {
-  id?: T;
+export interface ScreenshotsSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;

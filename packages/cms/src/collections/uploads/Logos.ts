@@ -9,11 +9,6 @@ export const Logos: CollectionConfig = {
   },
   fields: [
     {
-      name: 'id',
-      required: true,
-      type: 'text',
-    },
-    {
       name: 'alt',
       type: 'text',
       localized: true,

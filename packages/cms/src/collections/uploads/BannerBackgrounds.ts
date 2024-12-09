@@ -9,11 +9,6 @@ export const BannerBackgrounds: CollectionConfig = {
   },
   fields: [
     {
-      name: 'id',
-      required: true,
-      type: 'text',
-    },
-    {
       name: 'alt',
       type: 'text',
       localized: true,

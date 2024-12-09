@@ -16,7 +16,6 @@ import { OGBanners } from './collections/uploads/OGBanners'
 
 import { About } from './globals/About'
 import { Translation } from './globals/Translation'
-import { seedPlugin } from './plugins/seed'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -49,12 +48,5 @@ export default buildConfig({
     url: process.env.DATABASE_URI || '',
   }),
   sharp,
-  plugins: [
-    seedPlugin({
-      enabled: process.env.SEED === 'true',
-      defaultLocale: locales.defaultLocale,
-      additionalLocales: locales.locales,
-      seedsDir: process.env.SEEDS_DIR as string,
-    }),
-  ],
+  plugins: [],
 })

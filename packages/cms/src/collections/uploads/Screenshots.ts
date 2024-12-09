@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-const slug = 'screenshot' as const
+const slug = 'screenshots' as const
 
 export const Screenshots: CollectionConfig = {
   slug,
@@ -8,11 +8,6 @@ export const Screenshots: CollectionConfig = {
     read: () => true,
   },
   fields: [
-    {
-      name: 'id',
-      required: true,
-      type: 'text',
-    },
     {
       name: 'alt',
       type: 'text',

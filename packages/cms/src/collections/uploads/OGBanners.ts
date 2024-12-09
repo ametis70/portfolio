@@ -13,11 +13,6 @@ export const OGBanners: CollectionConfig = {
   },
   fields: [
     {
-      name: 'id',
-      required: true,
-      type: 'text',
-    },
-    {
       name: 'alt',
       type: 'text',
       localized: true,

@@ -113,13 +113,13 @@ export const Works: CollectionConfig = {
         {
           name: 'logo',
           type: 'upload',
-          relationTo: 'media',
+          relationTo: 'logos',
           required: true,
         },
         {
           name: 'banner',
           type: 'upload',
-          relationTo: 'media',
+          relationTo: 'banner-backgrounds',
           required: true,
         },
       ],
@@ -140,7 +140,7 @@ export const Works: CollectionConfig = {
             {
               name: 'screenshot',
               type: 'upload',
-              relationTo: 'media',
+              relationTo: 'screenshots',
             },
           ],
         },
@@ -153,7 +153,7 @@ export const Works: CollectionConfig = {
           name: 'ogImage',
           label: 'OG Image',
           type: 'upload',
-          relationTo: 'media',
+          relationTo: 'og-banners',
           required: true,
         },
         {
