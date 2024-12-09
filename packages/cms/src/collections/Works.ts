@@ -126,7 +126,6 @@ export const Works: CollectionConfig = {
           RowLabel: '/components/ArrayRow#TitleLabelRow',
         },
       },
-
       fields: [
         {
           name: 'title',
@@ -137,7 +136,7 @@ export const Works: CollectionConfig = {
           name: 'screenshots',
           type: 'array',
           admin: {
-            initCollapsed: true,
+            initCollapsed: false,
           },
           fields: [
             {
