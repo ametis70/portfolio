@@ -18,8 +18,7 @@ services:
       DATABASE_URI: mongodb://admin:admin@database/payload?authSource=admin
       PAYLOAD_SECRET: TESTING
       UPLOADS_DIR: /home/node/uploads
-      SEEDS_DIR: /home/node/seeds
-      SEED: "true"
+      TZ: ${TZ}
 
   database:
     container_name: database

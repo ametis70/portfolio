@@ -93,8 +93,8 @@ export interface User {
  * via the `definition` "logos".
  */
 export interface Logo {
-  alt: string;
   id: string;
+  alt: string;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -297,7 +297,6 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface LogosSelect<T extends boolean = true> {
   alt?: T;
-  id?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -351,7 +350,6 @@ export interface ScreenshotsSelect<T extends boolean = true> {
  * via the `definition` "og-banners_select".
  */
 export interface OgBannersSelect<T extends boolean = true> {
-  id?: T;
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
