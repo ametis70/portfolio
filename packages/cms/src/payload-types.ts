@@ -12,7 +12,12 @@ export interface Config {
   };
   collections: {
     users: User;
-    media: Media;
+    logos: Logo;
+    'banner-backgrounds': BannerBackground;
+    screenshots: Screenshot;
+    'og-banners': OgBanner;
+    works: Work;
+    translations: Translation;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -20,7 +25,12 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
+    logos: LogosSelect<false> | LogosSelect<true>;
+    'banner-backgrounds': BannerBackgroundsSelect<false> | BannerBackgroundsSelect<true>;
+    screenshots: ScreenshotsSelect<false> | ScreenshotsSelect<true>;
+    'og-banners': OgBannersSelect<false> | OgBannersSelect<true>;
+    works: WorksSelect<false> | WorksSelect<true>;
+    translations: TranslationsSelect<false> | TranslationsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -28,9 +38,13 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  globals: {};
-  globalsSelect: {};
-  locale: null;
+  globals: {
+    about: About;
+  };
+  globalsSelect: {
+    about: AboutSelect<false> | AboutSelect<true>;
+  };
+  locale: 'en' | 'es';
   user: User & {
     collection: 'users';
   };
@@ -76,9 +90,9 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
+ * via the `definition` "logos".
  */
-export interface Media {
+export interface Logo {
   id: string;
   alt: string;
   updatedAt: string;
@@ -95,6 +109,118 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "banner-backgrounds".
+ */
+export interface BannerBackground {
+  id: string;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "screenshots".
+ */
+export interface Screenshot {
+  id: string;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "og-banners".
+ */
+export interface OgBanner {
+  id: string;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "works".
+ */
+export interface Work {
+  id: string;
+  enabled?: boolean | null;
+  title: string;
+  priority: number;
+  description: string;
+  role: string;
+  category: string;
+  tags: string;
+  gradient: string;
+  finishDate: string;
+  primaryLinkUrl: string;
+  primaryLinkText: string;
+  secondaryLinkUrl?: string | null;
+  secondaryLinkText?: string | null;
+  logo: string | Logo;
+  banner: string | BannerBackground;
+  screenshotsCategories?:
+    | {
+        title: string;
+        screenshots?:
+          | {
+              screenshot?: (string | null) | Screenshot;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  ogImage: string | OgBanner;
+  ogDescription: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "translations".
+ */
+export interface Translation {
+  id: string;
+  namespace: string;
+  translations?:
+    | {
+        key: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -105,8 +231,28 @@ export interface PayloadLockedDocument {
         value: string | User;
       } | null)
     | ({
-        relationTo: 'media';
-        value: string | Media;
+        relationTo: 'logos';
+        value: string | Logo;
+      } | null)
+    | ({
+        relationTo: 'banner-backgrounds';
+        value: string | BannerBackground;
+      } | null)
+    | ({
+        relationTo: 'screenshots';
+        value: string | Screenshot;
+      } | null)
+    | ({
+        relationTo: 'og-banners';
+        value: string | OgBanner;
+      } | null)
+    | ({
+        relationTo: 'works';
+        value: string | Work;
+      } | null)
+    | ({
+        relationTo: 'translations';
+        value: string | Translation;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -167,9 +313,9 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
+ * via the `definition` "logos_select".
  */
-export interface MediaSelect<T extends boolean = true> {
+export interface LogosSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -182,6 +328,114 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "banner-backgrounds_select".
+ */
+export interface BannerBackgroundsSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "screenshots_select".
+ */
+export interface ScreenshotsSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "og-banners_select".
+ */
+export interface OgBannersSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "works_select".
+ */
+export interface WorksSelect<T extends boolean = true> {
+  id?: T;
+  enabled?: T;
+  title?: T;
+  priority?: T;
+  description?: T;
+  role?: T;
+  category?: T;
+  tags?: T;
+  gradient?: T;
+  finishDate?: T;
+  primaryLinkUrl?: T;
+  primaryLinkText?: T;
+  secondaryLinkUrl?: T;
+  secondaryLinkText?: T;
+  logo?: T;
+  banner?: T;
+  screenshotsCategories?:
+    | T
+    | {
+        title?: T;
+        screenshots?:
+          | T
+          | {
+              screenshot?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  ogImage?: T;
+  ogDescription?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "translations_select".
+ */
+export interface TranslationsSelect<T extends boolean = true> {
+  namespace?: T;
+  translations?:
+    | T
+    | {
+        key?: T;
+        value?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -214,6 +468,98 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about".
+ */
+export interface About {
+  id: string;
+  name: string;
+  subtitle: string;
+  city: string;
+  description: string;
+  experience?:
+    | {
+        start: string;
+        end?: string | null;
+        role: string;
+        company: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  skills?:
+    | {
+        category: string;
+        skills: string;
+        id?: string | null;
+      }[]
+    | null;
+  education?:
+    | {
+        category: string;
+        items?:
+          | {
+              start: string;
+              end?: string | null;
+              title: string;
+              school: string;
+              link?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about_select".
+ */
+export interface AboutSelect<T extends boolean = true> {
+  name?: T;
+  subtitle?: T;
+  city?: T;
+  description?: T;
+  experience?:
+    | T
+    | {
+        start?: T;
+        end?: T;
+        role?: T;
+        company?: T;
+        description?: T;
+        id?: T;
+      };
+  skills?:
+    | T
+    | {
+        category?: T;
+        skills?: T;
+        id?: T;
+      };
+  education?:
+    | T
+    | {
+        category?: T;
+        items?:
+          | T
+          | {
+              start?: T;
+              end?: T;
+              title?: T;
+              school?: T;
+              link?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

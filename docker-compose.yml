@@ -1,0 +1,42 @@
+services:
+  cms:
+    extends:
+      file: './packages/cms/docker-compose.yml'
+      service: cms
+    environment:
+      - PAYLOAD_PUBLIC_SERVER_URL=${DEV_URL}
+    volumes:
+      - ./seeds:/home/node/seeds
+      - ./uploads:/home/node/uploads
+    restart: unless-stopped
+
+  database:
+    extends:
+      file: './packages/cms/docker-compose.yml'
+      service: database
+    restart: unless-stopped
+
+  mongo-express:
+    extends:
+      file: './packages/cms/docker-compose.yml'
+      service: mongo-express
+
+  caddy:
+    image: caddy:2.8.4-alpine
+    container_name: caddy
+    ports:
+      - "80:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+
+volumes:
+  caddy_data:
+  caddy_config:
+  app_next_dir:
+  app_node_modules:
+  payload_node_modules:
+  payload_uploads:
+  db:

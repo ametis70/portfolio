@@ -1,29 +1,51 @@
 services:
-  payload:
+  cms:
     image: node:18-alpine
+    container_name: cms
     ports:
-      - '3000:3000'
+      - "3002:3002"
     volumes:
       - .:/home/node/app
-      - node_modules:/home/node/app/node_modules
+      - payload_node_modules:/home/node/app/node_modules
+      - payload_uploads:/home/node/uploads
     working_dir: /home/node/app/
     command: sh -c "npm install && npm run dev"
     depends_on:
-      - mongo
-    env_file:
-      - .env
+      - database
+    environment:
+      PORT: 3002
+      NODE_ENV: development
+      DATABASE_URI: mongodb://admin:admin@database/payload?authSource=admin
+      PAYLOAD_SECRET: TESTING
+      UPLOADS_DIR: /home/node/uploads
+      TZ: ${TZ}
 
-  mongo:
-    image: mongo:latest
+  database:
+    container_name: database
+    image: mongo:8.0.3
     ports:
-      - '27017:27017'
-    command:
-      - --storageEngine=wiredTiger
+      - "27017:27017"
     volumes:
-      - data:/data/db
-    logging:
-      driver: none
+      - db:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - MONGO_INITDB_DATABASE=payload
+    # command: mongod --quiet --logpath /dev/null
+    # logging:
+    #   driver: none
+
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express
+    ports:
+    - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_URL: 'mongodb://admin:admin@database/payload?authSource=admin'
+      ME_CONFIG_BASICAUTH: false
+    depends_on:
+      - database
 
 volumes:
-  data:
-  node_modules:
+  db:
+  payload_node_modules:
