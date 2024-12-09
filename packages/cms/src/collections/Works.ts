@@ -120,6 +120,13 @@ export const Works: CollectionConfig = {
     {
       name: 'screenshotsCategories',
       type: 'array',
+      admin: {
+        initCollapsed: true,
+        components: {
+          RowLabel: '/components/ArrayRow#TitleLabelRow',
+        },
+      },
+
       fields: [
         {
           name: 'title',
@@ -129,6 +136,9 @@ export const Works: CollectionConfig = {
         {
           name: 'screenshots',
           type: 'array',
+          admin: {
+            initCollapsed: true,
+          },
           fields: [
             {
               name: 'screenshot',

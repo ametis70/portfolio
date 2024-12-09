@@ -28,45 +28,52 @@ export const About: GlobalConfig = {
     {
       name: 'experience',
       type: 'array',
+      admin: {
+        initCollapsed: true,
+        components: {
+          RowLabel: '/components/ArrayRow#CompanyLabelRow',
+        },
+      },
       fields: [
         {
-          name: 'experienceItem',
-          type: 'group',
-          fields: [
-            {
-              name: 'start',
-              type: 'date',
-              required: true,
-            },
-            {
-              name: 'end',
-              type: 'date',
-              required: false,
-            },
-            {
-              name: 'role',
-              type: 'text',
-              localized: true,
-              required: true,
-            },
-            {
-              name: 'company',
-              type: 'text',
-              required: true,
-            },
-            {
-              name: 'description',
-              type: 'textarea',
-              localized: true,
-              required: true,
-            },
-          ],
+          name: 'start',
+          type: 'date',
+          required: true,
+        },
+        {
+          name: 'end',
+          type: 'date',
+          required: false,
+        },
+        {
+          name: 'role',
+          type: 'text',
+          localized: true,
+          required: true,
+        },
+        {
+          name: 'company',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          localized: true,
+          required: true,
         },
       ],
     },
     {
       name: 'skills',
       type: 'array',
+      admin: {
+        initCollapsed: true,
+        components: {
+          RowLabel: '/components/ArrayRow#CategoryLabelRow',
+        },
+      },
+
       fields: [
         {
           name: 'category',
@@ -85,6 +92,13 @@ export const About: GlobalConfig = {
     {
       name: 'education',
       type: 'array',
+      admin: {
+        initCollapsed: true,
+        components: {
+          RowLabel: '/components/ArrayRow#CategoryLabelRow',
+        },
+      },
+
       fields: [
         {
           name: 'category',
@@ -95,6 +109,13 @@ export const About: GlobalConfig = {
         {
           name: 'items',
           type: 'array',
+          admin: {
+            initCollapsed: true,
+            components: {
+              RowLabel: '/components/ArrayRow#TitleLabelRow',
+            },
+          },
+
           fields: [
             {
               name: 'start',

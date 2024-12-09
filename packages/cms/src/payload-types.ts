@@ -17,6 +17,7 @@ export interface Config {
     screenshots: Screenshot;
     'og-banners': OgBanner;
     works: Work;
+    translations: Translation;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -29,6 +30,7 @@ export interface Config {
     screenshots: ScreenshotsSelect<false> | ScreenshotsSelect<true>;
     'og-banners': OgBannersSelect<false> | OgBannersSelect<true>;
     works: WorksSelect<false> | WorksSelect<true>;
+    translations: TranslationsSelect<false> | TranslationsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -38,11 +40,9 @@ export interface Config {
   };
   globals: {
     about: About;
-    translation: Translation;
   };
   globalsSelect: {
     about: AboutSelect<false> | AboutSelect<true>;
-    translation: TranslationSelect<false> | TranslationSelect<true>;
   };
   locale: 'en' | 'es';
   user: User & {
@@ -172,7 +172,6 @@ export interface Work {
   id: string;
   enabled?: boolean | null;
   title: string;
-  slug: string;
   priority: number;
   description: string;
   role: string;
@@ -200,6 +199,23 @@ export interface Work {
     | null;
   ogImage: string | OgBanner;
   ogDescription: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "translations".
+ */
+export interface Translation {
+  id: string;
+  namespace: string;
+  translations?:
+    | {
+        key: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -233,6 +249,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'works';
         value: string | Work;
+      } | null)
+    | ({
+        relationTo: 'translations';
+        value: string | Translation;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -371,7 +391,6 @@ export interface WorksSelect<T extends boolean = true> {
   id?: T;
   enabled?: T;
   title?: T;
-  slug?: T;
   priority?: T;
   description?: T;
   role?: T;
@@ -399,6 +418,22 @@ export interface WorksSelect<T extends boolean = true> {
       };
   ogImage?: T;
   ogDescription?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "translations_select".
+ */
+export interface TranslationsSelect<T extends boolean = true> {
+  namespace?: T;
+  translations?:
+    | T
+    | {
+        key?: T;
+        value?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -446,13 +481,11 @@ export interface About {
   description: string;
   experience?:
     | {
-        experienceItem: {
-          start: string;
-          end?: string | null;
-          role: string;
-          company: string;
-          description: string;
-        };
+        start: string;
+        end?: string | null;
+        role: string;
+        company: string;
+        description: string;
         id?: string | null;
       }[]
     | null;
@@ -484,28 +517,6 @@ export interface About {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "translation".
- */
-export interface Translation {
-  id: string;
-  namespaces?:
-    | {
-        namespace: string;
-        translations?:
-          | {
-              key: string;
-              value: string;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about_select".
  */
 export interface AboutSelect<T extends boolean = true> {
@@ -516,15 +527,11 @@ export interface AboutSelect<T extends boolean = true> {
   experience?:
     | T
     | {
-        experienceItem?:
-          | T
-          | {
-              start?: T;
-              end?: T;
-              role?: T;
-              company?: T;
-              description?: T;
-            };
+        start?: T;
+        end?: T;
+        role?: T;
+        company?: T;
+        description?: T;
         id?: T;
       };
   skills?:
@@ -546,28 +553,6 @@ export interface AboutSelect<T extends boolean = true> {
               title?: T;
               school?: T;
               link?: T;
-              id?: T;
-            };
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "translation_select".
- */
-export interface TranslationSelect<T extends boolean = true> {
-  namespaces?:
-    | T
-    | {
-        namespace?: T;
-        translations?:
-          | T
-          | {
-              key?: T;
-              value?: T;
               id?: T;
             };
         id?: T;
