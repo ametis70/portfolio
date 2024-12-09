@@ -17,5 +17,6 @@ export const BannerBackgrounds: CollectionConfig = {
   ],
   upload: {
     staticDir: `${process.env.UPLOADS_DIR}/${slug}`,
+    displayPreview: true,
   },
 }

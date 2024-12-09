@@ -21,5 +21,6 @@ export const OGBanners: CollectionConfig = {
   ],
   upload: {
     staticDir: `${process.env.UPLOADS_DIR}/${slug}`,
+    displayPreview: true,
   },
 }

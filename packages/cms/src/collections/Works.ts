@@ -2,6 +2,9 @@ import type { CollectionConfig } from 'payload'
 
 export const Works: CollectionConfig = {
   slug: 'works',
+  admin: {
+    defaultColumns: ['ogImage', 'title', 'id', 'enabled'],
+  },
   fields: [
     {
       name: 'id',
@@ -18,19 +21,9 @@ export const Works: CollectionConfig = {
       required: true,
     },
     {
-      type: 'row',
-      fields: [
-        {
-          name: 'slug',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'priority',
-          type: 'number',
-          required: true,
-        },
-      ],
+      name: 'priority',
+      type: 'number',
+      required: true,
     },
     {
       name: 'description',
