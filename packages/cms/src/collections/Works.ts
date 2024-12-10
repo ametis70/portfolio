@@ -1,7 +1,15 @@
 import type { CollectionConfig } from 'payload'
 
+import { isAdmin, isAdminOrApi } from '@/auth'
+
 export const Works: CollectionConfig = {
   slug: 'works',
+  access: {
+    read: isAdminOrApi,
+    update: isAdmin,
+    delete: isAdmin,
+    create: isAdmin,
+  },
   admin: {
     defaultColumns: ['ogImage', 'title', 'id', 'enabled'],
   },

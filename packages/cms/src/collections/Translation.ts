@@ -1,7 +1,15 @@
 import { CollectionConfig } from 'payload'
 
+import { isAdmin, isAdminOrApi } from '@/auth'
+
 export const Translations: CollectionConfig = {
   slug: 'translations',
+  access: {
+    read: isAdminOrApi,
+    update: isAdmin,
+    delete: isAdmin,
+    create: isAdmin,
+  },
   admin: {
     defaultColumns: ['namespace'],
     useAsTitle: 'namespace',

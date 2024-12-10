@@ -1,0 +1,17 @@
+services:
+  web-next:
+    image: node:18-alpine
+    container_name: web-next
+    ports:
+      - "3001:3001"
+    volumes:
+      - "./:/home/node/app"
+      - app_node_modules:/home/node/app/node_modules
+    command: sh -c 'npm install && npm run dev'
+    working_dir: /home/node/app/
+    environment:
+      - PORT=3001
+      - NODE_ENV=development
+
+volumes:
+  app_node_modules:
