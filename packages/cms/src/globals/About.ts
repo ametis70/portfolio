@@ -1,7 +1,13 @@
 import { GlobalConfig } from 'payload'
 
+import { isAdmin, isAdminOrApi } from '@/auth'
+
 export const About: GlobalConfig = {
   slug: 'about',
+  access: {
+    read: isAdminOrApi,
+    update: isAdmin,
+  },
   fields: [
     {
       name: 'name',
