@@ -1,10 +1,17 @@
 services:
+  web-next:
+    extends:
+      file: './packages/web-next/docker-compose.yml'
+      service: web-next
+    environment:
+      - NEXT_PUBLIC_PUBLIC_URL=${DEV_URL}
+      - CMS_API_KEY=${CMS_API_KEY}
+    restart: unless-stopped
+
   cms:
     extends:
       file: './packages/cms/docker-compose.yml'
       service: cms
-    environment:
-      - PAYLOAD_PUBLIC_SERVER_URL=${DEV_URL}
     volumes:
       - ./seeds:/home/node/seeds
       - ./uploads:/home/node/uploads

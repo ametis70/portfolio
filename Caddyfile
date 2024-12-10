@@ -18,6 +18,6 @@ http:// {
 	}
 
 	handle {
-		reverse_proxy http://app:3001
+		reverse_proxy http://web-next:3001
 	}
 }
