@@ -31,9 +31,6 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=admin
       - MONGO_INITDB_DATABASE=payload
-    # command: mongod --quiet --logpath /dev/null
-    # logging:
-    #   driver: none
 
   mongo-express:
     container_name: mongo-express
@@ -49,3 +46,4 @@ services:
 volumes:
   db:
   payload_node_modules:
+  payload_uploads:
